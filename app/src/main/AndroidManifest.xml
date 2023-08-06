@@ -13,8 +13,9 @@
         android:theme="@style/Theme.GrandPa"
         tools:targetApi="31">
 
+        <activity android:name=".ShowRoomActivity"/>
         <activity
-            android:name=".ShowRoomActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,25 +7,25 @@
 
 
     <TextView
-        android:id="@+id/CountText"
+        android:id="@+id/CountRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:text="100"
+        android:text="sumofRoom"
         android:textSize="23dp"
-        app:layout_constraintBottom_toTopOf="@+id/reRoom"
+        app:layout_constraintBottom_toTopOf="@+id/room_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/reRoom"
+        android:id="@+id/room_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CountText" />
+        app:layout_constraintTop_toBottomOf="@+id/CountRoom" />
 </androidx.constraintlayout.widget.ConstraintLayout>
