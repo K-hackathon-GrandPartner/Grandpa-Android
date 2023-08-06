@@ -7,21 +7,38 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class ShowRoomActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.showroomlist)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.reRoom)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
         // 더미 데이터 리스트 예시
-        val data = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5","Item6", "Item7")
+        val roomList = arrayListOf(
+            room_data(R.drawable.home, "아파트", "큰 방", 5,7,
+                100,30, "광진구","건국대 도보 5분"),
+            room_data(R.drawable.home, "아파트", "큰 방", 5,7,
+                100,30, "광진구","건국대 도보 5분"),
+            room_data(R.drawable.home, "아파트", "큰 방", 5,7,
+                100,30, "광진구","건국대 도보 5분"),
+            room_data(R.drawable.home, "아파트", "큰 방", 5,7,
+                100,30, "광진구","건국대 도보 5분"),
+            room_data(R.drawable.home, "아파트", "큰 방", 5,7,
+                100,30, "광진구","건국대 도보 5분"),
+            room_data(R.drawable.home, "아파트", "큰 방", 5,7,
+                100,30, "광진구","건국대 도보 5분"),
+            room_data(R.drawable.home, "아파트", "큰 방", 5,7,
+                100,30, "광진구","건국대 도보 5분"),
+        )
 
-        val recyclerViewAdapter = ShowRoomAdapter(data)
-        recyclerView.adapter = recyclerViewAdapter
+        val rv_room = findViewById<RecyclerView>(R.id.room_list)
+        val sumOfRoom = findViewById<TextView>(R.id.CountRoom)
 
-        val countTextView = findViewById<TextView>(R.id.CountText)
-        countTextView.text = "총 ${data.size} 개"
+        sumOfRoom.text = "총 ${roomList.size} 개"
+
+        rv_room.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        rv_room.setHasFixedSize(true)
+        rv_room.adapter = ShowRoomAdapter(roomList)
+
+
+
     }
 }
