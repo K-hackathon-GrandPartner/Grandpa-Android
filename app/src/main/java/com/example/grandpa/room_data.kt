@@ -5,6 +5,7 @@ data class room_data (
     val building_type:String,
     val room_size:String,
     val size_unit:Int,
+    val size_unitm2:Double,
     val building_height: Int,
     val room_deposit:Int,
     val room_price:Int,
