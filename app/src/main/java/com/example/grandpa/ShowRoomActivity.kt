@@ -1,5 +1,6 @@
 package com.example.grandpa
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,7 +15,7 @@ class ShowRoomActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.showroomlist)
+        setContentView(R.layout.show_room)
 
         // 더미 데이터 리스트 예시
         val roomList = arrayListOf(
@@ -43,7 +44,7 @@ class ShowRoomActivity : AppCompatActivity() {
 
         rv_room.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rv_room.setHasFixedSize(true)
-        showroomAdapter = ShowRoomAdapter(roomList, true) // 어댑터 생성 및 초기화
+        showroomAdapter = ShowRoomAdapter(roomList, false) // 어댑터 생성 및 초기화
         rv_room.adapter = showroomAdapter
 
         val m2ImageView: ImageView = findViewById(R.id.m2)
@@ -53,13 +54,22 @@ class ShowRoomActivity : AppCompatActivity() {
         m2ImageView.setOnClickListener{
             m2ImageView.isVisible = m2ImageView.isInvisible
             m2koreaImageView.isInvisible = m2koreaImageView.isVisible
-            showroomAdapter.setM2Setting(false)
+            showroomAdapter.setM2Setting(true)
         }
         //평 to m2
         m2koreaImageView.setOnClickListener{
             m2koreaImageView.isVisible = m2koreaImageView.isInvisible
             m2ImageView.isInvisible = m2ImageView.isVisible
-            showroomAdapter.setM2Setting(true)
+            showroomAdapter.setM2Setting(false)
         }
+
+        //filter Setting 화면으로
+        val filterImageView: ImageView = findViewById(R.id.filter)
+        filterImageView.setOnClickListener{
+            val intent = Intent(this, FilterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
 }
