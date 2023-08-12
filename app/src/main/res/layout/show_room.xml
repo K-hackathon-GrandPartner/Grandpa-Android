@@ -6,97 +6,111 @@
     android:layout_height="match_parent">
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="440dp"
+        android:layout_height="621dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="5dp"
+        android:background="#54A12F"
+        app:layout_constraintBottom_toTopOf="@+id/offcheck"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CountRoom">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/room_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="60dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CountRoom">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
     <ImageView
         android:id="@+id/filter"
-        android:layout_width="42dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/room_list"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/CountRoom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/CountRoom"
         app:srcCompat="@drawable/filter" />
 
     <ImageView
         android:id="@+id/offprofile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/offchat"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/offchat"
         app:srcCompat="@drawable/offprofile" />
 
     <ImageView
         android:id="@+id/offchat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/offcheck"
         app:layout_constraintEnd_toStartOf="@+id/offprofile"
+        app:layout_constraintStart_toEndOf="@+id/offcheck"
+        app:layout_constraintTop_toTopOf="@+id/offcheck"
         app:srcCompat="@drawable/offchat" />
 
     <ImageView
         android:id="@+id/offcheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/offchat"
-        app:layout_constraintStart_toEndOf="@+id/offheart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/room_list"
         app:srcCompat="@drawable/offcheck" />
 
     <ImageView
         android:id="@+id/offheart"
-        android:layout_width="43dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/offcheck"
+        app:layout_constraintEnd_toStartOf="@+id/offcheck"
         app:layout_constraintStart_toEndOf="@+id/offsearch"
+        app:layout_constraintTop_toTopOf="@+id/offcheck"
         app:srcCompat="@drawable/offheart" />
 
     <ImageView
         android:id="@+id/offsearch"
-        android:layout_width="wrap_content"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/offheart"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/offheart"
         app:srcCompat="@drawable/offsearch" />
 
     <ImageView
         android:id="@+id/m2"
-        android:layout_width="49dp"
-        android:layout_height="59dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="16dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/m2korea"
+        app:layout_constraintBottom_toBottomOf="@+id/CountRoom"
         app:layout_constraintEnd_toStartOf="@+id/filter"
-        app:layout_constraintHorizontal_bias="0.344"
-        app:layout_constraintStart_toEndOf="@+id/CountRoom"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="@+id/CountRoom"
+        app:layout_constraintVertical_bias="0.428"
         app:srcCompat="@drawable/m2" />
-
-    <ImageView
-        android:id="@+id/m2korea"
-        android:layout_width="49dp"
-        android:layout_height="55dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/filter"
-        app:layout_constraintHorizontal_bias="0.34"
-        app:layout_constraintStart_toEndOf="@+id/CountRoom"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/m2korea" />
 
     <TextView
         android:id="@+id/CountRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="sumofRoom"
         android:textSize="23dp"
         app:layout_constraintBottom_toTopOf="@+id/room_list"
@@ -104,15 +118,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/room_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CountRoom">
-
-    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>
