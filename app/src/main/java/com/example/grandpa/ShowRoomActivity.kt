@@ -48,7 +48,7 @@ class ShowRoomActivity : AppCompatActivity() {
         rv_room.adapter = showroomAdapter
 
         val m2ImageView: ImageView = findViewById(R.id.m2)
-        val m2koreaImageView: ImageView = findViewById(R.id.m2korea)
+        val m2koreaImageView: ImageView = findViewById(R.id.m2)
 
         //m2 to 평
         m2ImageView.setOnClickListener{

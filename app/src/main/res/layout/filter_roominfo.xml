@@ -1,188 +1,455 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
 
     <ScrollView
+        android:id="@+id/filter_scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="-227dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CountRoom"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="75dp"
-                android:layout_height="26dp"
-                android:layout_marginStart="15dp"
-                android:text="금액" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
+                android:id="@+id/linear_price"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#54A12F" />
 
                 <TextView
-                    android:id="@+id/deposit"
-                    android:layout_width="match_parent"
+                    android:id="@+id/filter_price"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="금액"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/filter_deposit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
                     android:text="보증금"
-                    app:layout_constraintBottom_toTopOf="@+id/depositrange"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed" />
+                    android:textColor="#0C0C0C"
+                    android:textSize="20sp" />
 
                 <com.google.android.material.slider.RangeSlider
                     android:id="@+id/depositrange"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
-                    android:contentDescription="범위 선택을 위한 슬라이더입니다."
+                    android:contentDescription="보증금 범위 설정"
                     android:stepSize="10.0"
                     android:valueFrom="0.0"
-                    android:valueTo="100.0"
-                    app:layout_constraintBottom_toTopOf="@+id/pricerange"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/deposit"
-                    app:values="@array/initial_slider_values" />
+                    android:valueTo="200.0"
+                    app:thumbColor="#54A12F"
+                    app:trackColorActive="#B7DD8B"
+                    app:trackColorInactive="#D1D1D1"
+                    app:values="@array/initial_slider_deposit" />
 
                 <TextView
-                    android:id="@+id/monthprice"
-                    android:layout_width="match_parent"
+                    android:id="@+id/filter_monthPrice"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="25dp"
                     android:text="월세"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/depositrange" />
+                    android:textColor="#090909"
+                    android:textSize="20sp" />
 
                 <com.google.android.material.slider.RangeSlider
                     android:id="@+id/pricerange"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginStart="20dp"
-                    android:contentDescription="범위 선택을 위한 슬라이더입니다."
-                    android:stepSize="10.0"
+                    android:layout_height="76dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:contentDescription="월세 범위 설정"
+                    android:stepSize="5.0"
                     android:valueFrom="0.0"
-                    android:valueTo="100.0"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/depositrange"
-                    app:values="@array/initial_slider_values" />
+                    android:valueTo="30.0"
+                    app:thumbColor="#54A12F"
+                    app:trackColorActive="#B7DD8B"
+                    app:trackColorInactive="#D1D1D1"
+                    app:values="@array/initial_slider_price" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#54A12F" />
+            </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="구조.면적" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
+                android:id="@+id/linear_structure"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/reigon"
+                    android:id="@+id/filter_structure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="구조.면적"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/filter_region"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:text="지역 "
+                    android:textColor="#101010"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:id="@+id/linear_region"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="지역"
-                    app:layout_constraintBottom_toTopOf="@+id/Seongbuk"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed" />
+                    android:orientation="horizontal">
 
-                <CheckBox
-                    android:id="@+id/Gwangjin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginBottom="1dp"
-                    android:text="광진구"
-                    app:layout_constraintBottom_toTopOf="@+id/buildingtype"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    <CheckBox
+                        android:id="@+id/filter_Gwangjin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_weight="1"
+                        android:text="광진구"
+                        android:textSize="20sp" />
 
-                <CheckBox
-                    android:id="@+id/nowon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="노원구"
-                    app:layout_constraintStart_toEndOf="@+id/Gwangjin"
-                    app:layout_constraintTop_toBottomOf="@+id/reigon" />
+                    <CheckBox
+                        android:id="@+id/filter_Nowon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_weight="1"
+                        android:text="노원구"
+                        android:textSize="20sp" />
 
-                <CheckBox
-                    android:id="@+id/Seongbuk"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="성북구"
-                    app:layout_constraintBottom_toTopOf="@+id/buildingtype"
-                    app:layout_constraintStart_toEndOf="@+id/nowon"
-                    app:layout_constraintTop_toBottomOf="@+id/reigon" />
+                    <CheckBox
+                        android:id="@+id/filter_Seongbuk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_weight="1"
+                        android:text="성북구"
+                        android:textSize="20sp" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/buildingtype"
+                    android:id="@+id/filter_buildingType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
                     android:text="건물 유형"
-                    app:layout_constraintBottom_toTopOf="@+id/officetels"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Seongbuk" />
+                    android:textColor="#101010"
+                    android:textSize="20sp" />
 
-                <CheckBox
-                    android:id="@+id/apartment"
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:columnCount="2"
+                    app:orientation="horizontal"
+                    app:rowCount="2">
+
+                    <CheckBox
+                        android:id="@+id/filter_apartment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:text="아파트"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_officetel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="140dp"
+                        android:text="오피스텔"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_villa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:text="빌라"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_house"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="140dp"
+                        android:text="단독주택"
+                        android:textSize="20sp" />
+
+                </androidx.gridlayout.widget.GridLayout>
+
+                <TextView
+                    android:id="@+id/filter_roomSize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="아파트"
-                    app:layout_constraintBottom_toTopOf="@+id/villa"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:text="방 크기"
+                    android:textColor="#101010"
+                    android:textSize="20sp" />
 
-                <CheckBox
-                    android:id="@+id/officetels"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/filter_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_weight="1"
+                        android:text="소형"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_weight="1"
+                        android:text="중형"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_weight="1"
+                        android:text="대형"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_bigger"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_weight="1"
+                        android:text="대형+"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#54A12F" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_option"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="779dp">
+
+                <TextView
+                    android:id="@+id/filter_option"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="80dp"
-                    android:text="오피스텔"
-                    app:layout_constraintBottom_toTopOf="@+id/villa"
-                    app:layout_constraintStart_toEndOf="@+id/apartment"
-                    app:layout_constraintTop_toBottomOf="@+id/buildingtype" />
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="옵션"
+                    android:textColor="#0E0E0E"
+                    android:textSize="20sp" />
 
-                <CheckBox
-                    android:id="@+id/villa"
-                    android:layout_width="wrap_content"
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="빌라"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/officetels" />
+                    app:columnCount="2"
+                    app:orientation="horizontal"
+                    app:rowCount="7">
 
-                <CheckBox
-                    android:id="@+id/house"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="90dp"
-                    android:text="단독 주택"
-                    app:layout_constraintStart_toEndOf="@+id/villa"
-                    app:layout_constraintTop_toBottomOf="@+id/officetels" />
+                    <CheckBox
+                        android:id="@+id/filter_bathroom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:text="욕실"
+                        android:textSize="20sp" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <CheckBox
+                        android:id="@+id/filter_kitchen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:text="주방 공유"
+                        android:textSize="20sp"
+                        app:layout_column="1"
+                        app:layout_row="0" />
+
+                    <CheckBox
+                        android:id="@+id/filter_bed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:text="침대"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_laundary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:text="세탁기 공유"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_aircon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:text="에어컨"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_elivator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:text="엘리베이터"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_desk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:text="책상"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_feeParking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:text="유료 주차"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_freeParking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:text="무료 주차"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_closet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:text="옷장"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_internet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:text="무선 인터넷"
+                        android:textSize="20sp" />
+
+                    <CheckBox
+                        android:id="@+id/filter_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:text="TV"
+                        android:textSize="20sp" />
+
+                    <android.widget.Button
+                        android:id="@+id/filter_deleteBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="35dp"
+                        android:background="@drawable/filter_btn_design"
+                        android:text="초기화"
+                        android:textColor="#54A12F"
+                        android:textSize="24sp" />
+
+                    <Button
+                        android:id="@+id/filter_applyBtn"
+                        android:layout_width="296dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="35dp"
+                        android:backgroundTint="#54A12F"
+                        android:padding="6dp"
+                        android:text="적용하기"
+                        android:textSize="24sp" />
+
+                </androidx.gridlayout.widget.GridLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/CountRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="sumofRoom"
+        android:textSize="23dp"
+        app:layout_constraintBottom_toTopOf="@+id/filter_scrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/filter_backbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/CountRoom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/CountRoom"
+        app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

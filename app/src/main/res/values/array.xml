@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="initial_slider_values">
+    <array name="initial_slider_deposit">
+        <item>0.0</item>
+        <item>150.0</item>
+    </array>
+
+    <array name="initial_slider_price">
+        <item>10.0</item>
         <item>20.0</item>
-        <item>70.0</item>
     </array>
 </resources>
