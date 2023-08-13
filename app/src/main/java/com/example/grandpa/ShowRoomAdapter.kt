@@ -37,9 +37,11 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
         holder.room_intro.text = roomList[position].room_intro
 
         if(m2setting){
-            holder.size_unitm2.text = roomList[position].size_unitm2.toString()
-        }else{
+            //true면 평으로
             holder.size_unit.text = roomList[position].size_unit.toString()
+        }else{
+            //false면 m2로
+            holder.size_unitm2.text = roomList[position].size_unitm2.toString()
         }
     }
 
