@@ -5,13 +5,12 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class ShowRoomActivity : AppCompatActivity() {
     private lateinit var showroomAdapter : ShowRoomAdapter
+    private var setM2 : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,36 +36,38 @@ class ShowRoomActivity : AppCompatActivity() {
                 7,100, 30,"광진구","건국대 도보 5분"),
         )
 
-        val rv_room = findViewById<RecyclerView>(R.id.room_list)
+        //roomlist 개수
         val sumOfRoom = findViewById<TextView>(R.id.CountRoom)
-
         sumOfRoom.text = "총 ${roomList.size} 개"
 
+        //리사이클러뷰
+        val rv_room = findViewById<RecyclerView>(R.id.room_list)
         rv_room.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rv_room.setHasFixedSize(true)
-        showroomAdapter = ShowRoomAdapter(roomList, false) // 어댑터 생성 및 초기화
+        showroomAdapter = ShowRoomAdapter(roomList, setM2) // 어댑터 생성 및 초기화
         rv_room.adapter = showroomAdapter
 
-        val m2ImageView: ImageView = findViewById(R.id.m2)
-        val m2koreaImageView: ImageView = findViewById(R.id.m2)
 
-        //m2 to 평
+        //m2 평 전환
+        val m2ImageView: ImageView = findViewById(R.id.m2)
+
         m2ImageView.setOnClickListener{
-            m2ImageView.isVisible = m2ImageView.isInvisible
-            m2koreaImageView.isInvisible = m2koreaImageView.isVisible
-            showroomAdapter.setM2Setting(true)
-        }
-        //평 to m2
-        m2koreaImageView.setOnClickListener{
-            m2koreaImageView.isVisible = m2koreaImageView.isInvisible
-            m2ImageView.isInvisible = m2ImageView.isVisible
-            showroomAdapter.setM2Setting(false)
+            if(setM2){
+                setM2 = !setM2
+                m2ImageView.setImageResource(R.drawable.m2korea)
+                showroomAdapter.setM2Setting(setM2)
+            }else{
+                setM2 = !setM2
+                m2ImageView.setImageResource(R.drawable.m2)
+                showroomAdapter.setM2Setting(setM2)
+            }
         }
 
         //filter Setting 화면으로
         val filterImageView: ImageView = findViewById(R.id.filter)
         filterImageView.setOnClickListener{
             val intent = Intent(this, FilterActivity::class.java)
+            intent.putExtra("roomListSize", roomList.size) //put으로 roomList 사이즈 보냄
             startActivity(intent)
             finish()
         }
