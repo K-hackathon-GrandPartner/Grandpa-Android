@@ -30,16 +30,15 @@ class MainActivity:AppCompatActivity() {
         // API 요청
         val call = service.requestList(GroupRetrofitServiceImpl.BASE_URL)
 
-        call.enqueue(object : Callback<ResponseCertiTab> {
+        call.enqueue(object : Callback<List<Data>> {
             override fun onResponse(
-                call: Call<ResponseCertiTab>,
-                response: Response<ResponseCertiTab>
+                call: Call<List<Data>>,
+                response: Response<List<Data>>
             ) {
                 if (response.isSuccessful) {
                     val responseData = response.body()
                     if (responseData != null) {
-                        val dataList = responseData.data
-                        for (data in dataList) {
+                        for (data in responseData) {
                             // 데이터 출력
                             Log.d("Response", "ID: ${data.id}, Login Type: ${data.login_type}, User Name: ${data.user_name}, Status: ${data.status}")
                         }
@@ -50,7 +49,7 @@ class MainActivity:AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<ResponseCertiTab>, t: Throwable) {
+            override fun onFailure(call: Call<List<Data>>, t: Throwable) {
                 // 네트워크 오류 처리
                 Log.e("Response", "Network error: ${t.message}")
             }

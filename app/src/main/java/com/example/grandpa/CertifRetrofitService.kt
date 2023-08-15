@@ -4,12 +4,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Url
 
-//interface CertifRetrofitService {
-//    @GET("/api")
-//    fun requestList() : Call<ResponseCertiTab>
-//}
-
 interface CertifRetrofitService {
     @GET
-    fun requestList(@Url url: String): Call<ResponseCertiTab>
+    fun requestList(@Url url: String): Call<List<Data>>
 }
