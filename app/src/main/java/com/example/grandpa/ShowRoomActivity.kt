@@ -16,6 +16,36 @@ class ShowRoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.show_room)
 
+        val heartImageView: ImageView = findViewById(R.id.heart)
+        heartImageView.setOnClickListener{
+            val intent = Intent(this, HeartActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        val checkImageView: ImageView = findViewById(R.id.check)
+        checkImageView.setOnClickListener{
+            val intent = Intent(this, CheckActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        val chatImageView: ImageView = findViewById(R.id.chat)
+        chatImageView.setOnClickListener{
+            val intent = Intent(this, ChatActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        val profileImageView: ImageView = findViewById(R.id.profile)
+        profileImageView.setOnClickListener{
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+
+
         // 더미 데이터 리스트 예시
         val roomList = arrayListOf(
             room_data(R.drawable.home, "아파트", "큰 방", 5,16.7,

@@ -81,7 +81,7 @@
         app:layout_constraintEnd_toStartOf="@+id/check"
         app:layout_constraintStart_toEndOf="@+id/search"
         app:layout_constraintTop_toTopOf="@+id/check"
-        app:srcCompat="@drawable/offheart" />
+        app:srcCompat="@drawable/onheart" />
 
     <ImageView
         android:id="@+id/search"
@@ -91,7 +91,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/heart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/heart"
-        app:srcCompat="@drawable/onsearch" />
+        app:srcCompat="@drawable/offsearch" />
 
     <ImageView
         android:id="@+id/m2"
