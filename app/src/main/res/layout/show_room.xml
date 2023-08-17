@@ -12,7 +12,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="5dp"
         android:background="#54A12F"
-        app:layout_constraintBottom_toTopOf="@+id/check"
+        app:layout_constraintBottom_toTopOf="@+id/show_check"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CountRoom">
@@ -33,65 +33,18 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <ImageView
-        android:id="@+id/filter"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/CountRoom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/CountRoom"
-        app:srcCompat="@drawable/filter" />
-
-    <ImageView
-        android:id="@+id/profile"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/chat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/chat"
-        app:srcCompat="@drawable/offprofile" />
-
-    <ImageView
-        android:id="@+id/chat"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="@+id/check"
-        app:layout_constraintEnd_toStartOf="@+id/profile"
-        app:layout_constraintStart_toEndOf="@+id/check"
-        app:layout_constraintTop_toTopOf="@+id/check"
-        app:srcCompat="@drawable/offchat" />
-
-    <ImageView
-        android:id="@+id/check"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/room_list"
-        app:srcCompat="@drawable/offcheck" />
-
-    <ImageView
-        android:id="@+id/heart"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="@+id/check"
-        app:layout_constraintEnd_toStartOf="@+id/check"
-        app:layout_constraintStart_toEndOf="@+id/search"
-        app:layout_constraintTop_toTopOf="@+id/check"
-        app:srcCompat="@drawable/offheart" />
-
-    <ImageView
-        android:id="@+id/search"
-        android:layout_width="35dp"
+    <TextView
+        android:id="@+id/CountRoom"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/heart"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="sumofRoom"
+        android:textSize="23dp"
+        app:layout_constraintBottom_toTopOf="@+id/room_list"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/heart"
-        app:srcCompat="@drawable/onsearch" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/m2"
@@ -105,17 +58,64 @@
         app:layout_constraintVertical_bias="0.428"
         app:srcCompat="@drawable/m2" />
 
-    <TextView
-        android:id="@+id/CountRoom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="sumofRoom"
-        android:textSize="23dp"
-        app:layout_constraintBottom_toTopOf="@+id/room_list"
+    <ImageView
+        android:id="@+id/filter"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/CountRoom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/CountRoom"
+        app:srcCompat="@drawable/filter" />
+
+    <ImageView
+        android:id="@+id/show_profile"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/show_chat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/show_chat"
+        app:srcCompat="@drawable/offprofile" />
+
+    <ImageView
+        android:id="@+id/show_chat"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/show_check"
+        app:layout_constraintEnd_toStartOf="@+id/show_profile"
+        app:layout_constraintStart_toEndOf="@+id/show_check"
+        app:layout_constraintTop_toTopOf="@+id/show_check"
+        app:srcCompat="@drawable/offchat" />
+
+    <ImageView
+        android:id="@+id/show_check"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/room_list"
+        app:srcCompat="@drawable/offcheck" />
+
+    <ImageView
+        android:id="@+id/show_heart"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/show_check"
+        app:layout_constraintEnd_toStartOf="@+id/show_check"
+        app:layout_constraintStart_toEndOf="@+id/show_search"
+        app:layout_constraintTop_toTopOf="@+id/show_check"
+        app:srcCompat="@drawable/offheart" />
+
+    <ImageView
+        android:id="@+id/show_search"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/show_heart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/show_heart"
+        app:srcCompat="@drawable/onsearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

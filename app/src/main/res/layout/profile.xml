@@ -5,54 +5,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="profile"
+        android:textSize="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/profile"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/chat"
+        android:id="@+id/profile_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_chat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/chat"
+        app:layout_constraintTop_toTopOf="@+id/profile_chat"
         app:srcCompat="@drawable/onprofile" />
 
     <ImageView
-        android:id="@+id/chat"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="@+id/check"
-        app:layout_constraintEnd_toStartOf="@+id/profile"
-        app:layout_constraintStart_toEndOf="@+id/check"
-        app:layout_constraintTop_toTopOf="@+id/check"
+        android:id="@+id/profile_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_check"
+        app:layout_constraintEnd_toStartOf="@+id/profile_profile"
+        app:layout_constraintStart_toEndOf="@+id/profile_check"
+        app:layout_constraintTop_toTopOf="@+id/profile_check"
         app:srcCompat="@drawable/offchat" />
 
     <ImageView
-        android:id="@+id/check"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:id="@+id/profile_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/profile_profile"
+        app:layout_constraintStart_toStartOf="@+id/profile_search"
         app:srcCompat="@drawable/offcheck" />
 
     <ImageView
-        android:id="@+id/heart"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="@+id/check"
-        app:layout_constraintEnd_toStartOf="@+id/check"
-        app:layout_constraintStart_toEndOf="@+id/search"
-        app:layout_constraintTop_toTopOf="@+id/check"
+        android:id="@+id/profile_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_check"
+        app:layout_constraintEnd_toStartOf="@+id/profile_check"
+        app:layout_constraintStart_toEndOf="@+id/profile_search"
+        app:layout_constraintTop_toTopOf="@+id/profile_check"
         app:srcCompat="@drawable/offheart" />
 
     <ImageView
-        android:id="@+id/search"
-        android:layout_width="35dp"
+        android:id="@+id/profile_search"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/heart"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_heart"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/heart"
+        app:layout_constraintTop_toTopOf="@+id/profile_heart"
         app:srcCompat="@drawable/offsearch" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

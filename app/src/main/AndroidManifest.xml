@@ -18,6 +18,10 @@
 
         <activity android:name=".ShowRoomActivity"/>
         <activity android:name=".FilterActivity" />
+        <activity android:name=".HeartActivity" />
+        <activity android:name=".CheckActivity" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".ProfileActivity" />
 
         <activity
             android:name=".MainActivity"
