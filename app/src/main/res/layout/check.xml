@@ -6,59 +6,61 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="heart"
+        android:text="Check"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/heart_profile"
+        android:id="@+id/check_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/heart_chat"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/check_chat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/heart_chat"
+        app:layout_constraintTop_toTopOf="@+id/check_chat"
         app:srcCompat="@drawable/offprofile" />
 
     <ImageView
-        android:id="@+id/heart_chat"
+        android:id="@+id/check_chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/heart_check"
-        app:layout_constraintEnd_toStartOf="@+id/heart_profile"
-        app:layout_constraintStart_toEndOf="@+id/heart_check"
-        app:layout_constraintTop_toTopOf="@+id/heart_check"
+        app:layout_constraintBottom_toBottomOf="@+id/check_check"
+        app:layout_constraintEnd_toStartOf="@+id/check_profile"
+        app:layout_constraintStart_toEndOf="@+id/check_check"
+        app:layout_constraintTop_toTopOf="@+id/check_check"
         app:srcCompat="@drawable/offchat" />
 
     <ImageView
-        android:id="@+id/heart_check"
+        android:id="@+id/check_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/check_heart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/check_heart"
+        app:srcCompat="@drawable/offsearch" />
+
+    <ImageView
+        android:id="@+id/check_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/check_check"
+        app:layout_constraintEnd_toStartOf="@+id/check_check"
+        app:layout_constraintStart_toEndOf="@+id/check_search"
+        app:layout_constraintTop_toTopOf="@+id/check_check"
+        app:srcCompat="@drawable/offheart" />
+
+    <ImageView
+        android:id="@+id/check_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/heart_profile"
-        app:layout_constraintStart_toStartOf="@+id/heart_search"
-        app:srcCompat="@drawable/offcheck" />
-
-    <ImageView
-        android:id="@+id/heart_heart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/heart_check"
-        app:layout_constraintEnd_toStartOf="@+id/heart_check"
-        app:layout_constraintStart_toEndOf="@+id/heart_search"
-        app:layout_constraintTop_toTopOf="@+id/heart_check"
-        app:srcCompat="@drawable/onheart" />
-
-    <ImageView
-        android:id="@+id/heart_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/heart_heart"
+        app:layout_constraintEnd_toEndOf="@+id/check_profile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/heart_heart"
-        app:srcCompat="@drawable/offsearch" />
+        app:srcCompat="@drawable/oncheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,28 +10,28 @@ class ProfileActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile)
 
-        val searchImageView: ImageView = findViewById(R.id.search)
+        val searchImageView: ImageView = findViewById(R.id.profile_search)
         searchImageView.setOnClickListener {
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        val heartImageView: ImageView = findViewById(R.id.heart)
+        val heartImageView: ImageView = findViewById(R.id.profile_heart)
         heartImageView.setOnClickListener {
             val intent = Intent(this, HeartActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        val checkImageView: ImageView = findViewById(R.id.check)
+        val checkImageView: ImageView = findViewById(R.id.profile_check)
         checkImageView.setOnClickListener {
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        val chatImageView: ImageView = findViewById(R.id.chat)
+        val chatImageView: ImageView = findViewById(R.id.profile_chat)
         chatImageView.setOnClickListener {
             val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
