@@ -174,7 +174,8 @@
                         android:layout_marginStart="25dp"
                         android:layout_weight="1"
                         android:text="광진구"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "region_onClicked"/>
 
 
                     <CheckBox
@@ -184,7 +185,8 @@
                         android:layout_weight="1"
                         android:layout_marginStart="20dp"
                         android:text="노원구"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "region_onClicked"/>
 
 
                     <CheckBox
@@ -194,7 +196,8 @@
                         android:layout_weight="1"
                         android:layout_marginStart="20dp"
                         android:text="성북구"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "region_onClicked"/>
 
                 </LinearLayout>
 
@@ -222,7 +225,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:text="아파트"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "buildingType_onClicked"/>
 
 
                     <CheckBox
@@ -231,7 +235,8 @@
                         android:layout_height="wrap_content"
                         android:text="오피스텔"
                         android:layout_marginStart="35dp"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "buildingType_onClicked"/>
 
 
                     <CheckBox
@@ -240,7 +245,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:text="빌라"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "buildingType_onClicked"/>
 
 
                     <CheckBox
@@ -249,7 +255,8 @@
                         android:layout_height="wrap_content"
                         android:text="단독주택"
                         android:layout_marginStart="35dp"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "buildingType_onClicked"/>
 
 
                 </androidx.gridlayout.widget.GridLayout>
@@ -279,7 +286,8 @@
                         android:layout_marginStart="25dp"
                         android:layout_weight="1"
                         android:text="소형"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "roomSize_onClicked"/>
 
 
                     <CheckBox
@@ -288,7 +296,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="중형"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "roomSize_onClicked"/>
 
 
                     <CheckBox
@@ -297,7 +306,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="대형"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "roomSize_onClicked"/>
 
 
                     <CheckBox
@@ -306,7 +316,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="대형+"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "roomSize_onClicked"/>
 
 
                 </LinearLayout>
@@ -353,7 +364,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:text="욕실"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "option_onClicked"/>
 
 
                     <CheckBox
@@ -364,7 +376,8 @@
                         android:layout_marginStart="35dp"
                         android:textSize="20sp"
                         app:layout_column="1"
-                        app:layout_row="0" />
+                        app:layout_row="0"
+                        android:onClick = "option_onClicked"/>
 
 
                     <CheckBox
@@ -373,7 +386,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:text="침대"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "option_onClicked"/>
 
 
                     <CheckBox
@@ -382,7 +396,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
                         android:text="에어컨"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "option_onClicked"/>
 
 
                     <CheckBox
@@ -391,7 +406,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:text="엘리베이터"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "option_onClicked"/>
 
 
                     <CheckBox
@@ -400,7 +416,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
                         android:text="책상"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "option_onClicked"/>
 
 
                     <CheckBox
@@ -409,7 +426,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:text="유료 주차"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "option_onClicked"/>
 
 
                     <CheckBox
@@ -418,7 +436,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
                         android:text="무료 주차"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "option_onClicked"/>
 
 
                     <CheckBox
@@ -427,7 +446,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:text="옷장"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "option_onClicked"/>
 
 
                     <CheckBox
@@ -436,7 +456,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
                         android:text="무선 인터넷"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "option_onClicked"/>
 
 
                     <CheckBox
@@ -445,7 +466,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:text="TV"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "option_onClicked"/>
 
 
                     <CheckBox
@@ -454,7 +476,8 @@
                         android:layout_height="wrap_content"
                         android:text="세탁기 공유"
                         android:layout_marginStart="35dp"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:onClick = "option_onClicked"/>
 
                 </androidx.gridlayout.widget.GridLayout>
 
@@ -465,7 +488,7 @@
                     app:layout_constraintBottom_toBottomOf="parent">
 
                     <android.widget.Button
-                        android:id="@+id/filter_deleteBtn"
+                        android:id="@+id/filter_resetBtn"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
