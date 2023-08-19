@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object GroupRetrofitServiceImpl {
-    const val BASE_URL = "http://dongho18.iptime.org:3000/api/"
+    const val BASE_URL = "http://dongho18.iptime.org:3000/api/room/" //여기 주소 무조건 /로 끝나야 함
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())

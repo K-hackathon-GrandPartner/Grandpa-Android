@@ -1,14 +1,15 @@
 package com.example.grandpa
 
-data class room_data (
-    val room_image: Int,
-    val building_type:String,
-    val room_size:String,
-    val size_unit:Int,
-    val size_unitm2:Double,
-    val building_height: Int,
-    val room_deposit:Int,
-    val room_price:Int,
-    val building_place:String,
-    val room_intro:String
-        )
+data class room_data(
+    val id: Int,
+    val imageUrl: String,
+    val buildingType: String,
+    val roomSizeType: String,
+    val roomSize: Float,
+    val roomFloor: Int,
+    val deposit: Int,
+    val monthlyRent: Int,
+    val address: String,
+    val title: String,
+    val postDate: String,
+)

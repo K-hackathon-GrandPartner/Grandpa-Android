@@ -1,20 +1,23 @@
 package com.example.grandpa
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolean) : RecyclerView.Adapter<ShowRoomAdapter.RoomViewHolder>() {
+class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolean, private val context: Context) : RecyclerView.Adapter<ShowRoomAdapter.RoomViewHolder>() {
     inner class RoomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val room_image = itemView.findViewById<ImageView>(R.id.item_roomImage) //방사진
         val building_type = itemView.findViewById<TextView>(R.id.item_buildingType) //건물 유형
         val room_size = itemView.findViewById<TextView>(R.id.item_roomSize) //방크기
         val size_unit = itemView.findViewById<TextView>(R.id.item_sizeUnit) //크기 단위 평
         val size_unitm2 = itemView.findViewById<TextView>(R.id.item_sizeUnit) //크기 단위 m2
-        val building_height = itemView.findViewById<TextView>(R.id.item_buildingHeight) //층수
+        val building_height: TextView = itemView.findViewById<TextView>(R.id.item_buildingHeight) //층수
         val room_deposit = itemView.findViewById<TextView>(R.id.item_roomDeposit) //보증금
         val room_price = itemView.findViewById<TextView>(R.id.item_roomPrice) //월세
         val building_place = itemView.findViewById<TextView>(R.id.item_buildingPlace) //위치
@@ -27,21 +30,26 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
     }
 
     override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
-        holder.room_image.setImageResource(roomList[position].room_image)
-        holder.building_type.text = roomList[position].building_type
-        holder.room_size.text = roomList[position].room_size
-        holder.building_height.text = roomList[position].building_height.toString()
-        holder.room_deposit.text = roomList[position].room_deposit.toString()
-        holder.room_price.text = roomList[position].room_price.toString()
-        holder.building_place.text = roomList[position].building_place
-        holder.room_intro.text = roomList[position].room_intro
+        val urlString = roomList[position].imageUrl
+        holder.apply{ //사진 로딩 라이브러리
+            Glide.with(context).load(urlString).into(room_image)
+        }
+        holder.building_type.text = roomList[position].buildingType
+        holder.room_size.text = "대형" //아직 선배가 안 만드심
+        holder.building_height.text = roomList[position].roomFloor.toString()
+        holder.room_deposit.text = roomList[position].deposit.toString()
+        holder.room_price.text = roomList[position].monthlyRent.toString()
+        holder.building_place.text = roomList[position].address
+        holder.room_intro.text = roomList[position].title
 
         if(m2setting){
             //true면 평으로
-            holder.size_unit.text = roomList[position].size_unit.toString()
+            val roomSize = roomList[position].roomSize
+            holder.size_unit.text = String.format("%.1f", roomSize / 3.3)
         }else{
             //false면 m2로
-            holder.size_unitm2.text = roomList[position].size_unitm2.toString()
+            val roomSize = roomList[position].roomSize
+            holder.size_unitm2.text = String.format("%.1f", roomSize)
         }
     }
 
