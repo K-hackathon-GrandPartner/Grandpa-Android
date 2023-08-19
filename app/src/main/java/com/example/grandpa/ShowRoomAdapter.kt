@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+//import com.bumptech.glide.Glide
 
 class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolean, private val context: Context) : RecyclerView.Adapter<ShowRoomAdapter.RoomViewHolder>() {
     inner class RoomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,9 +31,9 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
 
     override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
         val urlString = roomList[position].imageUrl
-        holder.apply{ //사진 로딩 라이브러리
-            Glide.with(context).load(urlString).into(room_image)
-        }
+//        holder.apply{ //사진 로딩 라이브러리
+//            Glide.with(context).load(urlString).into(room_image)
+//        }
         holder.building_type.text = roomList[position].buildingType
         holder.room_size.text = "대형" //아직 선배가 안 만드심
         holder.building_height.text = roomList[position].roomFloor.toString()
