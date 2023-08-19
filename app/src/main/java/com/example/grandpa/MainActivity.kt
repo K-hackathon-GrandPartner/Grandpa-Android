@@ -17,7 +17,7 @@ class MainActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //3초 후에 다음 액태비티로 전환
+        //3초 후에 다음 액티비티로 전환
         Handler().postDelayed({
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
