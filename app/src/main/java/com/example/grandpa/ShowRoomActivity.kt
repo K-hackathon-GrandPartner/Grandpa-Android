@@ -2,11 +2,15 @@ package com.example.grandpa
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ShowRoomActivity : AppCompatActivity() {
     private lateinit var showroomAdapter : ShowRoomAdapter
@@ -16,27 +20,28 @@ class ShowRoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.show_room)
 
+        //heart 화면
         val heartImageView: ImageView = findViewById(R.id.filtering_heart)
         heartImageView.setOnClickListener{
             val intent = Intent(this, HeartActivity::class.java)
             startActivity(intent)
             finish()
         }
-
+        //check 화면
         val checkImageView: ImageView = findViewById(R.id.filtering_check)
         checkImageView.setOnClickListener{
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
             finish()
         }
-
+        //chat 화면
         val chatImageView: ImageView = findViewById(R.id.filtering_chat)
         chatImageView.setOnClickListener{
             val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
             finish()
         }
-
+        //profile 화면
         val profileImageView: ImageView = findViewById(R.id.filtering_profile)
         profileImageView.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
@@ -44,38 +49,51 @@ class ShowRoomActivity : AppCompatActivity() {
             finish()
         }
 
+        //retrofit2, 서버로 부터 data 받아오기
+        //dataList 생성
+        val roomList = arrayListOf<room_data>()
+        // 서비스 객체 생성
+        val service = GroupRetrofitServiceImpl.service_ct_tab
 
+        // API 요청
+        val call = service.requestList(GroupRetrofitServiceImpl.BASE_URL)
 
-        // 더미 데이터 리스트 예시
-        val roomList = arrayListOf(
-            room_data(R.drawable.home, "아파트", "큰 방", 5,16.7,
-                7,100, 30,"광진구","건국대 도보 5분"),
-            room_data(R.drawable.home, "아파트", "큰 방", 5,16.7,
-                7,100, 30,"광진구","건국대 도보 5분"),
-            room_data(R.drawable.home, "아파트", "큰 방", 5,16.7,
-                7,100, 30,"광진구","건국대 도보 5분"),
-            room_data(R.drawable.home, "아파트", "큰 방", 5,16.7,
-                7,100, 30,"광진구","건국대 도보 5분"),
-            room_data(R.drawable.home, "아파트", "큰 방", 5,16.7,
-                7,100, 30,"광진구","건국대 도보 5분"),
-            room_data(R.drawable.home, "아파트", "큰 방", 5,16.7,
-                7,100, 30,"광진구","건국대 도보 5분"),
-            room_data(R.drawable.home, "아파트", "큰 방", 5,16.7,
-                7,100, 30,"광진구","건국대 도보 5분"),
-            room_data(R.drawable.home, "아파트", "큰 방", 5,16.7,
-                7,100, 30,"광진구","건국대 도보 5분"),
-        )
+        call.enqueue(object : Callback<List<room_data>> {
+            override fun onResponse(
+                call: Call<List<room_data>>,
+                response: Response<List<room_data>>
+            ) {
+                if (response.isSuccessful) {
+                    val responseData = response.body()
+                    if (responseData != null) {
+                        for (data in responseData) {
+                            //받아온 데이터 list에 넣음
+                            val room = room_data(data.id, data.imageUrl, data.buildingType, data.roomSizeType, data.roomSize, data.roomFloor, data.deposit, data.monthlyRent, data.address, data.title, data.postDate)
+                            roomList.add(room)
+                        }
 
-        //roomlist 개수
-        val sumOfRoom = findViewById<TextView>(R.id.CountRoom)
-        sumOfRoom.text = "총 ${roomList.size} 개"
+                        //roomlist 개수
+                        val sumOfRoom = findViewById<TextView>(R.id.CountRoom)
+                        sumOfRoom.text = "총 ${roomList.size} 개"
 
-        //리사이클러뷰
-        val rv_room = findViewById<RecyclerView>(R.id.room_list)
-        rv_room.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-        rv_room.setHasFixedSize(true)
-        showroomAdapter = ShowRoomAdapter(roomList, setM2) // 어댑터 생성 및 초기화
-        rv_room.adapter = showroomAdapter
+                        //리사이클러뷰
+                        val rv_room = findViewById<RecyclerView>(R.id.room_list)
+                        rv_room.layoutManager = LinearLayoutManager(this@ShowRoomActivity,LinearLayoutManager.VERTICAL,false)
+                        rv_room.setHasFixedSize(true)
+                        showroomAdapter = ShowRoomAdapter(roomList, setM2, this@ShowRoomActivity) // 어댑터 생성 및 초기화
+                        rv_room.adapter = showroomAdapter
+                    }
+                } else {
+                    // 서버 응답 실패 처리
+                    Log.e("Response", "Response is not successful. Code: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<room_data>>, t: Throwable) {
+                // 네트워크 오류 처리
+                Log.e("Response", "Network error: ${t.message}")
+            }
+        })
 
 
         //m2 평 전환
