@@ -53,19 +53,20 @@ class ShowRoomActivity : AppCompatActivity() {
         //dataList 생성
         val roomList = arrayListOf<room_data>()
         // 서비스 객체 생성
-        val service = GroupRetrofitServiceImpl.service_ct_tab
+        val service = ShowRoomImpl.service_ct_tab
 
         // API 요청
-        val call = service.requestList(GroupRetrofitServiceImpl.BASE_URL)
+        val call = service.requestList(ShowRoomImpl.BASE_URL)
 
-        call.enqueue(object : Callback<List<room_data>> {
+        call.enqueue(object : Callback<ShowRoomResponse> {
             override fun onResponse(
-                call: Call<List<room_data>>,
-                response: Response<List<room_data>>
+                call: Call<ShowRoomResponse>,
+                response: Response<ShowRoomResponse>
             ) {
                 if (response.isSuccessful) {
-                    val responseData = response.body()
-                    if (responseData != null) {
+                    val apiResponse = response.body()
+                    if (apiResponse != null) {
+                        val responseData = apiResponse.result
                         for (data in responseData) {
                             //받아온 데이터 list에 넣음
                             val room = room_data(data.id, data.imageUrl, data.buildingType, data.roomSizeType, data.roomSize, data.roomFloor, data.deposit, data.monthlyRent, data.address, data.title, data.postDate)
@@ -89,7 +90,7 @@ class ShowRoomActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<List<room_data>>, t: Throwable) {
+            override fun onFailure(call: Call<ShowRoomResponse>, t: Throwable) {
                 // 네트워크 오류 처리
                 Log.e("Response", "Network error: ${t.message}")
             }
