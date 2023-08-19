@@ -16,28 +16,28 @@ class ShowRoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.show_room)
 
-        val heartImageView: ImageView = findViewById(R.id.show_heart)
+        val heartImageView: ImageView = findViewById(R.id.filtering_heart)
         heartImageView.setOnClickListener{
             val intent = Intent(this, HeartActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        val checkImageView: ImageView = findViewById(R.id.show_check)
+        val checkImageView: ImageView = findViewById(R.id.filtering_check)
         checkImageView.setOnClickListener{
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        val chatImageView: ImageView = findViewById(R.id.show_chat)
+        val chatImageView: ImageView = findViewById(R.id.filtering_chat)
         chatImageView.setOnClickListener{
             val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        val profileImageView: ImageView = findViewById(R.id.show_profile)
+        val profileImageView: ImageView = findViewById(R.id.filtering_profile)
         profileImageView.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
