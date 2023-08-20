@@ -2,7 +2,6 @@ package com.example.grandpa
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,7 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
         val building_height: TextView = itemView.findViewById<TextView>(R.id.item_buildingHeight) //층수
         val room_deposit = itemView.findViewById<TextView>(R.id.item_roomDeposit) //보증금
         val room_price = itemView.findViewById<TextView>(R.id.item_roomPrice) //월세
-        val building_place = itemView.findViewById<TextView>(R.id.item_buildingPlace) //위치
+        val building_place = itemView.findViewById<TextView>(R.id.item_address) //위치
         val room_intro = itemView.findViewById<TextView>(R.id.item_roomIntro) //상세 정보
     }
 
@@ -54,13 +53,13 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
         holder.room_intro.text = roomList[position].title
 
         if(m2setting){
-            //true면 평으로
-            val roomSize = roomList[position].roomSize
-            holder.size_unit.text = String.format("%.1f", roomSize / 3.3)
-        }else{
-            //false면 m2로
+            //true면 m2으로
             val roomSize = roomList[position].roomSize
             holder.size_unitm2.text = String.format("%.1f", roomSize)
+        }else{
+            //false면 평으로
+            val roomSize = roomList[position].roomSize
+            holder.size_unit.text = String.format("%.1f", roomSize / 3.3)
         }
     }
 

@@ -14,7 +14,7 @@ import retrofit2.Response
 
 class ShowRoomActivity : AppCompatActivity() {
     private lateinit var showroomAdapter : ShowRoomAdapter
-    private var setM2 : Boolean = true
+    private var setM2 : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,11 +103,11 @@ class ShowRoomActivity : AppCompatActivity() {
         m2ImageView.setOnClickListener{
             if(setM2){
                 setM2 = !setM2
-                m2ImageView.setImageResource(R.drawable.m2korea)
+                m2ImageView.setImageResource(R.drawable.m2)
                 showroomAdapter.setM2Setting(setM2)
             }else{
                 setM2 = !setM2
-                m2ImageView.setImageResource(R.drawable.m2)
+                m2ImageView.setImageResource(R.drawable.m2korea)
                 showroomAdapter.setM2Setting(setM2)
             }
         }

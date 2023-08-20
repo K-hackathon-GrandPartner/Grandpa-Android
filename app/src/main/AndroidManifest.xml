@@ -23,6 +23,7 @@
         <activity android:name=".ChatActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".RoomDetailActivity" />
+        <activity android:name=".DetailInfoPopActivity" />
 
         <activity
             android:name=".MainActivity"
