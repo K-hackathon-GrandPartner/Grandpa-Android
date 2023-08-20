@@ -45,7 +45,7 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
             Glide.with(context).load(urlString).into(room_image)
         }
         holder.building_type.text = roomList[position].buildingType
-        holder.room_size.text = "대형" //아직 선배가 안 만드심
+        holder.room_size.text = roomList[position].roomSizeType
         holder.building_height.text = roomList[position].roomFloor.toString()
         holder.room_deposit.text = roomList[position].deposit.toString()
         holder.room_price.text = roomList[position].monthlyRent.toString()
@@ -55,11 +55,11 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
         if(m2setting){
             //true면 m2으로
             val roomSize = roomList[position].roomSize
-            holder.size_unitm2.text = String.format("%.1f", roomSize)
+            holder.size_unitm2.text = String.format("%.1f", roomSize) + "㎡"
         }else{
             //false면 평으로
             val roomSize = roomList[position].roomSize
-            holder.size_unit.text = String.format("%.1f", roomSize / 3.3)
+            holder.size_unit.text = String.format("%.1f", roomSize / 3.3) + "평"
         }
     }
 
