@@ -1,7 +1,9 @@
 package com.example.grandpa
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,6 +17,13 @@ class RoomDetailActivity: AppCompatActivity() {
         val roomId = intent.getIntExtra("room_id", 0) //0은 기본 값
         Log.d("roomId", roomId.toString())
 
+        //Back 버튼
+        val backImageView : ImageView = findViewById(R.id.detail_back)
+        backImageView.setOnClickListener{
+            val intent = Intent(this, ShowRoomActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         // 서비스 객체 생성
         val service = DetailRoomImpl.service_ct_tab

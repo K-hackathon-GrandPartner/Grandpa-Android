@@ -2,7 +2,6 @@ package com.example.grandpa
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +21,7 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
         val room_deposit = itemView.findViewById<TextView>(R.id.item_roomDeposit) //보증금
         val room_price = itemView.findViewById<TextView>(R.id.item_roomPrice) //월세
         val building_place = itemView.findViewById<TextView>(R.id.item_buildingPlace) //위치
-        val room_intro = itemView.findViewById<TextView>(R.id.item_roomIntro) //상세 정보
+        val room_intro = itemView.findViewById<TextView>(R.id.item_title) //상세 정보
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
