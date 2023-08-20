@@ -1,5 +1,8 @@
 package com.example.grandpa
 
+import android.os.Parcel
+import android.os.Parcelable
+
 //room 모두 보여주는 data class
 data class ShowRoomResponse(
     val statusCode: Int,
