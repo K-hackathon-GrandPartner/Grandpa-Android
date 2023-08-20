@@ -98,7 +98,7 @@ class ShowRoomActivity : AppCompatActivity() {
 
 
         //m2 평 전환
-        val m2ImageView: ImageView = findViewById(R.id.m2)
+        val m2ImageView: ImageView = findViewById(R.id.show_m2)
 
         m2ImageView.setOnClickListener{
             if(setM2){
@@ -113,7 +113,7 @@ class ShowRoomActivity : AppCompatActivity() {
         }
 
         //filter Setting 화면으로
-        val filterImageView: ImageView = findViewById(R.id.filter)
+        val filterImageView: ImageView = findViewById(R.id.show_filter)
         filterImageView.setOnClickListener{
             val intent = Intent(this, FilterActivity::class.java)
             intent.putExtra("roomListSize", roomList.size) //put으로 roomList 사이즈 보냄

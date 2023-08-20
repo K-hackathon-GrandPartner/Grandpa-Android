@@ -7,7 +7,7 @@
 
 
     <View
-        android:id="@+id/divider4"
+        android:id="@+id/show_devider1"
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:background="#54A12F"
@@ -18,14 +18,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/room_list"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="600dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="60dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CountRoom">
+        app:layout_constraintTop_toTopOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -33,35 +33,43 @@
         android:id="@+id/CountRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="sumofRoom"
         android:textSize="23dp"
-        app:layout_constraintBottom_toTopOf="@+id/room_list"
+        app:layout_constraintBottom_toTopOf="@+id/show_devider1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/m2"
+        android:id="@+id/show_m2"
         android:layout_width="37dp"
         android:layout_height="30dp"
         android:layout_marginEnd="16dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/CountRoom"
-        app:layout_constraintEnd_toStartOf="@+id/filter"
+        app:layout_constraintEnd_toStartOf="@+id/show_filter"
         app:layout_constraintTop_toTopOf="@+id/CountRoom"
         app:layout_constraintVertical_bias="0.428"
         app:srcCompat="@drawable/m2" />
 
     <ImageView
-        android:id="@+id/filter"
-        android:layout_width="30dp"
+        android:id="@+id/show_filter"
+        android:layout_width="37dp"
         android:layout_height="30dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/CountRoom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/CountRoom"
         app:srcCompat="@drawable/filter" />
+
+    <View
+        android:id="@+id/show_divider2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#54A12F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/room_list" />
 
     <ImageView
         android:id="@+id/filtering_profile"
@@ -87,7 +95,7 @@
         android:id="@+id/filtering_check"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/room_list"
@@ -112,14 +120,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/filtering_heart"
         app:srcCompat="@drawable/onsearch" />
-
-    <View
-        android:id="@+id/divider5"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="#54A12F"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/room_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
