@@ -82,10 +82,10 @@
             app:layout_constraintTop_toBottomOf="@+id/item_roomDeposit" />
 
         <TextView
-            android:id="@+id/item_roomIntro"
+            android:id="@+id/item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="상세설명"
+            android:text="제목"
             android:textColor="#323131"
             app:layout_constraintBottom_toBottomOf="@+id/item_roomImage"
             app:layout_constraintStart_toStartOf="@+id/item_address" />

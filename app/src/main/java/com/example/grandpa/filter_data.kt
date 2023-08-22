@@ -34,3 +34,5 @@ data class filter_data(
     var internet: Boolean? =false,
     var tv: Boolean? =false
 )
+
+

@@ -1,20 +1,38 @@
 package com.example.grandpa
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.Filter
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.slider.RangeSlider
-import com.google.android.material.slider.Slider
+
 
 class FilterActivity : AppCompatActivity() {
+
+    object FilteringDB {
+        private lateinit var sharedPreferences: SharedPreferences
+
+        fun init(context: Context) {
+            sharedPreferences = context.getSharedPreferences("FilterData", Context.MODE_PRIVATE)
+        }
+
+        fun getInstance(): SharedPreferences {
+            if(!this::sharedPreferences.isInitialized) {
+                throw java.lang.IllegalStateException("SharedPreferencesSingleton is not initialized")
+            }
+            return sharedPreferences
+        }
+    }
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,21 +60,23 @@ class FilterActivity : AppCompatActivity() {
             uncheckAllCheckboxes(optionCheckBox)
         }
 
-        //보증금,월세 값 범위 가져오기
+        //보증금 값 범위 가져오기
         val deposit_slider = findViewById<RangeSlider>(R.id.depositrange)
+        //SharedPreferences 초기화
+        FilteringDB.init(this)
+        val editor = FilteringDB.getInstance().edit()
 
         deposit_slider.addOnChangeListener { slider, value, fromUser ->
             val values = slider.values
             val startValue = values[0]
             val endValue = values[1]
 
-            filter_data(depositFrom = startValue)
-            filter_data(depositTo = endValue)
-
-            Log.d("보증금", ": $startValue ~ $endValue")
-            println("보증금 데이터 클래스 값: ${filteringData.depositFrom} ~ ${filteringData.depositTo}")
+            editor.putFloat("depositFrom", startValue)
+            editor.putFloat("depositTo", endValue)
+            editor.apply()
         }
 
+        //월세 값 범위 가져오기
         val price_slider = findViewById<RangeSlider>(R.id.pricerange)
 
         price_slider.addOnChangeListener { slider, value, fromUser ->
@@ -64,15 +84,12 @@ class FilterActivity : AppCompatActivity() {
             val startValue = values[0]
             val endValue = values[1]
 
-            filter_data(monthPriceFrom = startValue)
-            filter_data(monthPriceTo = endValue)
-
-            Log.d("월세", ": $startValue ~ $endValue")
-            println("월세 데이터 클래스 값: ${filteringData.monthPriceFrom} ~ ${filteringData.monthPriceTo}")
+            editor.putFloat("monthPriceFrom", startValue)
+            editor.putFloat("monthPriceTo", endValue)
+            editor.apply()
         }
-    }
 
-    val filteringData = filter_data()
+    }
 
     //체크 박스 찾아서 해제 하는 함수
     private fun uncheckAllCheckboxes(parentView: View) {
@@ -87,35 +104,41 @@ class FilterActivity : AppCompatActivity() {
             }
         }
     }
+
     fun region_onClicked(view: View) {
+
+        FilteringDB.init(this)
+        val editor = FilteringDB.getInstance().edit()
+
         if(view is CheckBox) {
             val checked: Boolean = view.isChecked
 
             when (view.id) {
                 R.id.filter_Gwangjin -> {
                     if(checked) {
-                        //광진구 필터 적용되도록
-                        //filter_data(Gwangjin = true)
-                        filteringData.copy(Gwangjin = checked)
-                        println(filteringData.Gwangjin)
+                        editor.putBoolean("Gwangjin",true)
+                        editor.apply()
                     } else {
-                        //광진구 필터 해제되도록
-                        filter_data(Gwangjin = false)
-                        println(filteringData.Gwangjin)
+                        editor.putBoolean("Gwangjin",false)
+                        editor.apply()
                     }
                 }
                 R.id.filter_Nowon -> {
                     if(checked) {
-                        filter_data(Nowon = true)
+                        editor.putBoolean("Nowon",true)
+                        editor.apply()
                     } else {
-                        filter_data(Nowon = false)
+                        editor.putBoolean("Nowon",true)
+                        editor.apply()
                     }
                 }
                 R.id.filter_Seongbuk -> {
                     if(checked) {
-                        filter_data(Seongbuk = true)
+                        editor.putBoolean("Seongbuk",true)
+                        editor.apply()
                     } else {
-                        filter_data(Seongbuk = false)
+                        editor.putBoolean("Seongbuk",true)
+                        editor.apply()
                     }
                 }
             }
@@ -123,36 +146,40 @@ class FilterActivity : AppCompatActivity() {
     }
 
     fun buildingType_onClicked(view:View) {
+
+        FilteringDB.init(this)
+        val editor = FilteringDB.getInstance().edit()
+
         if(view is CheckBox) {
             val checked: Boolean = view.isChecked
 
             when (view.id) {
                 R.id.filter_apartment -> {
                     if (checked) {
-                        filter_data(apartment = true)
+                        editor.putBoolean("apartment",true)
                     } else {
-                        filter_data(apartment = false)
+                        editor.putBoolean("apartment",false)
                     }
                 }
                 R.id.filter_officetel -> {
                     if (checked) {
-                        filter_data(officetel = true)
+                        editor.putBoolean("officetel",true)
                     } else {
-                        filter_data(officetel = false)
+                        editor.putBoolean("officetel",false)
                     }
                 }
                 R.id.filter_villa-> {
                     if (checked) {
-                        filter_data(villa = true)
+                        editor.putBoolean("villa",true)
                     } else {
-                        filter_data(villa = false)
+                        editor.putBoolean("villa",false)
                     }
                 }
                 R.id.filter_house -> {
                     if (checked) {
-                        filter_data(house = true)
+                        editor.putBoolean("house",true)
                     } else {
-                        filter_data(house = false)
+                        editor.putBoolean("house",false)
                     }
                 }
             }
@@ -160,36 +187,40 @@ class FilterActivity : AppCompatActivity() {
     }
 
     fun roomSize_onClicked(view: View) {
+
+        FilteringDB.init(this)
+        val editor = FilteringDB.getInstance().edit()
+
         if (view is CheckBox) {
             val checked: Boolean = view.isChecked
 
             when (view.id) {
                 R.id.filter_small -> {
                     if(checked) {
-                        filter_data(small = true)
+                        editor.putBoolean("small",true)
                     } else {
-                        filter_data(small = false)
+                        editor.putBoolean("small",false)
                     }
                 }
                 R.id.filter_medium -> {
                     if(checked) {
-                        filter_data(medium = true)
+                        editor.putBoolean("medium",true)
                     } else {
-                        filter_data(medium = false)
+                        editor.putBoolean("medium",false)
                     }
                 }
                 R.id.filter_big -> {
                     if(checked) {
-                        filter_data(big = true)
+                        editor.putBoolean("big",true)
                     } else {
-                        filter_data(big = false)
+                        editor.putBoolean("big",false)
                     }
                 }
                 R.id.filter_bigger -> {
                     if(checked) {
-                        filter_data(bigger = true)
+                        editor.putBoolean("bigger",true)
                     } else {
-                        filter_data(bigger = false)
+                        editor.putBoolean("bigger",false)
                     }
                 }
             }
@@ -197,94 +228,96 @@ class FilterActivity : AppCompatActivity() {
     }
 
     fun option_onClicked(view:View) {
+
+        FilteringDB.init(this)
+        val editor = FilteringDB.getInstance().edit()
+
         if(view is CheckBox) {
             val checked: Boolean = view.isChecked
 
             when(view.id) {
                 R.id.filter_bathroom -> {
                     if(checked) {
-                        filter_data(bathroom = true)
+                        editor.putBoolean("bathroom",true)
                     } else {
-                        filter_data(bathroom = false)
+                        editor.putBoolean("bathroom",false)
                     }
                 }
                 R.id.filter_kitchen -> {
                     if(checked) {
-                        filter_data(kitchen = true)
+                        editor.putBoolean("kitchen",true)
                     } else {
-                        filter_data(kitchen = false)
+                        editor.putBoolean("kitchen",false)
                     }
                 }
                 R.id.filter_bed -> {
                     if(checked) {
-                        filter_data(bed = true)
+                        editor.putBoolean("bed",true)
                     } else {
-                        filter_data(bed = false)
+                        editor.putBoolean("bed",false)
                     }
                 }
                 R.id.filter_laundary -> {
                     if(checked) {
-                        filter_data(laundary = true)
+                        editor.putBoolean("laundary",true)
                     } else {
-                        filter_data(laundary = false)
+                        editor.putBoolean("laundary",false)
                     }
                 }
                 R.id.filter_aircon -> {
                     if(checked) {
-                        filter_data(aircon = true)
+                        editor.putBoolean("aircon",true)
                     } else {
-                        filter_data(aircon = false)
+                        editor.putBoolean("aircon",false)
                     }
                 }
                 R.id.filter_elivator -> {
                     if(checked) {
-                        filter_data(elivator = true)
+                        editor.putBoolean("elivator",true)
                     } else {
-                        filter_data(elivator = false)
+                        editor.putBoolean("elivator",false)
                     }
                 }
                 R.id.filter_desk -> {
                     if(checked) {
-                        filter_data(desk = true)
+                        editor.putBoolean("desk",true)
                     } else {
-                        filter_data(desk = false)
+                        editor.putBoolean("desk",false)
                     }
                 }
                 R.id.filter_feeParking -> {
                     if(checked) {
-                        filter_data(feeParking = true)
+                        editor.putBoolean("feeParking",true)
                     } else {
-                        filter_data(feeParking = false)
+                        editor.putBoolean("feeParking",false)
                     }
                 }
                 R.id.filter_freeParking -> {
                     if(checked) {
-                        filter_data(freeParking = true)
+                        editor.putBoolean("freeParking",true)
                     } else {
-                        filter_data(freeParking = false)
+                        editor.putBoolean("freeParking",false)
                     }
                 }
                 R.id.filter_closet -> {
                     if(checked) {
-                        filter_data(closet = true)
+                        editor.putBoolean("closet",true)
                     } else {
-                        filter_data(closet = false)
+                        editor.putBoolean("closet",false)
                     }
                 }
                 R.id.filter_internet -> {
                     if(checked) {
-                        filter_data(internet = true)
+                        editor.putBoolean("internet",true)
                     } else {
-                        filter_data(internet = false)
+                        editor.putBoolean("internet",false)
                     }
                 }
                 R.id.filter_tv -> {
                     if(checked) {
-                        filter_data(tv = true)
-                        println(filteringData.tv)
+                        editor.putBoolean("tv",true)
                     } else {
-                        filter_data(tv = false)
-                        println(filteringData.tv)
+                        editor.putBoolean("tv",false)
                     }
                 }
             }
