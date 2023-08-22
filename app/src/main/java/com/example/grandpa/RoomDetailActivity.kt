@@ -16,6 +16,13 @@ import retrofit2.Response
 class RoomDetailActivity: AppCompatActivity() {
     var setM2 : Boolean = false
 
+
+//    private lateinit var binding: RoomDetailBinding
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        binding = RoomDetailBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
+
     private val binding by lazy{
         RoomDetailBinding.inflate(layoutInflater)
     }

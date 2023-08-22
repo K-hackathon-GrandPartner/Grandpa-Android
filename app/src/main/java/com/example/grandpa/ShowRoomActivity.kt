@@ -28,7 +28,7 @@ class ShowRoomActivity : AppCompatActivity() {
             finish()
         }
         //check 화면
-        val checkImageView: ImageView = findViewById(R.id.filtering_check)
+        val checkImageView: ImageView = findViewById(R.id.show_check)
         checkImageView.setOnClickListener{
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
