@@ -111,7 +111,7 @@ class RoomDetailActivity: AppCompatActivity() {
                         //Log.d("count", count.toString())
                         if(count!=12) offOptionLayout(count)
 
-                        setRuleLayout(roomInfo.rule)
+                        binding.detailRule4.text = roomInfo.rule.religion
 
                         binding.detailM2.setOnClickListener {
                             if(setM2){
@@ -359,30 +359,6 @@ class RoomDetailActivity: AppCompatActivity() {
             } catch (e: IllegalAccessException) {
                 // Handle any access-related exceptions
             }
-        }
-    }
-
-    fun setRuleLayout(rule : Rule){
-        if(rule.curfew == 1){
-            binding.detailRule1.text = "몇시 이내 귀가"
-        }else{
-            binding.detailRule1.text = "상관 없음"
-        }
-
-        if(rule.smoking == 1){
-            binding.detailRule2.text = "비흡연"
-        }else{
-            binding.detailRule2.text = "상관 없음"
-        }
-
-        if(rule.drinking == 1){
-            binding.detailRule3.text = "음주"
-        }else{
-            binding.detailRule3.text = "상관 없음"
-        }
-
-        if(rule.religion == 0){
-            binding.detailRule4.text = "없음"
         }
     }
 
