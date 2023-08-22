@@ -20,8 +20,8 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
         val building_height: TextView = itemView.findViewById<TextView>(R.id.item_buildingHeight) //층수
         val room_deposit = itemView.findViewById<TextView>(R.id.item_roomDeposit) //보증금
         val room_price = itemView.findViewById<TextView>(R.id.item_roomPrice) //월세
-        val building_place = itemView.findViewById<TextView>(R.id.item_buildingPlace) //위치
-        val room_intro = itemView.findViewById<TextView>(R.id.item_title) //상세 정보
+        val building_place = itemView.findViewById<TextView>(R.id.item_address) //위치
+        val room_title = itemView.findViewById<TextView>(R.id.item_title) //상세 정보
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
@@ -45,21 +45,21 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
             Glide.with(context).load(urlString).into(room_image)
         }
         holder.building_type.text = roomList[position].buildingType
-        holder.room_size.text = "대형" //아직 선배가 안 만드심
+        holder.room_size.text = roomList[position].roomSizeType
         holder.building_height.text = roomList[position].roomFloor.toString()
         holder.room_deposit.text = roomList[position].deposit.toString()
         holder.room_price.text = roomList[position].monthlyRent.toString()
         holder.building_place.text = roomList[position].address
-        holder.room_intro.text = roomList[position].title
+        holder.room_title.text = roomList[position].title
 
         if(m2setting){
-            //true면 평으로
+            //true면 m2으로
             val roomSize = roomList[position].roomSize
-            holder.size_unit.text = String.format("%.1f", roomSize / 3.3)
+            holder.size_unitm2.text = String.format("%.1f", roomSize) + "㎡"
         }else{
-            //false면 m2로
+            //false면 평으로
             val roomSize = roomList[position].roomSize
-            holder.size_unitm2.text = String.format("%.1f", roomSize)
+            holder.size_unit.text = String.format("%.1f", roomSize / 3.3) + "평"
         }
     }
 
