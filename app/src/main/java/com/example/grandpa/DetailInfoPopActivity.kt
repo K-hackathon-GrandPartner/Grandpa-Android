@@ -81,38 +81,41 @@ class DetailInfoPopActivity : AppCompatActivity() {
     }
 
     fun setCareServiceLayout(care : List<String>){
-        val defaultName : String = "detailInfo_careService"
-        var setName : String
+        val defaultName = "detailInfoCareService"
+        var setName: String
         val bindingClass = binding::class.java
 
         for(i in 1..5){
+            Log.d("i", i.toString())
             setName = defaultName + i.toString()
-
-            if(care.size>i){
-                try{
+            if(care.size >= i){
+                try {
                     val field = bindingClass.getDeclaredField(setName)
                     field.isAccessible = true
-                    val offView = field.get(binding) as TextView
-                    offView.isGone = true
-                }catch (e: NoSuchFieldException) {
-                    // Handle the case where the field doesn't exist
-                } catch (e: IllegalAccessException) {
-                    // Handle any access-related exceptions
-                }
-
-            }else{
-                try{
-                    val field = bindingClass.getDeclaredField(setName)
-                    field.isAccessible = true
-                    val onView = field.get(binding) as TextView
-                    onView.text = care[i-1]
+                    val setView = field.get(binding) as TextView
+                    setView.text = care[i-1]
                 } catch (e: NoSuchFieldException) {
+                    Log.d("NoSuchFieldException", "NoSuchFieldException")
                     // Handle the case where the field doesn't exist
                 } catch (e: IllegalAccessException) {
+                    Log.d("IllegalAccessException", "IllegalAccessException")
                     // Handle any access-related exceptions
                 }
-
+            }else{
+                try {
+                    val field = bindingClass.getDeclaredField(setName)
+                    field.isAccessible = true
+                    val setView = field.get(binding) as TextView
+                    setView.isGone = true
+                } catch (e: NoSuchFieldException) {
+                    Log.d("NoSuchFieldException", "NoSuchFieldException")
+                    // Handle the case where the field doesn't exist
+                } catch (e: IllegalAccessException) {
+                    Log.d("IllegalAccessException", "IllegalAccessException")
+                    // Handle any access-related exceptions
+                }
             }
+
         }
     }
 
