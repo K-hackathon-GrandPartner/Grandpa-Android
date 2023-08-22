@@ -75,7 +75,7 @@ data class Rule(
     val curfew: Int,
     val smoking: Int,
     val drinking: Int,
-    val religion: Int
+    val religion: String,
 )
 
 data class Safety(

@@ -42,6 +42,7 @@ class DetailInfoPopActivity : AppCompatActivity() {
                         val roomInfo = apiResponse.result
 
                         setRuleLayout(roomInfo.rule)
+                        binding.detailInfoRule4.text = roomInfo.rule.religion
                         setCareServiceLayout(roomInfo.careServices)
                         setSafetyLayout(roomInfo.safety)
                         setPetLayout(roomInfo.pet)
@@ -76,10 +77,6 @@ class DetailInfoPopActivity : AppCompatActivity() {
             binding.detailInfoRule3.text = "음주"
         }else{
             binding.detailInfoRule3.text = "상관 없음"
-        }
-
-        if(rule.religion == 0){
-            binding.detailInfoRule4.text = "없음"
         }
     }
 
