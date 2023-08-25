@@ -12,6 +12,7 @@ import com.example.grandpa.databinding.RoomDetailBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.example.grandpa.BASE_URL
 
 class RoomDetailActivity: AppCompatActivity() {
     var setM2 : Boolean = false
@@ -66,7 +67,7 @@ class RoomDetailActivity: AppCompatActivity() {
         val service = DetailRoomImpl.service_ct_tab
 
         // API 요청
-        val callUrl = DetailRoomImpl.BASE_URL + roomId.toString() + "/"
+        val callUrl = BASE_URL + roomId.toString() + "/"
         val call = service.requestList(callUrl)
 
         call.enqueue(object: Callback<DetailRoomResponse>{
