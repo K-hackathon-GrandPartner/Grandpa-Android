@@ -263,6 +263,8 @@
                     android:id="@+id/optionList1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd= "12dp"
                     android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
 
@@ -270,22 +272,21 @@
                         android:id="@+id/option_detail1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/detail_option1"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="5dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
                         <TextView
                             android:id="@+id/detail_optionword1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
                             android:text="옵션설명" />
                     </LinearLayout>
 
@@ -293,21 +294,22 @@
                         android:id="@+id/option_detail2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginStart="30dp"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/detail_option2"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="5dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
                         <TextView
                             android:id="@+id/detail_optionword2"
-                            android:layout_width="wrap_content"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
                             android:text="옵션설명" />
                     </LinearLayout>
 
@@ -315,21 +317,22 @@
                         android:id="@+id/option_detail3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginStart="30dp"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/detail_option3"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="5dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
                         <TextView
                             android:id="@+id/detail_optionword3"
-                            android:layout_width="wrap_content"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
                             android:text="옵션설명" />
                     </LinearLayout>
 
@@ -337,23 +340,22 @@
                         android:id="@+id/option_detail4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginStart="30dp"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/detail_option4"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
                         <TextView
                             android:id="@+id/detail_optionword4"
-                            android:layout_width="wrap_content"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="25dp"
+                            android:gravity="center"
                             android:text="옵션설명" />
                     </LinearLayout>
                 </LinearLayout>
@@ -362,6 +364,8 @@
                     android:id="@+id/optionList2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd= "12dp"
                     android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
 
@@ -369,22 +373,21 @@
                         android:id="@+id/option_detail5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/detail_option5"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="5dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
                         <TextView
                             android:id="@+id/detail_optionword5"
-                            android:layout_width="wrap_content"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
                             android:text="옵션설명" />
                     </LinearLayout>
 
@@ -392,21 +395,22 @@
                         android:id="@+id/option_detail6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginStart="30dp"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/detail_option6"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="5dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
                         <TextView
                             android:id="@+id/detail_optionword6"
-                            android:layout_width="wrap_content"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
                             android:text="옵션설명" />
                     </LinearLayout>
 
@@ -414,21 +418,22 @@
                         android:id="@+id/option_detail7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginStart="30dp"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/detail_option7"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="5dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
                         <TextView
                             android:id="@+id/detail_optionword7"
-                            android:layout_width="wrap_content"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
                             android:text="옵션설명" />
                     </LinearLayout>
 
@@ -436,23 +441,22 @@
                         android:id="@+id/option_detail8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginStart="30dp"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/detail_option8"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
                         <TextView
                             android:id="@+id/detail_optionword8"
-                            android:layout_width="wrap_content"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="25dp"
+                            android:gravity="center"
                             android:text="옵션설명" />
                     </LinearLayout>
                 </LinearLayout>
@@ -461,6 +465,8 @@
                     android:id="@+id/optionList3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd= "12dp"
                     android:layout_marginBottom="15dp"
                     android:orientation="horizontal"
                     android:visibility="visible">
@@ -469,8 +475,7 @@
                         android:id="@+id/option_detail9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical"
                         android:visibility="visible">
 
@@ -478,14 +483,14 @@
                             android:id="@+id/detail_option9"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="5dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
                         <TextView
                             android:id="@+id/detail_optionword9"
-                            android:layout_width="wrap_content"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
                             android:text="옵션설명" />
                     </LinearLayout>
 
@@ -493,7 +498,8 @@
                         android:id="@+id/option_detail10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginStart="30dp"
+                        android:gravity="center"
                         android:orientation="vertical"
                         android:visibility="visible">
 
@@ -501,14 +507,14 @@
                             android:id="@+id/detail_option10"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="5dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
                         <TextView
                             android:id="@+id/detail_optionword10"
-                            android:layout_width="wrap_content"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
                             android:text="옵션설명" />
                     </LinearLayout>
 
@@ -516,7 +522,8 @@
                         android:id="@+id/option_detail11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginStart="30dp"
+                        android:gravity="center"
                         android:orientation="vertical"
                         android:visibility="visible">
 
@@ -524,14 +531,14 @@
                             android:id="@+id/detail_option11"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="5dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
                         <TextView
                             android:id="@+id/detail_optionword11"
-                            android:layout_width="wrap_content"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
                             android:text="옵션설명" />
                     </LinearLayout>
 
@@ -539,7 +546,8 @@
                         android:id="@+id/option_detail12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginStart="30dp"
+                        android:gravity="center"
                         android:orientation="vertical"
                         android:visibility="visible">
 
@@ -547,16 +555,14 @@
                             android:id="@+id/detail_option12"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
                         <TextView
                             android:id="@+id/detail_optionword12"
-                            android:layout_width="wrap_content"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="25dp"
+                            android:gravity="center"
                             android:text="옵션설명" />
                     </LinearLayout>
                 </LinearLayout>
