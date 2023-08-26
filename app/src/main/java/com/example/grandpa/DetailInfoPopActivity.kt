@@ -1,7 +1,6 @@
 package com.example.grandpa
 
 import android.util.Log
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
@@ -9,6 +8,7 @@ import com.example.grandpa.databinding.DetailInfoBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.example.grandpa.BASE_URL
 
 class DetailInfoPopActivity : AppCompatActivity() {
     private val binding by lazy{
@@ -28,7 +28,7 @@ class DetailInfoPopActivity : AppCompatActivity() {
         val service = DetailRoomImpl.service_ct_tab
 
         // API 요청
-        val callUrl = DetailRoomImpl.BASE_URL + roomId.toString() + "/"
+        val callUrl = BASE_URL + roomId.toString() + "/"
         val call = service.requestList(callUrl)
 
         call.enqueue(object: Callback<DetailRoomResponse> {
