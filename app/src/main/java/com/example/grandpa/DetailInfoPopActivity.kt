@@ -96,10 +96,8 @@ class DetailInfoPopActivity : AppCompatActivity() {
                     setView.text = care[i-1]
                 } catch (e: NoSuchFieldException) {
                     Log.d("NoSuchFieldException", "NoSuchFieldException")
-                    // Handle the case where the field doesn't exist
                 } catch (e: IllegalAccessException) {
                     Log.d("IllegalAccessException", "IllegalAccessException")
-                    // Handle any access-related exceptions
                 }
             }else{
                 try {
@@ -109,10 +107,8 @@ class DetailInfoPopActivity : AppCompatActivity() {
                     setView.isGone = true
                 } catch (e: NoSuchFieldException) {
                     Log.d("NoSuchFieldException", "NoSuchFieldException")
-                    // Handle the case where the field doesn't exist
                 } catch (e: IllegalAccessException) {
                     Log.d("IllegalAccessException", "IllegalAccessException")
-                    // Handle any access-related exceptions
                 }
             }
 
