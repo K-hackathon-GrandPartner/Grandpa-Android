@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.example.grandpa.BASE_URL
 
 class ShowRoomActivity : AppCompatActivity() {
     private lateinit var showroomAdapter : ShowRoomAdapter
@@ -56,7 +57,7 @@ class ShowRoomActivity : AppCompatActivity() {
         val service = ShowRoomImpl.service_ct_tab
 
         // API 요청
-        val call = service.requestList(ShowRoomImpl.BASE_URL)
+        val call = service.requestList(BASE_URL)
 
         call.enqueue(object : Callback<ShowRoomResponse> {
             override fun onResponse(
