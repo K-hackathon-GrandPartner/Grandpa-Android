@@ -197,8 +197,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
+                android:text="동물"
                 android:textSize="18dp"
-                android:text="동물" />
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/detailInfo_cat"

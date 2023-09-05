@@ -2,6 +2,7 @@ package com.example.grandpa
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,6 +43,7 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
     override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
         val urlString = roomList[position].imageUrl
         holder.apply{ //사진 로딩 라이브러리
+            Log.d("urls", urlString)
             Glide.with(context).load(urlString).into(room_image)
         }
         holder.building_type.text = roomList[position].buildingType

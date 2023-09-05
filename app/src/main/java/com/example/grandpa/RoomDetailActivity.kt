@@ -1,10 +1,13 @@
 package com.example.grandpa
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import androidx.viewpager2.widget.ViewPager2
@@ -13,10 +16,17 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.example.grandpa.BASE_URL
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.MapFragment
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.NaverMapSdk
+import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.overlay.CircleOverlay
+import org.w3c.dom.Text
 
-class RoomDetailActivity: AppCompatActivity() {
+class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
     var setM2 : Boolean = false
-
 
 //    private lateinit var binding: RoomDetailBinding
 //    override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +78,7 @@ class RoomDetailActivity: AppCompatActivity() {
 
         // API 요청
         val callUrl = BASE_URL + roomId.toString() + "/"
+        Log.d("url", callUrl)
         val call = service.requestList(callUrl)
 
         call.enqueue(object: Callback<DetailRoomResponse>{
@@ -109,7 +120,7 @@ class RoomDetailActivity: AppCompatActivity() {
                         binding.detailMoveInDate.text = roomInfo.moveInDate
 
                         val count = setOptionLayout(roomInfo.option)
-                        //Log.d("count", count.toString())
+                        Log.d("count", count.toString())
                         if(count!=12) offOptionLayout(count)
 
                         binding.detailRule4.text = roomInfo.rule.religion
@@ -137,6 +148,14 @@ class RoomDetailActivity: AppCompatActivity() {
                             startActivity(intent)
                         }
 
+                        val fm = supportFragmentManager
+                        val mapFragment = fm.findFragmentById(R.id.map_fragment) as MapFragment?
+                            ?: MapFragment.newInstance().also {
+                                fm.beginTransaction().add(R.id.map_fragment, it).commit()
+                            }
+
+                        mapFragment.getMapAsync(this@RoomDetailActivity)
+
                     }
                 }else {
                     // 서버 응답 실패 처리
@@ -151,21 +170,40 @@ class RoomDetailActivity: AppCompatActivity() {
 
     }
 
+    @UiThread
+    override fun onMapReady(naverMap: NaverMap) {
+        val cameraUpdate = CameraUpdate.scrollTo(LatLng(35.154685, 128.097684))
+        naverMap.moveCamera(cameraUpdate)
+
+
+        val circle = CircleOverlay()
+        circle.center = LatLng(35.154685, 128.097684)
+        circle.radius = 50.0
+        circle.map = naverMap
+        circle.color = Color.GREEN
+    }
 
     fun setOptionLayout(option: Option): Int {
         var count = 0
         val setDefaultName :String = "detailOptionword"
+        val setDefaultImage : String = "detailOption"
         var setName : String
+        var setImage : String
         val bindingClass = binding::class.java
 
         if(option.bathroom == 1){
             count++
             setName = setDefaultName + count.toString()
+            setImage = setDefaultImage + count.toString()
             try{
                 val field = bindingClass.getDeclaredField(setName)
+                val field2 = bindingClass.getDeclaredField(setImage)
                 field.isAccessible = true
-                val onView = field.get(binding) as TextView
-                onView.text = "   욕실"
+                field2.isAccessible = true
+                val onName = field.get(binding) as TextView
+                val onImage = field2.get(binding) as ImageView
+                onName.text = "   욕실"
+                onImage.setImageResource(R.drawable.bath)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {
@@ -176,11 +214,16 @@ class RoomDetailActivity: AppCompatActivity() {
         if(option.bed == 1){
             count++
             setName = setDefaultName + count.toString()
+            setImage = setDefaultImage + count.toString()
             try{
                 val field = bindingClass.getDeclaredField(setName)
+                val field2 = bindingClass.getDeclaredField(setImage)
                 field.isAccessible = true
-                val onView = field.get(binding) as TextView
-                onView.text = "   침실"
+                field2.isAccessible = true
+                val onName = field.get(binding) as TextView
+                val onImage = field2.get(binding) as ImageView
+                onName.text = "   침실"
+                onImage.setImageResource(R.drawable.bed)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {
@@ -191,11 +234,16 @@ class RoomDetailActivity: AppCompatActivity() {
         if(option.airConditioner == 1){
             count++
             setName = setDefaultName + count.toString()
+            setImage = setDefaultImage + count.toString()
             try{
                 val field = bindingClass.getDeclaredField(setName)
+                val field2 = bindingClass.getDeclaredField(setImage)
                 field.isAccessible = true
-                val onView = field.get(binding) as TextView
-                onView.text = "  에어컨"
+                field2.isAccessible = true
+                val onName = field.get(binding) as TextView
+                val onImage = field2.get(binding) as ImageView
+                onName.text = "  에어컨"
+                onImage.setImageResource(R.drawable.airconditioner)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {
@@ -206,11 +254,16 @@ class RoomDetailActivity: AppCompatActivity() {
         if(option.desk == 1){
             count++
             setName = setDefaultName + count.toString()
+            setImage = setDefaultImage + count.toString()
             try{
                 val field = bindingClass.getDeclaredField(setName)
+                val field2 = bindingClass.getDeclaredField(setImage)
                 field.isAccessible = true
-                val onView = field.get(binding) as TextView
-                onView.text = "   책상"
+                field2.isAccessible = true
+                val onName = field.get(binding) as TextView
+                val onImage = field2.get(binding) as ImageView
+                onName.text = "   책상"
+                onImage.setImageResource(R.drawable.desk)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {
@@ -221,11 +274,16 @@ class RoomDetailActivity: AppCompatActivity() {
         if(option.freeParking == 1){
             count++
             setName = setDefaultName + count.toString()
+            setImage = setDefaultImage + count.toString()
             try{
                 val field = bindingClass.getDeclaredField(setName)
+                val field2 = bindingClass.getDeclaredField(setImage)
                 field.isAccessible = true
-                val onView = field.get(binding) as TextView
-                onView.text = "무료 주차"
+                field2.isAccessible = true
+                val onName = field.get(binding) as TextView
+                val onImage = field2.get(binding) as ImageView
+                onName.text = "무료 주차"
+                onImage.setImageResource(R.drawable.parking)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {
@@ -236,11 +294,16 @@ class RoomDetailActivity: AppCompatActivity() {
         if(option.wifi == 1){
             count++
             setName = setDefaultName + count.toString()
+            setImage = setDefaultImage + count.toString()
             try{
                 val field = bindingClass.getDeclaredField(setName)
+                val field2 = bindingClass.getDeclaredField(setImage)
                 field.isAccessible = true
-                val onView = field.get(binding) as TextView
-                onView.text = "무선 인터넷"
+                field2.isAccessible = true
+                val onName = field.get(binding) as TextView
+                val onImage = field2.get(binding) as ImageView
+                onName.text = "무선 인터넷"
+                onImage.setImageResource(R.drawable.wifi)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {
@@ -251,11 +314,16 @@ class RoomDetailActivity: AppCompatActivity() {
         if(option.kitchen == 1){
             count++
             setName = setDefaultName + count.toString()
+            setImage = setDefaultImage + count.toString()
             try{
                 val field = bindingClass.getDeclaredField(setName)
+                val field2 = bindingClass.getDeclaredField(setImage)
                 field.isAccessible = true
-                val onView = field.get(binding) as TextView
-                onView.text = "주방 공유"
+                field2.isAccessible = true
+                val onName = field.get(binding) as TextView
+                val onImage = field2.get(binding) as ImageView
+                onName.text = "주방 공유"
+                onImage.setImageResource(R.drawable.kitchen)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {
@@ -266,11 +334,16 @@ class RoomDetailActivity: AppCompatActivity() {
         if(option.washer == 1){
             count++
             setName = setDefaultName + count.toString()
+            setImage = setDefaultImage + count.toString()
             try{
                 val field = bindingClass.getDeclaredField(setName)
+                val field2 = bindingClass.getDeclaredField(setImage)
                 field.isAccessible = true
-                val onView = field.get(binding) as TextView
-                onView.text = "세탁기 공유"
+                field2.isAccessible = true
+                val onName = field.get(binding) as TextView
+                val onImage = field2.get(binding) as ImageView
+                onName.text = "세탁기 공유"
+                onImage.setImageResource(R.drawable.washingmachine)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {
@@ -281,11 +354,16 @@ class RoomDetailActivity: AppCompatActivity() {
         if(option.elevator == 1){
             count++
             setName = setDefaultName + count.toString()
+            setImage = setDefaultImage + count.toString()
             try{
                 val field = bindingClass.getDeclaredField(setName)
+                val field2 = bindingClass.getDeclaredField(setImage)
                 field.isAccessible = true
-                val onView = field.get(binding) as TextView
-                onView.text = "엘리베이터"
+                field2.isAccessible = true
+                val onName = field.get(binding) as TextView
+                val onImage = field2.get(binding) as ImageView
+                onName.text = "엘리베이터"
+                onImage.setImageResource(R.drawable.elevator)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {
@@ -296,11 +374,16 @@ class RoomDetailActivity: AppCompatActivity() {
         if(option.paidParking == 1){
             count++
             setName = setDefaultName + count.toString()
+            setImage = setDefaultImage + count.toString()
             try{
                 val field = bindingClass.getDeclaredField(setName)
+                val field2 = bindingClass.getDeclaredField(setImage)
                 field.isAccessible = true
-                val onView = field.get(binding) as TextView
-                onView.text = "유로 주차"
+                field2.isAccessible = true
+                val onName = field.get(binding) as TextView
+                val onImage = field2.get(binding) as ImageView
+                onName.text = "유로 주차"
+                onImage.setImageResource(R.drawable.parking)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {
@@ -311,11 +394,16 @@ class RoomDetailActivity: AppCompatActivity() {
         if(option.closet == 1){
             count++
             setName = setDefaultName + count.toString()
+            setImage = setDefaultImage + count.toString()
             try{
                 val field = bindingClass.getDeclaredField(setName)
+                val field2 = bindingClass.getDeclaredField(setImage)
                 field.isAccessible = true
-                val onView = field.get(binding) as TextView
-                onView.text = "   옷장"
+                field2.isAccessible = true
+                val onName = field.get(binding) as TextView
+                val onImage = field2.get(binding) as ImageView
+                onName.text = "   옷장"
+                onImage.setImageResource(R.drawable.closet)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {
@@ -326,11 +414,16 @@ class RoomDetailActivity: AppCompatActivity() {
         if(option.tv == 1){
             count++
             setName = setDefaultName + count.toString()
+            setImage = setDefaultImage + count.toString()
             try{
                 val field = bindingClass.getDeclaredField(setName)
+                val field2 = bindingClass.getDeclaredField(setImage)
                 field.isAccessible = true
-                val onView = field.get(binding) as TextView
-                onView.text = "   TV"
+                field2.isAccessible = true
+                val onName = field.get(binding) as TextView
+                val onImage = field2.get(binding) as ImageView
+                onName.text = "   TV"
+                onImage.setImageResource(R.drawable.tv)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {
@@ -353,7 +446,7 @@ class RoomDetailActivity: AppCompatActivity() {
                 val field = bindingClass.getDeclaredField(offName)
                 field.isAccessible = true
                 val offView =
-                    field.get(binding) as View // Change 'View' to the actual type of 'binding.optionDetail12'
+                    field.get(binding) as View
                 offView.isGone = true
             } catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist

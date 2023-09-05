@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.naver.maps.map.NaverMapSdk
 
 class HeartActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
