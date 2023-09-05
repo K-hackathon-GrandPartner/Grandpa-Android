@@ -1,11 +1,13 @@
 package com.example.grandpa
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import androidx.viewpager2.widget.ViewPager2
@@ -14,9 +16,16 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.example.grandpa.BASE_URL
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.MapFragment
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.NaverMapSdk
+import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.overlay.CircleOverlay
 import org.w3c.dom.Text
 
-class RoomDetailActivity: AppCompatActivity() {
+class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
     var setM2 : Boolean = false
 
 //    private lateinit var binding: RoomDetailBinding
@@ -139,6 +148,14 @@ class RoomDetailActivity: AppCompatActivity() {
                             startActivity(intent)
                         }
 
+                        val fm = supportFragmentManager
+                        val mapFragment = fm.findFragmentById(R.id.map_fragment) as MapFragment?
+                            ?: MapFragment.newInstance().also {
+                                fm.beginTransaction().add(R.id.map_fragment, it).commit()
+                            }
+
+                        mapFragment.getMapAsync(this@RoomDetailActivity)
+
                     }
                 }else {
                     // 서버 응답 실패 처리
@@ -153,6 +170,18 @@ class RoomDetailActivity: AppCompatActivity() {
 
     }
 
+    @UiThread
+    override fun onMapReady(naverMap: NaverMap) {
+        val cameraUpdate = CameraUpdate.scrollTo(LatLng(35.154685, 128.097684))
+        naverMap.moveCamera(cameraUpdate)
+
+
+        val circle = CircleOverlay()
+        circle.center = LatLng(35.154685, 128.097684)
+        circle.radius = 50.0
+        circle.map = naverMap
+        circle.color = Color.GREEN
+    }
 
     fun setOptionLayout(option: Option): Int {
         var count = 0
