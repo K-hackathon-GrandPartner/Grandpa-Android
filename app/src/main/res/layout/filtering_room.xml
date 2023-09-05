@@ -90,9 +90,9 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
                     android:contentDescription="보증금 범위 설정"
-                    android:stepSize="20.0"
+                    android:stepSize="100.0"
                     android:valueFrom="0.0"
-                    android:valueTo="300.0"
+                    android:valueTo="1000.0"
                     app:thumbColor="#54A12F"
                     app:trackColorActive="#B7DD8B"
                     app:trackColorInactive="#D1D1D1"
@@ -117,7 +117,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
                     android:contentDescription="월세 범위 설정"
-                    android:stepSize="5.0"
+                    android:stepSize="10.0"
                     android:valueFrom="0.0"
                     android:valueTo="100.0"
                     app:thumbColor="#54A12F"
@@ -175,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:layout_weight="1"
-                        android:onClick="region_onClicked"
+                        android:onClick="regionOnClicked"
                         android:text="광진구"
                         android:textSize="20sp" />
 
@@ -186,7 +186,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_weight="1"
-                        android:onClick="region_onClicked"
+                        android:onClick="regionOnClicked"
                         android:text="노원구"
                         android:textSize="20sp" />
 
@@ -197,7 +197,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_weight="1"
-                        android:onClick="region_onClicked"
+                        android:onClick="regionOnClicked"
                         android:text="성북구"
                         android:textSize="20sp" />
 
@@ -226,7 +226,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
-                        android:onClick="buildingType_onClicked"
+                        android:onClick="buildingTypeOnClicked"
                         android:text="아파트"
                         android:textSize="20sp" />
 
@@ -236,7 +236,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
-                        android:onClick="buildingType_onClicked"
+                        android:onClick="buildingTypeOnClicked"
                         android:text="오피스텔"
                         android:textSize="20sp" />
 
@@ -246,7 +246,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
-                        android:onClick="buildingType_onClicked"
+                        android:onClick="buildingTypeOnClicked"
                         android:text="빌라"
                         android:textSize="20sp" />
 
@@ -256,7 +256,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
-                        android:onClick="buildingType_onClicked"
+                        android:onClick="buildingTypeOnClicked"
                         android:text="단독주택"
                         android:textSize="20sp" />
 
@@ -287,7 +287,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:layout_weight="1"
-                        android:onClick="roomSize_onClicked"
+                        android:onClick="roomSizeOnClicked"
                         android:text="소형"
                         android:textSize="20sp" />
 
@@ -297,7 +297,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:onClick="roomSize_onClicked"
+                        android:onClick="roomSizeOnClicked"
                         android:text="중형"
                         android:textSize="20sp" />
 
@@ -307,7 +307,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:onClick="roomSize_onClicked"
+                        android:onClick="roomSizeOnClicked"
                         android:text="대형"
                         android:textSize="20sp" />
 
@@ -317,7 +317,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:onClick="roomSize_onClicked"
+                        android:onClick="roomSizeOnClicked"
                         android:text="대형+"
                         android:textSize="20sp" />
 
@@ -365,7 +365,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
-                        android:onClick="option_onClicked"
+                        android:onClick="optionOnClicked"
                         android:text="욕실"
                         android:textSize="20sp" />
 
@@ -375,7 +375,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
-                        android:onClick="option_onClicked"
+                        android:onClick="optionOnClicked"
                         android:text="주방 공유"
                         android:textSize="20sp"
                         app:layout_column="1"
@@ -387,7 +387,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
-                        android:onClick="option_onClicked"
+                        android:onClick="optionOnClicked"
                         android:text="침대"
                         android:textSize="20sp" />
 
@@ -397,17 +397,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
-                        android:onClick="option_onClicked"
+                        android:onClick="optionOnClicked"
                         android:text="에어컨"
                         android:textSize="20sp" />
 
 
                     <CheckBox
-                        android:id="@+id/filter_elivator"
+                        android:id="@+id/filter_elevator"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
-                        android:onClick="option_onClicked"
+                        android:onClick="optionOnClicked"
                         android:text="엘리베이터"
                         android:textSize="20sp" />
 
@@ -417,7 +417,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
-                        android:onClick="option_onClicked"
+                        android:onClick="optionOnClicked"
                         android:text="책상"
                         android:textSize="20sp" />
 
@@ -427,7 +427,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
-                        android:onClick="option_onClicked"
+                        android:onClick="optionOnClicked"
                         android:text="유료 주차"
                         android:textSize="20sp" />
 
@@ -437,7 +437,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
-                        android:onClick="option_onClicked"
+                        android:onClick="optionOnClicked"
                         android:text="무료 주차"
                         android:textSize="20sp" />
 
@@ -447,7 +447,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
-                        android:onClick="option_onClicked"
+                        android:onClick="optionOnClicked"
                         android:text="옷장"
                         android:textSize="20sp" />
 
@@ -457,7 +457,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
-                        android:onClick="option_onClicked"
+                        android:onClick="optionOnClicked"
                         android:text="무선 인터넷"
                         android:textSize="20sp" />
 
@@ -467,17 +467,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
-                        android:onClick="option_onClicked"
+                        android:onClick="optionOnClicked"
                         android:text="TV"
                         android:textSize="20sp" />
 
 
                     <CheckBox
-                        android:id="@+id/filter_laundary"
+                        android:id="@+id/filter_laundry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
-                        android:onClick="option_onClicked"
+                        android:onClick="optionOnClicked"
                         android:text="세탁기 공유"
                         android:textSize="20sp" />
 

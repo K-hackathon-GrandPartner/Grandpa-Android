@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="initial_slider_deposit">
+    <string-array name="initial_slider_deposit">
         <item>0.0</item>
-        <item>300.0</item>
-    </array>
+        <item>1000.0</item>
+    </string-array>
 
-    <array name="initial_slider_price">
-        <item>10.0</item>
+    <string-array name="initial_slider_price">
+        <item>0.0</item>
         <item>100.0</item>
-    </array>
+    </string-array>
 </resources>
