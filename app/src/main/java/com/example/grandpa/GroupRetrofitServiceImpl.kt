@@ -24,3 +24,13 @@ object DetailRoomImpl{
     //인증탭 - 메인 Retrofit 인터페이스를 사용하여 서비스 인스턴스를 생성
     val service_ct_tab : DetailRoomInterface = retrofit.create(DetailRoomInterface::class.java)
 }
+
+object FilteredRoomImpl{
+    // Retrofit 서비스 인터페이스 생성
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val apiService: FilteredRoomInterface = retrofit.create(FilteredRoomInterface::class.java)
+}

@@ -16,7 +16,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.grandpa.FilteredRoomImpl.apiService
 import com.google.android.material.slider.RangeSlider
+import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class FilterActivity : AppCompatActivity() {
@@ -71,8 +76,8 @@ class FilterActivity : AppCompatActivity() {
             val startValue = values[0]
             val endValue = values[1]
 
-            editor.putFloat("depositFrom", startValue)
-            editor.putFloat("depositTo", endValue)
+            editor.putFloat("startDeposit", startValue)
+            editor.putFloat("endDeposit", endValue)
             editor.apply()
         }
 
@@ -82,8 +87,8 @@ class FilterActivity : AppCompatActivity() {
             val startValue = values[0]
             val endValue = values[1]
 
-            editor.putFloat("monthPriceFrom", startValue)
-            editor.putFloat("monthPriceTo", endValue)
+            editor.putFloat("startMonthlyRent", startValue)
+            editor.putFloat("endMonthlyRent", endValue)
             editor.apply()
         }
 
@@ -109,11 +114,72 @@ class FilterActivity : AppCompatActivity() {
         apply_btn.setOnClickListener{
 
 
+
         }
 
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    fun getFilteredRooms() {
+        //SharedPreferences 초기화
+        FilteringDB.init(this)
+        val filterDB = FilteringDB.getInstance()
+        val keys = filterDB.all.keys // 모든 SharedPreferences 키를 가져옴
+        // 쿼리 파라미터를 Map으로 만들기(보증금,월세)
+        val queryParams = mutableMapOf<String,Float>()
+        val regionParams = mutableListOf<String>()
+        val buildingTypeParams = mutableListOf<String>()
+        val roomSizeParams = mutableListOf<String>()
+        val optionParams = mutableListOf<String>()
+
+        for (key in keys) {
+            if(key.contains("start") || key.contains("end")){
+                val value = filterDB.all[key]
+                queryParams[key] = value as Float
+            }
+            else if(key.contains("region")){
+                val value = filterDB.all[key]
+                regionParams.add(value.toString())
+            }
+            else if(key.contains("buildingType")){
+                val value = filterDB.all[key]
+                buildingTypeParams.add(value.toString())
+            }
+            else if(key.contains("roomSize")){
+                val value = filterDB.all[key]
+                roomSizeParams.add(value.toString())
+            }
+            else if(key.contains("option")){
+                val value = filterDB.all[key]
+                optionParams.add(value.toString())
+            }
+        }
+
+        // Retrofit 서비스 인터페이스를 사용하여 API 요청 보내기
+        val call = apiService.requestList(queryParams, regionParams, buildingTypeParams, roomSizeParams, optionParams)
+
+        call.enqueue(object : Callback<FilteredRoomResponse> {
+            override fun onResponse(call: Call<FilteredRoomResponse>, response: Response<FilteredRoomResponse>) {
+                if (response.isSuccessful) {
+                    // 응답 성공
+                    val data = response.body()
+                    Log.d("API1", data.toString())
+                } else {
+                    // 응답 실패
+                }
+            }
+
+            override fun onFailure(call: Call<FilteredRoomResponse>, t: Throwable) {
+                // 네트워크 오류 또는 예외 처리
+                Log.d("API1", "fail")
+            }
+        })
 
 
     }
+
+
+
 
     //체크 박스 찾아서 해제 하는 함수
     private fun uncheckAllCheckboxes(parentView: View) {
@@ -141,31 +207,28 @@ class FilterActivity : AppCompatActivity() {
             when (view.id) {
                 R.id.filter_Gwangjin -> {
                     if(checked) {
-                        editor.putBoolean("Gwangjin",true)
+                        editor.putString("region1","광진구")
                         editor.apply()
                     } else {
-                        editor.putBoolean("Gwangjin",false)
-                        editor.remove("Gwangjin")
+                        editor.remove("region1")
                         editor.apply()
                     }
                 }
                 R.id.filter_Nowon -> {
                     if(checked) {
-                        editor.putBoolean("Nowon",true)
+                        editor.putString("region2","노원구")
                         editor.apply()
                     } else {
-                        editor.putBoolean("Nowon",true)
-                        editor.remove("Nowon")
+                        editor.remove("region2")
                         editor.apply()
                     }
                 }
                 R.id.filter_Seongbuk -> {
                     if(checked) {
-                        editor.putBoolean("Seongbuk",true)
+                        editor.putString("region3","성북구")
                         editor.apply()
                     } else {
-                        editor.putBoolean("Seongbuk",true)
-                        editor.remove("Seongbuk")
+                        editor.remove("region3")
                         editor.apply()
                     }
                 }
@@ -184,41 +247,37 @@ class FilterActivity : AppCompatActivity() {
             when (view.id) {
                 R.id.filter_apartment -> {
                     if (checked) {
-                        editor.putBoolean("apartment",true)
+                        editor.putString("buildingType1","아파트")
                         editor.apply()
                     } else {
-                        editor.putBoolean("apartment",false)
-                        editor.remove("apartment")
+                        editor.remove("buildingType1")
                         editor.apply()
                     }
                 }
                 R.id.filter_officetel -> {
                     if (checked) {
-                        editor.putBoolean("officetel",true)
+                        editor.putString("buildingType2","오피스텔")
                         editor.apply()
                     } else {
-                        editor.putBoolean("officetel",false)
-                        editor.remove("officetel")
+                        editor.remove("buildingType2")
                         editor.apply()
                     }
                 }
                 R.id.filter_villa-> {
                     if (checked) {
-                        editor.putBoolean("villa",true)
+                        editor.putString("buildingType3","빌라")
                         editor.apply()
                     } else {
-                        editor.putBoolean("villa",false)
-                        editor.remove("villa")
+                        editor.remove("buildingType3")
                         editor.apply()
                     }
                 }
                 R.id.filter_house -> {
                     if (checked) {
-                        editor.putBoolean("house",true)
+                        editor.putString("buildingType4","단독 주택")
                         editor.apply()
                     } else {
-                        editor.putBoolean("house",false)
-                        editor.remove("house")
+                        editor.remove("buildingType4")
                         editor.apply()
                     }
                 }
@@ -237,41 +296,37 @@ class FilterActivity : AppCompatActivity() {
             when (view.id) {
                 R.id.filter_small -> {
                     if(checked) {
-                        editor.putBoolean("small",true)
+                        editor.putString("roomSize1","소형")
                         editor.apply()
                     } else {
-                        editor.putBoolean("small",false)
-                        editor.remove("small")
+                        editor.remove("roomSize1")
                         editor.apply()
                     }
                 }
                 R.id.filter_medium -> {
                     if(checked) {
-                        editor.putBoolean("medium",true)
+                        editor.putString("roomSize2","중형")
                         editor.apply()
                     } else {
-                        editor.putBoolean("medium",false)
-                        editor.remove("medium")
+                        editor.remove("roomSize2")
                         editor.apply()
                     }
                 }
                 R.id.filter_big -> {
                     if(checked) {
-                        editor.putBoolean("big",true)
+                        editor.putString("roomSize3","대형")
                         editor.apply()
                     } else {
-                        editor.putBoolean("big",false)
-                        editor.remove("big")
+                        editor.remove("roomSize3")
                         editor.apply()
                     }
                 }
                 R.id.filter_bigger -> {
                     if(checked) {
-                        editor.putBoolean("bigger",true)
+                        editor.putString("roomSize4","대형+")
                         editor.apply()
                     } else {
-                        editor.putBoolean("bigger",false)
-                        editor.remove("bigger")
+                        editor.remove("roomSize4")
                         editor.apply()
                     }
                 }
@@ -290,121 +345,109 @@ class FilterActivity : AppCompatActivity() {
             when(view.id) {
                 R.id.filter_bathroom -> {
                     if(checked) {
-                        editor.putBoolean("bathroom",true)
+                        editor.putString("option1","욕실")
                         editor.apply()
                     } else {
-                        editor.putBoolean("bathroom",false)
-                        editor.remove("bathroom")
+                        editor.remove("option1")
                         editor.apply()
                     }
                 }
                 R.id.filter_kitchen -> {
                     if(checked) {
-                        editor.putBoolean("kitchen",true)
+                        editor.putString("option2","주방 공유")
                         editor.apply()
                     } else {
-                        editor.putBoolean("kitchen",false)
-                        editor.remove("kitchen")
+                        editor.remove("option2")
                         editor.apply()
                     }
                 }
                 R.id.filter_bed -> {
                     if(checked) {
-                        editor.putBoolean("bed",true)
+                        editor.putString("option3","침대")
                         editor.apply()
                     } else {
-                        editor.putBoolean("bed",false)
-                        editor.remove("bed")
+                        editor.remove("option3")
                         editor.apply()
                     }
                 }
                 R.id.filter_laundry -> {
                     if(checked) {
-                        editor.putBoolean("laundry",true)
+                        editor.putString("option4","세탁기 공유")
                         editor.apply()
                     } else {
-                        editor.putBoolean("laundry",false)
-                        editor.remove("laundry")
+                        editor.remove("option4")
                         editor.apply()
                     }
                 }
                 R.id.filter_aircon -> {
                     if(checked) {
-                        editor.putBoolean("aircon",true)
+                        editor.putString("option5","에어컨")
                         editor.apply()
                     } else {
-                        editor.putBoolean("aircon",false)
-                        editor.remove("aircon")
+                        editor.remove("option5")
                         editor.apply()
                     }
                 }
                 R.id.filter_elevator -> {
                     if(checked) {
-                        editor.putBoolean("elevator",true)
+                        editor.putString("option6","엘리베이터")
                         editor.apply()
                     } else {
-                        editor.putBoolean("elevator",false)
-                        editor.remove("elevator")
+                        editor.remove("option6")
                         editor.apply()
                     }
                 }
                 R.id.filter_desk -> {
                     if(checked) {
-                        editor.putBoolean("desk",true)
+                        editor.putString("option7","책상")
                         editor.apply()
                     } else {
-                        editor.putBoolean("desk",false)
-                        editor.remove("desk")
+                        editor.remove("option7")
                         editor.apply()
                     }
                 }
                 R.id.filter_feeParking -> {
                     if(checked) {
-                        editor.putBoolean("feeParking",true)
+                        editor.putString("option8","유료 주차")
                         editor.apply()
                     } else {
-                        editor.putBoolean("feeParking",false)
-                        editor.remove("feeParking")
+                        editor.remove("option8")
                         editor.apply()
                     }
                 }
                 R.id.filter_freeParking -> {
                     if(checked) {
-                        editor.putBoolean("freeParking",true)
+                        editor.putString("option9","무료 주차")
                         editor.apply()
                     } else {
-                        editor.putBoolean("freeParking",false)
-                        editor.remove("freeParking")
+                        editor.remove("option9")
                         editor.apply()
                     }
                 }
                 R.id.filter_closet -> {
                     if(checked) {
-                        editor.putBoolean("closet",true)
+                        editor.putString("option10","옷장")
                         editor.apply()
                     } else {
-                        editor.putBoolean("closet",false)
-                        editor.remove("closet")
+                        editor.remove("option10")
                         editor.apply()
                     }
                 }
                 R.id.filter_internet -> {
                     if(checked) {
-                        editor.putBoolean("internet",true)
+                        editor.putString("option11","무선 인터넷")
                         editor.apply()
                     } else {
-                        editor.putBoolean("internet",false)
-                        editor.remove("internet")
+                        editor.remove("option11")
                         editor.apply()
                     }
                 }
                 R.id.filter_tv -> {
                     if(checked) {
-                        editor.putBoolean("tv",true)
+                        editor.putString("option12","TV")
                         editor.apply()
                     } else {
-                        editor.putBoolean("tv",false)
-                        editor.remove("tv")
+                        editor.remove("option12")
                         editor.apply()
                     }
                 }

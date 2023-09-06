@@ -2,37 +2,37 @@ package com.example.grandpa
 
 data class filter_data(
     //금액
-    var depositFrom: Float? =null,
-    var depositTo: Float? =null,
-    var monthPriceFrom: Float? =null,
-    var monthPriceTo: Float? =null,
+    var depositFrom: Float?,
+    var depositTo: Float?,
+    var monthPriceFrom: Float?,
+    var monthPriceTo: Float?,
     //지역
-    var Gwangjin: Boolean? =false,
-    var Nowon: Boolean? =false,
-    var Seongbuk: Boolean? =false,
+    var Gwangjin: Boolean?,
+    var Nowon: Boolean?,
+    var Seongbuk: Boolean?,
     //건물 유형
-    var apartment: Boolean? =false,
-    var officetel: Boolean? =false,
-    var villa: Boolean? =false,
-    var house: Boolean? =false,
+    var apartment: Boolean?,
+    var officetel: Boolean?,
+    var villa: Boolean?,
+    var house: Boolean?,
     //방 크기
-    var small: Boolean? =false,
-    var medium: Boolean? =false,
-    var big: Boolean? =false,
-    var bigger: Boolean? =false,
+    var small: Boolean?,
+    var medium: Boolean?,
+    var big: Boolean? ,
+    var bigger: Boolean?,
     //옵션
-    var bathroom: Boolean? =false,
-    var kitchen: Boolean? =false,
-    var bed: Boolean? =false,
-    var laundry: Boolean? =false,
-    var aircon: Boolean? =false,
-    var elevator: Boolean? =false,
-    var desk: Boolean? =false,
-    var feeParking: Boolean? =false,
-    var freeParking: Boolean? =false,
-    var closet: Boolean? =false,
-    var internet: Boolean? =false,
-    var tv: Boolean? =false
+    var bathroom: Boolean?,
+    var kitchen: Boolean?,
+    var bed: Boolean?,
+    var laundry: Boolean?,
+    var aircon: Boolean?,
+    var elevator: Boolean?,
+    var desk: Boolean?,
+    var feeParking: Boolean?,
+    var freeParking: Boolean?,
+    var closet: Boolean?,
+    var internet: Boolean?,
+    var tv: Boolean?
 )
 
 
