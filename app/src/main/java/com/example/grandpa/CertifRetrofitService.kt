@@ -27,5 +27,5 @@ interface FilteredRoomInterface {
         @Query("buildingTypes") buildingTypes: List<String>,
         @Query("roomSizeTypes") roomSizeTypes: List<String>,
         @Query("roomOptions") roomOptions: List<String>
-    ): Call<FilteredRoomResponse>
+    ): Call<ShowRoomResponse>
 }

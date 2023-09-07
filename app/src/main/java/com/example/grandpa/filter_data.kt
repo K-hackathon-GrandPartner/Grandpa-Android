@@ -2,37 +2,37 @@ package com.example.grandpa
 
 data class filter_data(
     //금액
-    var depositFrom: Float?,
-    var depositTo: Float?,
-    var monthPriceFrom: Float?,
-    var monthPriceTo: Float?,
+    var startDeposit: Float? =null,
+    var endDeposit: Float?=null,
+    var startMonthlyRent: Float?=null,
+    var endMonthlyRent: Float?=null,
     //지역
-    var Gwangjin: Boolean?,
-    var Nowon: Boolean?,
-    var Seongbuk: Boolean?,
+    var region_Gwangjin: String? =null,
+    var region_Nowon: String? =null,
+    var region_Seongbuk: String? =null,
     //건물 유형
-    var apartment: Boolean?,
-    var officetel: Boolean?,
-    var villa: Boolean?,
-    var house: Boolean?,
+    var buildingType_apartment: String? =null,
+    var buildingType_officetel: String? =null,
+    var buildingType_villa: String? =null,
+    var buildingType_house: String? =null,
     //방 크기
-    var small: Boolean?,
-    var medium: Boolean?,
-    var big: Boolean? ,
-    var bigger: Boolean?,
+    var roomSize_small: String? =null,
+    var roomSize_medium: String? =null,
+    var roomSize_big: String? =null,
+    var roomSize_bigger: String? =null,
     //옵션
-    var bathroom: Boolean?,
-    var kitchen: Boolean?,
-    var bed: Boolean?,
-    var laundry: Boolean?,
-    var aircon: Boolean?,
-    var elevator: Boolean?,
-    var desk: Boolean?,
-    var feeParking: Boolean?,
-    var freeParking: Boolean?,
-    var closet: Boolean?,
-    var internet: Boolean?,
-    var tv: Boolean?
+    var option_bathroom: String? =null,
+    var option_kitchen: String? =null,
+    var option_bed: String? =null,
+    var option_laundry: String? =null,
+    var option_aircon: String? =null,
+    var option_elevator: String? =null,
+    var option_desk: String? =null,
+    var option_feeParking: String? =null,
+    var option_freeParking: String? =null,
+    var option_closet: String? =null,
+    var option_internet: String? =null,
+    var option_tv: String? =null
 )
 
 
