@@ -21,6 +21,7 @@ import com.google.android.material.slider.RangeSlider
 
 class FilterActivity : AppCompatActivity() {
 
+    val filterData = filter_data() // FilterData 클래스의 인스턴스를 생성
     object FilteringDB {
         private lateinit var sharedPreferences: SharedPreferences
 
@@ -71,9 +72,12 @@ class FilterActivity : AppCompatActivity() {
             val startValue = values[0]
             val endValue = values[1]
 
-            editor.putFloat("depositFrom", startValue)
-            editor.putFloat("depositTo", endValue)
-            editor.apply()
+            filterData.startDeposit = startValue
+            filterData.endDeposit = endValue
+
+//            editor.putFloat("startDeposit", startValue)
+//            editor.putFloat("endDeposit", endValue)
+//            editor.apply()
         }
 
         //월세 값 범위 내부저장소에 저장
@@ -82,9 +86,12 @@ class FilterActivity : AppCompatActivity() {
             val startValue = values[0]
             val endValue = values[1]
 
-            editor.putFloat("monthPriceFrom", startValue)
-            editor.putFloat("monthPriceTo", endValue)
-            editor.apply()
+            filterData.startMonthlyRent = startValue
+            filterData.endMonthlyRent = endValue
+
+//            editor.putFloat("startMonthlyRent", startValue)
+//            editor.putFloat("endMonthlyRent", endValue)
+//            editor.apply()
         }
 
         //초기화 버튼
@@ -105,15 +112,41 @@ class FilterActivity : AppCompatActivity() {
             editor.apply()
         }
 
+
+
         //적용하기 버튼
         apply_btn.setOnClickListener{
-
-
+            putData()//db에 저장
+            //방 조회로 화면 전환
+            val intent = Intent(this, ShowRoomActivity::class.java)
+            startActivity(intent)
+            finish()
         }
-
-
-
     }
+
+    fun putData() {
+        //SharedPreferences 초기화
+        FilteringDB.init(this)
+        val editor = FilteringDB.getInstance().edit()
+        //filter_data 내의 속성들 변수에 대입
+        val Properties = filterData.javaClass.declaredFields
+
+        for(property in Properties){
+            property.isAccessible = true //속성 접근 권한 변경
+            val propertyName = property.name
+            val propertyValue = property.get(filterData)
+            if (propertyValue != null){
+                if(propertyName.contains("start") || propertyName.contains("end")){
+                    editor.putFloat(propertyName, propertyValue as Float)
+                    editor.apply()
+                } else{
+                    editor.putString(propertyName, propertyValue.toString())
+                    editor.apply()
+                }
+            }
+        }
+    }
+
 
     //체크 박스 찾아서 해제 하는 함수
     private fun uncheckAllCheckboxes(parentView: View) {
@@ -141,32 +174,41 @@ class FilterActivity : AppCompatActivity() {
             when (view.id) {
                 R.id.filter_Gwangjin -> {
                     if(checked) {
-                        editor.putBoolean("Gwangjin",true)
-                        editor.apply()
+                        filterData.region_Gwangjin = "광진구"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("region1","광진구")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("Gwangjin",false)
-                        editor.remove("Gwangjin")
-                        editor.apply()
+                        filterData.region_Gwangjin = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("region1")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_Nowon -> {
                     if(checked) {
-                        editor.putBoolean("Nowon",true)
-                        editor.apply()
+                        filterData.region_Nowon = "노원구"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("region2","노원구")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("Nowon",true)
-                        editor.remove("Nowon")
-                        editor.apply()
+                        filterData.region_Nowon = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("region2")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_Seongbuk -> {
                     if(checked) {
-                        editor.putBoolean("Seongbuk",true)
-                        editor.apply()
+                        filterData.region_Seongbuk = "성북구"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("region3","성북구")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("Seongbuk",true)
-                        editor.remove("Seongbuk")
-                        editor.apply()
+                        filterData.region_Seongbuk = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("region3")
+//                        editor.apply()
                     }
                 }
             }
@@ -184,42 +226,54 @@ class FilterActivity : AppCompatActivity() {
             when (view.id) {
                 R.id.filter_apartment -> {
                     if (checked) {
-                        editor.putBoolean("apartment",true)
-                        editor.apply()
+                        filterData.buildingType_apartment = "아파트"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("buildingType1","아파트")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("apartment",false)
-                        editor.remove("apartment")
-                        editor.apply()
+                        filterData.buildingType_apartment = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("buildingType1")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_officetel -> {
                     if (checked) {
-                        editor.putBoolean("officetel",true)
-                        editor.apply()
+                        filterData.buildingType_officetel = "오피스텔"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("buildingType2","오피스텔")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("officetel",false)
-                        editor.remove("officetel")
-                        editor.apply()
+                        filterData.buildingType_officetel = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("buildingType2")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_villa-> {
                     if (checked) {
-                        editor.putBoolean("villa",true)
-                        editor.apply()
+                        filterData.buildingType_villa = "빌라"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("buildingType3","빌라")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("villa",false)
-                        editor.remove("villa")
-                        editor.apply()
+                        filterData.buildingType_villa = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("buildingType3")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_house -> {
                     if (checked) {
-                        editor.putBoolean("house",true)
-                        editor.apply()
+                        filterData.buildingType_house = "단독 주택"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("buildingType4","단독 주택")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("house",false)
-                        editor.remove("house")
-                        editor.apply()
+                        filterData.buildingType_house = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("buildingType4")
+//                        editor.apply()
                     }
                 }
             }
@@ -237,42 +291,54 @@ class FilterActivity : AppCompatActivity() {
             when (view.id) {
                 R.id.filter_small -> {
                     if(checked) {
-                        editor.putBoolean("small",true)
-                        editor.apply()
+                        filterData.roomSize_small = "소형"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("roomSize1","소형")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("small",false)
-                        editor.remove("small")
-                        editor.apply()
+                        filterData.roomSize_small = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("roomSize1")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_medium -> {
                     if(checked) {
-                        editor.putBoolean("medium",true)
-                        editor.apply()
+                        filterData.roomSize_medium = "중형"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("roomSize2","중형")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("medium",false)
-                        editor.remove("medium")
-                        editor.apply()
+                        filterData.roomSize_medium = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("roomSize2")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_big -> {
                     if(checked) {
-                        editor.putBoolean("big",true)
-                        editor.apply()
+                        filterData.roomSize_big = "대형"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("roomSize3","대형")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("big",false)
-                        editor.remove("big")
-                        editor.apply()
+                        filterData.roomSize_big = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("roomSize3")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_bigger -> {
                     if(checked) {
-                        editor.putBoolean("bigger",true)
-                        editor.apply()
+                        filterData.roomSize_bigger = "대형+"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("roomSize4","대형+")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("bigger",false)
-                        editor.remove("bigger")
-                        editor.apply()
+                        filterData.roomSize_bigger = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("roomSize4")
+//                        editor.apply()
                     }
                 }
             }
@@ -290,122 +356,158 @@ class FilterActivity : AppCompatActivity() {
             when(view.id) {
                 R.id.filter_bathroom -> {
                     if(checked) {
-                        editor.putBoolean("bathroom",true)
-                        editor.apply()
+                        filterData.option_bathroom = "욕실"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("option1","욕실")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("bathroom",false)
-                        editor.remove("bathroom")
-                        editor.apply()
+                        filterData.option_bathroom = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("option1")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_kitchen -> {
                     if(checked) {
-                        editor.putBoolean("kitchen",true)
-                        editor.apply()
+                        filterData.option_kitchen = "주방 공유"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("option2","주방 공유")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("kitchen",false)
-                        editor.remove("kitchen")
-                        editor.apply()
+                        filterData.option_kitchen = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("option2")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_bed -> {
                     if(checked) {
-                        editor.putBoolean("bed",true)
-                        editor.apply()
+                        filterData.option_bed = "침대"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("option3","침대")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("bed",false)
-                        editor.remove("bed")
-                        editor.apply()
+                        filterData.option_bed = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("option3")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_laundry -> {
                     if(checked) {
-                        editor.putBoolean("laundry",true)
-                        editor.apply()
+                        filterData.option_laundry = "세탁기 공유"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("option4","세탁기 공유")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("laundry",false)
-                        editor.remove("laundry")
-                        editor.apply()
+                        filterData.option_laundry = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("option4")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_aircon -> {
                     if(checked) {
-                        editor.putBoolean("aircon",true)
-                        editor.apply()
+                        filterData.option_aircon = "에어컨"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("option5","에어컨")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("aircon",false)
-                        editor.remove("aircon")
-                        editor.apply()
+                        filterData.option_aircon = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("option5")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_elevator -> {
                     if(checked) {
-                        editor.putBoolean("elevator",true)
-                        editor.apply()
+                        filterData.option_elevator = "엘리베이터"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("option6","엘리베이터")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("elevator",false)
-                        editor.remove("elevator")
-                        editor.apply()
+                        filterData.option_elevator = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("option6")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_desk -> {
                     if(checked) {
-                        editor.putBoolean("desk",true)
-                        editor.apply()
+                        filterData.option_desk = "책상"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("option7","책상")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("desk",false)
-                        editor.remove("desk")
-                        editor.apply()
+                        filterData.option_desk = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("option7")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_feeParking -> {
                     if(checked) {
-                        editor.putBoolean("feeParking",true)
-                        editor.apply()
+                        filterData.option_feeParking = "유료 주차"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("option8","유료 주차")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("feeParking",false)
-                        editor.remove("feeParking")
-                        editor.apply()
+                        filterData.option_feeParking = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("option8")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_freeParking -> {
                     if(checked) {
-                        editor.putBoolean("freeParking",true)
-                        editor.apply()
+                        filterData.option_freeParking = "무료 주차"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("option9","무료 주차")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("freeParking",false)
-                        editor.remove("freeParking")
-                        editor.apply()
+                        filterData.option_freeParking = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("option9")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_closet -> {
                     if(checked) {
-                        editor.putBoolean("closet",true)
-                        editor.apply()
+                        filterData.option_closet = "옷장"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("option10","옷장")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("closet",false)
-                        editor.remove("closet")
-                        editor.apply()
+                        filterData.option_closet = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("option10")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_internet -> {
                     if(checked) {
-                        editor.putBoolean("internet",true)
-                        editor.apply()
+                        filterData.option_internet = "무선 인터넷"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("option11","무선 인터넷")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("internet",false)
-                        editor.remove("internet")
-                        editor.apply()
+                        filterData.option_internet = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("option11")
+//                        editor.apply()
                     }
                 }
                 R.id.filter_tv -> {
                     if(checked) {
-                        editor.putBoolean("tv",true)
-                        editor.apply()
+                        filterData.option_tv = "TV"
+                        Log.d(TAG, filterData.toString())
+//                        editor.putString("option12","TV")
+//                        editor.apply()
                     } else {
-                        editor.putBoolean("tv",false)
-                        editor.remove("tv")
-                        editor.apply()
+                        filterData.option_tv = null
+                        Log.d(TAG, filterData.toString())
+//                        editor.remove("option12")
+//                        editor.apply()
                     }
                 }
             }

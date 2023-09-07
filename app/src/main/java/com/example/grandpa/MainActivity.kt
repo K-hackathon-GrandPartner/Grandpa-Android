@@ -18,5 +18,10 @@ class MainActivity:AppCompatActivity() {
             finish() //이전 액티비티 종료
         },3000) //3초
 
+        FilterActivity.FilteringDB.init(this)
+        val filterDB = FilterActivity.FilteringDB.getInstance().edit()
+        filterDB.clear()
+        filterDB.apply()
+
     }
 }

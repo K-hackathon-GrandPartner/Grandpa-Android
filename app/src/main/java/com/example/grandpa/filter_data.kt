@@ -2,37 +2,37 @@ package com.example.grandpa
 
 data class filter_data(
     //금액
-    var depositFrom: Float? =null,
-    var depositTo: Float? =null,
-    var monthPriceFrom: Float? =null,
-    var monthPriceTo: Float? =null,
+    var startDeposit: Float? =null,
+    var endDeposit: Float?=null,
+    var startMonthlyRent: Float?=null,
+    var endMonthlyRent: Float?=null,
     //지역
-    var Gwangjin: Boolean? =false,
-    var Nowon: Boolean? =false,
-    var Seongbuk: Boolean? =false,
+    var region_Gwangjin: String? =null,
+    var region_Nowon: String? =null,
+    var region_Seongbuk: String? =null,
     //건물 유형
-    var apartment: Boolean? =false,
-    var officetel: Boolean? =false,
-    var villa: Boolean? =false,
-    var house: Boolean? =false,
+    var buildingType_apartment: String? =null,
+    var buildingType_officetel: String? =null,
+    var buildingType_villa: String? =null,
+    var buildingType_house: String? =null,
     //방 크기
-    var small: Boolean? =false,
-    var medium: Boolean? =false,
-    var big: Boolean? =false,
-    var bigger: Boolean? =false,
+    var roomSize_small: String? =null,
+    var roomSize_medium: String? =null,
+    var roomSize_big: String? =null,
+    var roomSize_bigger: String? =null,
     //옵션
-    var bathroom: Boolean? =false,
-    var kitchen: Boolean? =false,
-    var bed: Boolean? =false,
-    var laundry: Boolean? =false,
-    var aircon: Boolean? =false,
-    var elevator: Boolean? =false,
-    var desk: Boolean? =false,
-    var feeParking: Boolean? =false,
-    var freeParking: Boolean? =false,
-    var closet: Boolean? =false,
-    var internet: Boolean? =false,
-    var tv: Boolean? =false
+    var option_bathroom: String? =null,
+    var option_kitchen: String? =null,
+    var option_bed: String? =null,
+    var option_laundry: String? =null,
+    var option_aircon: String? =null,
+    var option_elevator: String? =null,
+    var option_desk: String? =null,
+    var option_feeParking: String? =null,
+    var option_freeParking: String? =null,
+    var option_closet: String? =null,
+    var option_internet: String? =null,
+    var option_tv: String? =null
 )
 
 
