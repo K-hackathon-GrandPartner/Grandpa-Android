@@ -77,7 +77,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         val service = DetailRoomImpl.service_ct_tab
 
         // API 요청
-        val callUrl = BASE_URL + roomId.toString() + "/"
+        val callUrl = "$BASE_URL$roomId/"
         Log.d("url", callUrl)
         val call = service.requestList(callUrl)
 

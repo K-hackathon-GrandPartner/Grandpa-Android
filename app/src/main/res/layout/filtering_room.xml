@@ -215,6 +215,7 @@
 
 
                 <androidx.gridlayout.widget.GridLayout
+                    android:id="@+id/grid_buildingType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:columnCount="2"
@@ -275,6 +276,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/linear_roomSize"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
@@ -354,6 +356,7 @@
 
 
                 <androidx.gridlayout.widget.GridLayout
+                    android:id="@+id/grid_options"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:columnCount="2"
