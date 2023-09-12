@@ -68,7 +68,7 @@ class FilterActivity : AppCompatActivity() {
         FilteringDB.init(this)
         val editor = FilteringDB.getInstance().edit()
 
-        //보증금 값 범위 내부저장소에 저장
+        //보증금 값 범위 데이터셋에 저장
         depositSlider.addOnChangeListener { slider, value, fromUser ->
             val values = slider.values
             val startValue = values[0]
@@ -78,7 +78,7 @@ class FilterActivity : AppCompatActivity() {
             filterData.endDeposit = endValue
         }
 
-        //월세 값 범위 내부저장소에 저장
+        //월세 값 범위 데이터셋에 저장
         priceSlider.addOnChangeListener { slider, value, fromUser ->
             val values = slider.values
             val startValue = values[0]
@@ -111,6 +111,7 @@ class FilterActivity : AppCompatActivity() {
         apply_btn.setOnClickListener {
             putData()//db에 저장
             fixFiltering() //값 고정
+            fixRangeSlider() //슬라이더 값 고정
             //방 조회로 화면 전환
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
@@ -119,7 +120,7 @@ class FilterActivity : AppCompatActivity() {
     }
 
 
-    //필터링 값 db에 저장하는 함수
+    //데이터셋의 값 db에 저장하는 함수
     private fun putData() {
         //SharedPreferences 초기화
         FilteringDB.init(this)
@@ -147,8 +148,10 @@ class FilterActivity : AppCompatActivity() {
     //체크 박스 찾아서 해제 하는 함수
     private fun uncheckAllCheckboxes(parentView: View) {
         if (parentView is ViewGroup) {
+            Log.d(TAG,"uncheckCheckboxes 실행1")
             for (i in 0 until parentView.childCount) {
                 val childView = parentView.getChildAt(i)
+                Log.d(TAG,"uncheckCheckboxes 실행2")
                 if (childView is CheckBox) {
                     childView.isChecked = false
                 } else if (childView is ViewGroup) {
@@ -160,50 +163,75 @@ class FilterActivity : AppCompatActivity() {
 
     //체크 박스 찾아서 체크하는 함수
     private fun checkCheckboxes(parentView: View, data: String) {
+        Log.d(TAG,"checkCheckboxes 실행1")
         if(parentView is ViewGroup) {
+            Log.d(TAG,"checkCheckboxes 실행2")
             for(i in 0 until parentView.childCount) {
+                Log.d(TAG,"checkCheckboxes 실행3")
                 val childView = parentView.getChildAt(i)
+                Log.d(TAG,"checkCheckboxes 실행4")//여기까진 실행됨
                 if(childView is CheckBox) {
+                    Log.d(TAG,"checkCheckboxes 실행5")
                     val childText = childView.text.toString()
                     Log.d(TAG, "checkCheckboxes : {$childText = $data}")
                     childView.isChecked = childText.contains(data)
+                } else if (childView is ViewGroup) {
+                    Log.d(TAG,"checkCheckboxes 실행6")
                 }
             }
         }
     }
 
+    private var depositMin = 0.0f
+    private var depositMax = 0.0f
+    private var monthlyRentMin = 0.0f
+    private var monthlyRentMax = 0.0f
+
     //rangeSlider 고정 함수
-    private fun fixRangeSlider(priceInfo: MutableMap<String, Float>) {
-
-        val depositSlider = findViewById<RangeSlider>(R.id.depositrange)
-        val priceSlider = findViewById<RangeSlider>(R.id.pricerange)
-        val allEntries = priceInfo.entries
-        var depositMin = 0.0f
-        var depositMax = 0.0f
-        var monthlyRentMin = 0.0f
-        var monthlyRentMax = 0.0f
-
-        for((key,value) in allEntries) {
-            if (key.contains("startDeposit")) {
-                depositMin = value
-            } else if (key.contains("endDeposit")) {
-                depositMax = value
-            } else if (key.contains("startMonthlyRent")) {
-                monthlyRentMin = value
-            } else if (key.contains("endMonthlyRent")) {
-                monthlyRentMax = value
-            }
-        }
-
-        Log.d(TAG, "$depoitMin")
-
-
-
-
-
-
+//    private fun fixRangeSlider(priceInfo: MutableMap<String, Float>) {
+//
+//        val depositSlider = findViewById<RangeSlider>(R.id.depositrange)
+//        val priceSlider = findViewById<RangeSlider>(R.id.pricerange)
+//        val allEntries = priceInfo.entries
+//
+//
+//        for((key,value) in allEntries) {
+//            if (key.contains("startDeposit")) {
+//                depositMin = value
+//            } else if (key.contains("endDeposit")) {
+//                depositMax = value
+//            } else if (key.contains("startMonthlyRent")) {
+//                monthlyRentMin = value
+//            } else if (key.contains("endMonthlyRent")) {
+//                monthlyRentMax = value
+//            }
+//        }
+//
 //        depositSlider.values = listOf(depositMin, depositMax)
 //        priceSlider.values = listOf(monthlyRentMin, monthlyRentMax)
+//    }
+
+    //rangeSlider 고정 함수
+    private fun fixRangeSlider() {
+        FilteringDB.init(this)
+        var db = FilteringDB.getInstance()
+        val depositSlider = findViewById<RangeSlider>(R.id.depositrange)
+        val priceSlider = findViewById<RangeSlider>(R.id.pricerange)
+
+        val depositMin = db.getFloat("depositMin", 0.0f)
+        val depositMax = db.getFloat("depositMax", 1000.0f)
+        val monthlyRentMin = db.getFloat("monthlyRentMin", 0.0f)
+        val monthlyRentMax = db.getFloat("monthlyRentMax", 100.0f)
+
+        Log.d(TAG, "depositMin:$depositMin")
+        Log.d(TAG, "depositMax:$depositMax")
+        Log.d(TAG, "monthlyRentMin:$monthlyRentMin")
+        Log.d(TAG, "monthlyRentMax:$monthlyRentMax")
+
+
+        // RangeSlider에 값 설정
+        depositSlider.values = listOf(depositMin, depositMax)
+        priceSlider.values = listOf(monthlyRentMin, monthlyRentMax)
     }
 
 
@@ -214,7 +242,6 @@ class FilterActivity : AppCompatActivity() {
         val structureCheckBox = findViewById<LinearLayout>(R.id.linear_structure)
         val optionCheckBox = findViewById<LinearLayout>(R.id.linear_option)
         val allEntries :HashMap<String, *> = db.all as HashMap<String, *>
-        var priceList = mutableMapOf<String, Float>()
 
         //db에 값이 하나라도 있다면
         if(allEntries != null){
@@ -222,14 +249,14 @@ class FilterActivity : AppCompatActivity() {
                 Log.d(TAG,"fixFiltering:{$key:$value}")
                 if(value is String) {
                     Log.d(TAG,"valueIsString:{$value}")
-                    checkCheckboxes(structureCheckBox, value)
-                    checkCheckboxes(optionCheckBox, value)
-                } else if(value is Float) {
-                    Log.d(TAG,"valueIsFloat:{$value}")
-                    priceList[key] = value
+                    if(key.contains("option")) {
+                        Log.d(TAG,"option:{$value}")
+                        checkCheckboxes(optionCheckBox, value)
+                    } else {
+                        Log.d(TAG,"structure:{$value}")
+                        checkCheckboxes(structureCheckBox, value)
+                    }
                 }
-                Log.d(TAG, "priceList:{${priceList.entries}")
-                fixRangeSlider(priceList)
             }
         }
     }

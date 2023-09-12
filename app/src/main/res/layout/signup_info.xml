@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCFFFC">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/signup_info_backbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/signup_scrollview"
+        android:layout_width="409dp"
+        android:layout_height="673dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <LinearLayout
+            android:id="@+id/linear_signup_context"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linear_signup_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/signup_infoName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이름"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#595959"/>
+
+                <TextView
+                    android:id="@+id/singup_infoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingStart="5dp"
+                    android:text="(필수)"
+                    android:textColor="#F50000"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/signup_inputName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="이름을 입력해주세요"
+                android:background="@drawable/signup_text_design"/>
+
+            <LinearLayout
+                android:id="@+id/linear_signup_gender"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/signup_infoGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="성별"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#595959"/>
+
+                <TextView
+                    android:id="@+id/singup_infoText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:text="(필수)"
+                    android:textColor="#F50000"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_signup_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ToggleButton
+                    android:id="@+id/singup_genderMan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ToggleButton"
+                    android:textOff="남자"
+                    android:textOn="남자" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ToggleButton"
+                    android:textOff="여자"
+                    android:textOn="여자" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_signup_phoneNum"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/signup_infoPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전화번호"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#595959"/>
+
+                <TextView
+                    android:id="@+id/singup_infoText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:text="(필수)"
+                    android:textColor="#F50000"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/signup_inputPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="전화번호를 입력해주세요" />
+
+            <TextView
+                android:id="@+id/signup_certifyPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="휴대폰 인증하기"
+                android:textAlignment="center" />
+
+            <LinearLayout
+                android:id="@+id/linear_signup_passwd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/signup_infoPasswd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="비밀번호"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#595959"/>
+
+                <TextView
+                    android:id="@+id/singup_infoText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:text="(필수)"
+                    android:textColor="#F50000"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/signup_inputPasswd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="8자 이상, 하나 이상의 숫자, 문자, 특수문자 포함" />
+
+            <LinearLayout
+                android:id="@+id/linear_confirmPasswd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/signup_info_confirmPw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="비밀번호 확인"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#595959"/>
+
+                <TextView
+                    android:id="@+id/singup_infoText6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:text="(필수)"
+                    android:textColor="#F50000"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/signup_input_confirmPw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="비밀번호 재입력" />
+
+            <LinearLayout
+                android:id="@+id/linear_signup_birth"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/signup_infoBirth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="생년월일"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#595959"/>
+
+                <TextView
+                    android:id="@+id/singup_infoText7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:text="(필수)"
+                    android:textColor="#F50000"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_context_birth"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/signup_inputYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="년"
+                    android:textAlignment="viewEnd" />
+
+                <TextView
+                    android:id="@+id/signup_inputMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="월"
+                    android:textAlignment="viewEnd" />
+
+                <TextView
+                    android:id="@+id/signup_inputDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="일"
+                    android:textAlignment="viewEnd" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/signup_checkService"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="서비스 이용약관" />
+
+                <TextView
+                    android:id="@+id/singup_infoText9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:text="(필수)"
+                    android:textColor="#F50000"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/signup_checkPersonalInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="개인정보처리방침" />
+
+                <TextView
+                    android:id="@+id/singup_infoText12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:text="(필수)"
+                    android:textColor="#F50000"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/signup_checkSMS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SMS 마케팅 정보 수신" />
+
+                <TextView
+                    android:id="@+id/signup_infoText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:text="(선택)"
+                    android:textColor="#868686" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signup_nextBtn"
+                android:layout_width="299dp"
+                android:layout_height="54dp"
+                android:layout_gravity="center"
+                android:
+                android:background="@drawable/login_btn"
+                android:text="다음"
+                android:textColor="@color/white"
+                android:textSize="30sp"/>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
