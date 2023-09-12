@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCFFFC">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/linear_signup_phoneNum"
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:background="@drawable/login_btn"
+        android:backgroundTint="#00A400"
+        android:text="전화번호로 가입하기"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.416" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signup_kakao"
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/login_btn"
+        android:backgroundTint="#FEE500"
+        android:drawableLeft="@drawable/img_in_btn"
+        android:text="카카오로 가입하기"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_signup_phoneNum" />
+</androidx.constraintlayout.widget.ConstraintLayout>

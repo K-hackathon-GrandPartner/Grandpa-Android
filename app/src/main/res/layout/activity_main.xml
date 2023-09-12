@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#54A12F"
+    android:background="#00A400"
     tools:context=".MainActivity">
 
     <TextView
@@ -37,9 +37,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:text="독거노인 - 대학생 홈 쉐어링 중개 플랫폼"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:text="독거노인 - 대학생 홈 쉐어링 중개 플랫폼"
         app:layout_constraintEnd_toEndOf="@+id/main_subtitle"
         app:layout_constraintStart_toStartOf="@+id/main_subtitle"
         app:layout_constraintTop_toBottomOf="@+id/main_subtitle" />

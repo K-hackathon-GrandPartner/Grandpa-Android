@@ -83,14 +83,14 @@ class ShowRoomActivity : AppCompatActivity() {
 
         //내부저장소에 key값이 있다면
         if(keys.size != 0){
-            getFilteredRooms()
+            getFilteredRooms() //필터링 된 데이터
         } else {
-            getDefaultRooms()
+            getDefaultRooms() //필터링 안한 데이터
         }
     }
 
     //필터링 적용 안된 방 데이터 get 함수
-    fun getDefaultRooms() {
+    private fun getDefaultRooms() {
         //retrofit2, 서버로 부터 data 받아오기
         // 서비스 객체 생성
         val service = ShowRoomImpl.service_ct_tab
