@@ -360,7 +360,6 @@
                 android:layout_width="299dp"
                 android:layout_height="54dp"
                 android:layout_gravity="center"
-                android:
                 android:background="@drawable/login_btn"
                 android:text="다음"
                 android:textColor="@color/white"
