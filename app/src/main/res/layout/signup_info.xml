@@ -29,12 +29,13 @@
 
     <ScrollView
         android:id="@+id/signup_scrollview"
-        android:layout_width="409dp"
-        android:layout_height="673dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        tools:layout_editor_absoluteY="56dp">
 
         <LinearLayout
             android:id="@+id/linear_signup_context"
@@ -53,14 +54,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="이름"
+                    android:textColor="#595959"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="#595959"/>
+                    android:paddingBottom="10dp"
+                    android:paddingStart="5dp"/>
 
                 <TextView
                     android:id="@+id/singup_infoText"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:paddingStart="5dp"
                     android:text="(필수)"
                     android:textColor="#F50000"
@@ -72,8 +75,8 @@
                 android:id="@+id/signup_inputName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="이름을 입력해주세요"
-                android:background="@drawable/signup_text_design"/>
+                android:background="@drawable/signup_text_design"
+                android:text="이름을 입력해주세요" />
 
             <LinearLayout
                 android:id="@+id/linear_signup_gender"
@@ -86,9 +89,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="성별"
+                    android:textColor="#595959"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="#595959"/>
+                    android:padding="3dp"/>
 
                 <TextView
                     android:id="@+id/singup_infoText2"
@@ -97,7 +101,7 @@
                     android:paddingStart="5dp"
                     android:text="(필수)"
                     android:textColor="#F50000"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -139,9 +143,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="전화번호"
+                    android:textColor="#595959"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="#595959"/>
+                    android:padding="3dp"/>
 
                 <TextView
                     android:id="@+id/singup_infoText3"
@@ -150,7 +155,7 @@
                     android:paddingStart="5dp"
                     android:text="(필수)"
                     android:textColor="#F50000"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -159,12 +164,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/signup_text_design"
                 android:text="전화번호를 입력해주세요" />
 
             <TextView
                 android:id="@+id/signup_certifyPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/signup_text_design"
                 android:text="휴대폰 인증하기"
                 android:textAlignment="center" />
 
@@ -179,9 +186,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="비밀번호"
+                    android:textColor="#595959"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="#595959"/>
+                    android:padding="3dp"/>
 
                 <TextView
                     android:id="@+id/singup_infoText4"
@@ -190,7 +198,7 @@
                     android:paddingStart="5dp"
                     android:text="(필수)"
                     android:textColor="#F50000"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -199,6 +207,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/signup_text_design"
                 android:text="8자 이상, 하나 이상의 숫자, 문자, 특수문자 포함" />
 
             <LinearLayout
@@ -212,9 +221,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="비밀번호 확인"
+                    android:textColor="#595959"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="#595959"/>
+                    android:padding="3dp"/>
 
                 <TextView
                     android:id="@+id/singup_infoText6"
@@ -223,7 +233,7 @@
                     android:paddingStart="5dp"
                     android:text="(필수)"
                     android:textColor="#F50000"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -232,6 +242,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/signup_text_design"
                 android:text="비밀번호 재입력" />
 
             <LinearLayout
@@ -245,9 +256,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="생년월일"
+                    android:textColor="#595959"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="#595959"/>
+                    android:padding="3dp"/>
 
                 <TextView
                     android:id="@+id/singup_infoText7"
@@ -256,7 +268,7 @@
                     android:paddingStart="5dp"
                     android:text="(필수)"
                     android:textColor="#F50000"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -271,6 +283,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
+                    android:background="@drawable/signup_text_design"
                     android:text="년"
                     android:textAlignment="viewEnd" />
 
@@ -279,6 +292,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/signup_text_design"
                     android:text="월"
                     android:textAlignment="viewEnd" />
 
@@ -287,6 +301,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/signup_text_design"
                     android:text="일"
                     android:textAlignment="viewEnd" />
 
@@ -310,7 +325,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="5dp"
                     android:text="(필수)"
-                    android:textColor="#F50000"/>
+                    android:textColor="#F50000" />
             </LinearLayout>
 
             <LinearLayout
@@ -330,7 +345,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="5dp"
                     android:text="(필수)"
-                    android:textColor="#F50000"/>
+                    android:textColor="#F50000" />
 
             </LinearLayout>
 
@@ -360,11 +375,10 @@
                 android:layout_width="299dp"
                 android:layout_height="54dp"
                 android:layout_gravity="center"
-                android:
                 android:background="@drawable/login_btn"
                 android:text="다음"
                 android:textColor="@color/white"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
