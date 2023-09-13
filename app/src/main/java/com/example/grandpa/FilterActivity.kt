@@ -1,17 +1,14 @@
 package com.example.grandpa
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
-import android.widget.Filter
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -66,6 +63,9 @@ class FilterActivity : AppCompatActivity() {
         val priceSlider = findViewById<RangeSlider>(R.id.pricerange)
         val reset_btn = findViewById<Button>(R.id.filter_resetBtn)
         val apply_btn = findViewById<Button>(R.id.filter_applyBtn)
+
+        fixFiltering() //값 고정
+        fixRangeSlider() //슬라이더 값 고정
 
         //SharedPreferences 초기화
         FilteringDB.init(this)
@@ -130,7 +130,6 @@ class FilterActivity : AppCompatActivity() {
         //filter_data 내의 속성들 변수에 대입
         val properties = filterData.javaClass.declaredFields
 
-
         for(property in properties){
             property.isAccessible = true //속성 접근 권한 변경
             val propertyName = property.name
@@ -152,13 +151,10 @@ class FilterActivity : AppCompatActivity() {
         if (parentView is ViewGroup) {
             for (i in 0 until parentView.childCount) {
                 val childView = parentView.getChildAt(i)
-                Log.d("childView($i)", childView.id.toString())
                 if (childView is CheckBox) {
                     childView.isChecked = false
-                    Log.d("childView($i)", "is CheckBox")
                 } else if (childView is ViewGroup) {
                     uncheckAllCheckboxes(childView)
-                    Log.d("childView($i)", "is viewGroup")
                 }
             }
         }
@@ -169,19 +165,17 @@ class FilterActivity : AppCompatActivity() {
         if(parentView is ViewGroup) {
             for(i in 0 until parentView.childCount) {
                 val childView = parentView.getChildAt(i)
-                Log.d("childView($i)","${childView.id}")
                 if(childView is CheckBox) {
-                    Log.d(TAG,"checkCheckboxes 실행5")
                     val childText = childView.text.toString()
-                    Log.d(TAG, "checkCheckboxes : {$childText = $data}")
-                    childView.isChecked = childText.contains(data)
+                    if(childText == data){
+                        childView.isChecked = true
+                    }
                 } else if (childView is ViewGroup) {
-
+                    checkCheckboxes(childView, data)
                 }
             }
         }
     }
-
 
     //rangeSlider 고정 함수
     private fun fixRangeSlider() {
@@ -193,7 +187,7 @@ class FilterActivity : AppCompatActivity() {
         val depositMin = db.getFloat("startDeposit", 0.0f)
         val depositMax = db.getFloat("endDeposit", 1000.0f)
         val monthlyRentMin = db.getFloat("startMonthlyRent", 0.0f)
-        val monthlyRentMax = db.getFloat("endMonthlyRent", 100.0f)
+        val monthlyRentMax = db.getFloat("endMonthlyRen", 100.0f)
 
         // RangeSlider에 값 설정
         depositSlider.values = listOf(depositMin, depositMax)
@@ -225,7 +219,6 @@ class FilterActivity : AppCompatActivity() {
 
     //체크박스 상태 확인 및 값 변경 함수
     fun regionOnClicked(view: View) {
-
         if(view is CheckBox) {
             val checked: Boolean = view.isChecked
 
