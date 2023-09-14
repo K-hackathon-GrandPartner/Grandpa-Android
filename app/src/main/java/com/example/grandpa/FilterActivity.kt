@@ -1,17 +1,14 @@
 package com.example.grandpa
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
-import android.widget.Filter
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -43,6 +40,9 @@ class FilterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.filtering_room) // filter_roomInfo.xml 파일과 연결
+
+        fixFiltering()
+        fixRangeSlider()
 
         //roomlist 개수 가져옴
         val roomListSize = intent.getIntExtra("roomListSize", 0) //0은 기본 값
@@ -113,6 +113,7 @@ class FilterActivity : AppCompatActivity() {
         //적용하기 버튼
         apply_btn.setOnClickListener {
             putData()//db에 저장
+
             //방 조회로 화면 전환
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
@@ -164,9 +165,8 @@ class FilterActivity : AppCompatActivity() {
         if(parentView is ViewGroup) {
             for(i in 0 until parentView.childCount) {
                 val childView = parentView.getChildAt(i)
-                if (childView is CheckBox) {
+                if(childView is CheckBox) {
                     val childText = childView.text.toString()
-                    Log.d("확인", "{$childText} 그리고 {$data}")
                     if(childText == data){
                         childView.isChecked = true
                     }
@@ -188,12 +188,6 @@ class FilterActivity : AppCompatActivity() {
         val depositMax = db.getFloat("endDeposit", 1000.0f)
         val monthlyRentMin = db.getFloat("startMonthlyRent", 0.0f)
         val monthlyRentMax = db.getFloat("endMonthlyRen", 100.0f)
-
-        Log.d(TAG, "depositMin:$depositMin")
-        Log.d(TAG, "depositMax:$depositMax")
-        Log.d(TAG, "monthlyRentMin:$monthlyRentMin")
-        Log.d(TAG, "monthlyRentMax:$monthlyRentMax")
-
 
         // RangeSlider에 값 설정
         depositSlider.values = listOf(depositMin, depositMax)
