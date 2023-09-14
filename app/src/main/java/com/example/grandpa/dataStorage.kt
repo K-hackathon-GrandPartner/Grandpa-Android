@@ -91,3 +91,9 @@ data class Pet(
     val cat: Int,
     val etc: Int
 )
+
+data class AuthToken(
+    val statusCode: Int,
+    val message: String,
+    val accessToken: String
+)
