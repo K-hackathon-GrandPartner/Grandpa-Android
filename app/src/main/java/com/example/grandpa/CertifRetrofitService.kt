@@ -33,10 +33,10 @@ interface FilteredRoomInterface {
     ): Call<ShowRoomResponse>
 }
 
-interface SignupWithPhoneInterface {
-    @FormUrlEncoded
-    @POST(AUTH_URL)
-    fun requestList(
-
-    )
-}
+//interface SignupWithPhoneInterface {
+//    @FormUrlEncoded
+//    @POST(AUTH_URL)
+//    fun requestList(
+//
+//    )
+//}

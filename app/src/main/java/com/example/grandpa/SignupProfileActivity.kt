@@ -6,21 +6,21 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 
-class SignupWithPhoneActivity:AppCompatActivity() {
+class SignupProfileActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.signup_withphone)
+        setContentView(R.layout.signup_profile)
 
-        val backbtn: ImageView = findViewById(R.id.signup_backbtn)
+        val backbtn: ImageView = findViewById(R.id.signup_profile_back)
         backbtn.setOnClickListener{
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        val nextbtn: AppCompatButton = findViewById(R.id.signup_nextBtn)
+        val nextbtn: AppCompatButton = findViewById(R.id.signup_nextBtn2)
         nextbtn.setOnClickListener{
-            val intent = Intent(this, SignupProfileActivity::class.java)
+            val intent = Intent(this, SignupLocationSchoolActivity::class.java)
             startActivity(intent)
             finish()
         }
