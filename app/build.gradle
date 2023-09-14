@@ -64,4 +64,7 @@ dependencies {
 
     // 네이버 지도 SDK
     implementation("com.naver.maps:map-sdk:3.17.0")
+
+    //프로필 이미지 동글게 하는 라이브러리
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
