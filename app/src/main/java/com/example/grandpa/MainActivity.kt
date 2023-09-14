@@ -13,7 +13,7 @@ class MainActivity:AppCompatActivity() {
 
         //3초 후에 다음 액티비티로 전환
         Handler().postDelayed({
-            val intent = Intent(this, ShowRoomActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish() //이전 액티비티 종료
         },3000) //3초
