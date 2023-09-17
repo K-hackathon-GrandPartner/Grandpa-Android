@@ -32,10 +32,11 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraint_locationschool1">
@@ -43,7 +44,7 @@
         <LinearLayout
             android:id="@+id/linear_signup_name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -70,7 +71,7 @@
         <LinearLayout
             android:id="@+id/linear_signup_religion"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Spinner
@@ -93,7 +94,7 @@
         <LinearLayout
             android:id="@+id/linear_signup"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
@@ -121,9 +122,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:orientation="horizontal"
             android:background="@drawable/signup_text_design"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -132,50 +133,59 @@
                 app:srcCompat="@drawable/creditfile" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/signup_notice"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="3dp"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="재학증명서 등록시 주의사항" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/signup_notice1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="- 최근 6개월 이내 발급한 재학증명서를 등록해주세요." />
-        <TextView
-            android:id="@+id/signup_notice2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="- 재학증명서 등록을 완료해야 홈 쉐어링 계약이 가능합니다 (재학증명서 미등록 시 임대인 전화번호 확인 불가)." />
-        <TextView
-            android:id="@+id/signup_notice3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="- PNG 또는 PDF 파일로 등록" />
+            <TextView
+                android:id="@+id/signup_notice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="10dp"
+                android:text="재학증명서 등록시 주의사항"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/signup_notice1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="- 최근 6개월 이내 발급한 재학증명서를 등록해주세요."
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/signup_notice2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="- 재학증명서 등록을 완료해야 홈 쉐어링 계약이 가능합니다 (재학증명서 미등록 시 임대인 전화번호 확인 불가)."
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/signup_notice3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="- PNG 또는 PDF 파일로 등록"
+                android:textSize="14sp" />
+        </LinearLayout>
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/signup_nextBtn3"
-            android:layout_width="299dp"
-            android:layout_height="54dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"
-            android:background="@drawable/login_btn"
-            android:text="다음"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
     </LinearLayout>
 
-
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signup_nextBtn3"
+        android:layout_width="299dp"
+        android:layout_height="54dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/login_btn"
+        android:text="다음"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
