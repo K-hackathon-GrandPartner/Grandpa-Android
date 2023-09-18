@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="가입을 축하드립니다 !"
+        android:textColor="@color/green"
         android:textStyle="bold"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
