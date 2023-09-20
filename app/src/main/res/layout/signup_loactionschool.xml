@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/yellowgreen">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_locationschool1"
@@ -121,9 +121,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:orientation="horizontal"
             android:background="@drawable/signup_text_design"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -134,34 +134,32 @@
 
         <TextView
             android:id="@+id/signup_notice"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="10dp"
-            android:text="재학증명서 등록시 주의사항"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="재학증명서 등록시 주의사항" />
 
         <TextView
             android:id="@+id/signup_notice1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="- 최근 6개월 이내 발급한 재학증명서를 등록해주세요."
-            android:textSize="14sp" />
-
+            android:textSize="14sp"
+            android:text="- 최근 6개월 이내 발급한 재학증명서를 등록해주세요." />
         <TextView
             android:id="@+id/signup_notice2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="- 재학증명서 등록을 완료해야 홈 쉐어링 계약이 가능합니다 (재학증명서 미등록 시 임대인 전화번호 확인 불가)."
-            android:textSize="14sp" />
-
+            android:textSize="14sp"
+            android:text="- 재학증명서 등록을 완료해야 홈 쉐어링 계약이 가능합니다 (재학증명서 미등록 시 임대인 전화번호 확인 불가)." />
         <TextView
             android:id="@+id/signup_notice3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="- PNG 또는 PDF 파일로 등록"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:text="- PNG 또는 PDF 파일로 등록" />
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -170,12 +168,14 @@
             android:layout_height="54dp"
             android:layout_gravity="center"
             android:layout_marginTop="70dp"
-            android:layout_marginBottom="20dp"
             android:background="@drawable/login_btn"
             android:text="다음"
+            android:layout_marginBottom="20dp"
             android:textColor="@color/white"
             android:textSize="30sp" />
     </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
