@@ -27,8 +27,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = "1.8"
     }
 
     buildFeatures{
@@ -67,4 +68,7 @@ dependencies {
 
     //프로필 이미지 동글게 하는 라이브러리
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // kakao 로그인
+    implementation "com.kakao.sdk:v2-user:2.16.0"
 }
