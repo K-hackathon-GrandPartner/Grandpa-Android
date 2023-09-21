@@ -6,18 +6,14 @@ import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class LoginActivity:AppCompatActivity() {
@@ -37,7 +33,7 @@ class LoginActivity:AppCompatActivity() {
         kakaoLoginbtn.setOnClickListener {
 
             //연동 초기화
-            kakaoUnlink()
+            //kakaoUnlink()
 
             val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
                 if (error != null) {
@@ -55,6 +51,7 @@ class LoginActivity:AppCompatActivity() {
 
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
                 UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
+
                     if (error != null) {
                         Log.e("LOGIN", "카카오톡으로 로그인 실패", error)
 
@@ -95,7 +92,7 @@ class LoginActivity:AppCompatActivity() {
         finish()
     }
 
-    fun pushToken(token : String){
+    fun pushToken(token: String) {
         val service = AuthKaKaoLoginImpl.service_ct_tab
         val requestData = PushAccessAuth(token, "kakao") // 요청할 데이터 설정
         Log.d("requsetData", requestData.toString())
