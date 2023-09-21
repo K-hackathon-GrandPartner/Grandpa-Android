@@ -33,3 +33,4 @@ google-services.json
 *.hprof
 app/src/main/java/com/example/grandpa/ServerUrls.kt
 app/src/main/AndroidManifest.xml
+app/src/main/res/values/strings.xml
