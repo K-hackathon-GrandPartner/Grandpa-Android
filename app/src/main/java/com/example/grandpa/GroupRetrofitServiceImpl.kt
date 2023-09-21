@@ -32,5 +32,15 @@ object FilteredRoomImpl{
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val apiService: FilteredRoomInterface = retrofit.create(FilteredRoomInterface::class.java)
+    val service_ct_tab: FilteredRoomInterface = retrofit.create(FilteredRoomInterface::class.java)
+}
+
+object AuthKaKaoLoginImpl{
+    val retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    // 4. ApiService 인터페이스를 구현한 객체 생성
+    val service_ct_tab = retrofit.create(KaKaKoLoginInterface::class.java)
 }

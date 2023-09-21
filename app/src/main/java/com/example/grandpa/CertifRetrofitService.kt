@@ -1,13 +1,14 @@
 package com.example.grandpa
 
+import com.google.gson.annotations.SerializedName
 import retrofit2.Call
-import retrofit2.http.FieldMap
-import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
 import retrofit2.http.Url
+
 
 //room 모두 가져오는 인터페이스
 interface ShowRoomInterface {
@@ -31,6 +32,11 @@ interface FilteredRoomInterface {
         @Query("roomSizeTypes") roomSizeTypes: List<String>,
         @Query("roomOptions") roomOptions: List<String>
     ): Call<ShowRoomResponse>
+}
+
+interface KaKaKoLoginInterface{
+    @POST()
+    fun sendDataToServer(@Url url: String, @Body requestData: PushAccessAuth): Call<AuthToken>
 }
 
 //interface SignupWithPhoneInterface {
