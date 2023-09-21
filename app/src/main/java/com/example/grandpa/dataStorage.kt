@@ -1,8 +1,5 @@
 package com.example.grandpa
 
-import android.os.Parcel
-import android.os.Parcelable
-
 //room 모두 보여주는 data class
 data class ShowRoomResponse(
     val statusCode: Int,
@@ -92,8 +89,19 @@ data class Pet(
     val etc: Int
 )
 
+data class PushAccessAuth(
+    val accessToken: String,
+    val loginType: String
+)
 data class AuthToken(
-    val statusCode: Int,
+    val statusCode: String,
     val message: String,
-    val accessToken: String
+    val result: UserBigInfo
+)
+
+data class UserBigInfo(
+    val externalId : String,
+    val nickname: String,
+    val profileImage: String,
+    val gender: String
 )

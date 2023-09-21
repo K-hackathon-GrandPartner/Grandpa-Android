@@ -96,6 +96,7 @@ class ShowRoomActivity : AppCompatActivity() {
         // 서비스 객체 생성
         val service = ShowRoomImpl.service_ct_tab
         // API 요청
+
         val call = service.requestList(BASE_URL)
 
         call.enqueue(object : Callback<ShowRoomResponse> {
@@ -175,7 +176,7 @@ class ShowRoomActivity : AppCompatActivity() {
         }
 
         // Retrofit 서비스 인터페이스를 사용하여 API 요청 보내기
-        val call = FilteredRoomImpl.apiService.requestList(queryParams, regionParams, buildingTypeParams, roomSizeParams, optionParams)
+        val call = FilteredRoomImpl.service_ct_tab.requestList(queryParams, regionParams, buildingTypeParams, roomSizeParams, optionParams)
 
         call.enqueue(object : Callback<ShowRoomResponse> {
             override fun onResponse(call: Call<ShowRoomResponse>, response: Response<ShowRoomResponse>) {
