@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GrandPa</string>
+    <string name="kakao_native_key">71248d106869164026b0cb1fff66fb59</string>
+    <string name="kakao_key">kakao71248d106869164026b0cb1fff66fb59</string>
 </resources>
