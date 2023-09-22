@@ -1,5 +1,7 @@
 package com.example.grandpa
 
+import java.io.Serializable
+
 //room 모두 보여주는 data class
 data class ShowRoomResponse(
     val statusCode: Int,
@@ -89,7 +91,7 @@ data class Pet(
     val etc: Int
 )
 
-data class PushAccessAuth(
+data class PostKakaoAuth(
     val accessToken: String,
     val loginType: String
 )
@@ -104,4 +106,4 @@ data class UserBigInfo(
     val nickname: String,
     val profileImage: String,
     val gender: String
-)
+):Serializable

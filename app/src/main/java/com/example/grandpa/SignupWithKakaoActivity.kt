@@ -2,6 +2,7 @@ package com.example.grandpa
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
@@ -26,6 +27,9 @@ class SignupWithKakaoActivity:AppCompatActivity() {
             finish()
         }
 
-
+        val kakaoInfo = intent.getSerializableExtra("kakaoInfo") as? UserBigInfo
+        if (kakaoInfo != null) {
+            Log.d("kakaoInfo", kakaoInfo.toString())
+        }
     }
 }
