@@ -1,8 +1,9 @@
 package com.example.grandpa
 
-import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.FieldMap
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -35,20 +36,17 @@ interface FilteredRoomInterface {
     ): Call<ShowRoomResponse>
 }
 
-interface KaKaKoLoginInterface{
+interface KakaoLoginInterface{
     @POST()
-    fun sendDataToServer(@Url url: String, @Body requestData: PostKakaoAuth): Call<AuthToken>
+    fun sendDataToServer(@Url url: String, @Body requestData: PushAccessAuth): Call<AuthToken>
 }
 
-interface LoginInterface{
-    @POST()
-    fun sendDataToServer(@Url url: String, @Body requestData: PostKakaoAuth): Call<AuthToken>
+interface KakaoSignUpInterface {
+    @FormUrlEncoded
+    @POST(AUTH_URL + "register/")
+    fun postSignUpInfo(@FieldMap requestData: HashMap<String, Any>): Call<SignUpToken>
 }
 
-//interface SignupWithPhoneInterface {
-//    @FormUrlEncoded
-//    @POST(AUTH_URL)
-//    fun requestList(
-//
-//    )
-//}
+
+
+

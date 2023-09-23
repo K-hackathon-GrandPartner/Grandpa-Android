@@ -1,6 +1,7 @@
 package com.example.grandpa
 
 import java.io.Serializable
+import kotlin.collections.MutableMap
 
 //room 모두 보여주는 data class
 data class ShowRoomResponse(
@@ -91,7 +92,7 @@ data class Pet(
     val etc: Int
 )
 
-data class PostKakaoAuth(
+data class PushAccessAuth(
     val accessToken: String,
     val loginType: String
 )
@@ -107,3 +108,9 @@ data class UserBigInfo(
     val profileImage: String,
     val gender: String
 ):Serializable
+
+data class SignUpToken(
+    val statusCode: String,
+    val message: String,
+    val accessToken: String
+)

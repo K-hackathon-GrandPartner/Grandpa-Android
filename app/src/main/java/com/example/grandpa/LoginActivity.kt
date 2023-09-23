@@ -10,6 +10,7 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.kakao.sdk.user.model.User
 import retrofit2.Call
@@ -32,6 +33,10 @@ class LoginActivity:AppCompatActivity() {
 
         val kakaoLoginbtn: ImageButton = findViewById(R.id.btn_kakaoLogin)
         kakaoLoginbtn.setOnClickListener {
+            SignupWithKakaoActivity.SignUpInfoDB.init(this)
+            val editor = SignupWithKakaoActivity.SignUpInfoDB.getInstance().edit()
+            editor.clear()
+            editor.apply()
 
             //연동 초기화
             kakaoUnlink()
@@ -88,10 +93,9 @@ class LoginActivity:AppCompatActivity() {
                 UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
             }
         }
-
     }
 
-    fun kakaoUnlink() {
+    private fun kakaoUnlink() {
         // 연결 끊기
         UserApiClient.instance.unlink { error ->
             if (error != null) {
@@ -103,7 +107,7 @@ class LoginActivity:AppCompatActivity() {
         finish()
     }
 
-    fun pushToken(token: String, callback: (AuthToken?, Throwable?) -> Unit) {
+    private fun pushToken(token: String, callback: (AuthToken?, Throwable?) -> Unit) {
         val service = AuthKaKaoLoginImpl.service_ct_tab
         val requestData = PushAccessAuth(token, "kakao") // 요청할 데이터 설정
         Log.d("requsetData", requestData.toString())
@@ -140,5 +144,3 @@ class LoginActivity:AppCompatActivity() {
     }
 
 }
-
-
