@@ -98,10 +98,6 @@ class LoginActivity:AppCompatActivity() {
         startActivity(intent)
         finish()  // 현재 액티비티 종료 (선택적)
     }
-
-
-
-
-    }
+}
 
 
