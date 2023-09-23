@@ -154,47 +154,47 @@
             android:orientation="horizontal">
 
             <ToggleButton
-                android:id="@+id/singup_protestant"
+                android:id="@+id/signup_protestant"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginRight="2dp"
                 android:layout_weight="1"
-                android:background="@drawable/signup_text_design"
                 android:text="ToggleButton"
-                android:textColor="@color/green"
+                android:background="@drawable/toggle_btn_color"
+                android:textColor="@drawable/toggle_btn_textcolor"
                 android:textOff="개신교"
                 android:textOn="개신교" />
 
             <ToggleButton
-                android:id="@+id/singup_buddhism"
+                android:id="@+id/signup_buddhism"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_weight="1"
-                android:background="@drawable/signup_text_design"
                 android:text="ToggleButton"
-                android:textColor="@color/green"
+                android:background="@drawable/toggle_btn_color"
+                android:textColor="@drawable/toggle_btn_textcolor"
                 android:textOff="불교"
                 android:textOn="불교" />
 
             <ToggleButton
-                android:id="@+id/singup_catholic"
+                android:id="@+id/signup_catholic"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_weight="1"
-                android:background="@drawable/signup_text_design"
                 android:text="ToggleButton"
-                android:textColor="@color/green"
+                android:background="@drawable/toggle_btn_color"
+                android:textColor="@drawable/toggle_btn_textcolor"
                 android:textOff="천주교"
                 android:textOn="천주교" />
 
             <ToggleButton
-                android:id="@+id/singup_noreligion"
+                android:id="@+id/signup_noreligion"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_weight="1"
-                android:background="@drawable/signup_text_design"
                 android:text="ToggleButton"
-                android:textColor="@color/green"
+                android:background="@drawable/toggle_btn_color"
+                android:textColor="@drawable/toggle_btn_textcolor"
                 android:textOff="없음"
                 android:textOn="없음" />
         </LinearLayout>
