@@ -8,30 +8,30 @@ import androidx.appcompat.app.AppCompatActivity
 class ChatActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.chat)
+        setContentView(R.layout.magazine)
 
-        val searchImageView: ImageView = findViewById(R.id.chat_search)
+        val searchImageView: ImageView = findViewById(R.id.magazine_search)
         searchImageView.setOnClickListener {
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        val heartImageView: ImageView = findViewById(R.id.chat_heart)
+        val heartImageView: ImageView = findViewById(R.id.magazine_heart)
         heartImageView.setOnClickListener {
             val intent = Intent(this, HeartActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        val checkImageView: ImageView = findViewById(R.id.chat_check)
+        val checkImageView: ImageView = findViewById(R.id.magazine_check)
         checkImageView.setOnClickListener {
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        val profileImageView: ImageView = findViewById(R.id.chat_profile)
+        val profileImageView: ImageView = findViewById(R.id.magazine_profile)
         profileImageView.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)

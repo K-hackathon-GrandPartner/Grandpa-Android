@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Filter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -40,7 +39,7 @@ class ShowRoomActivity : AppCompatActivity() {
             finish()
         }
         //chat 화면
-        val chatImageView: ImageView = findViewById(R.id.filtering_chat)
+        val chatImageView: ImageView = findViewById(R.id.filtering_magazine)
         chatImageView.setOnClickListener{
             val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
@@ -92,12 +91,13 @@ class ShowRoomActivity : AppCompatActivity() {
 
     //필터링 적용 안된 방 데이터 get 함수
     private fun getDefaultRooms() {
-        //retrofit2, 서버로 부터 data 받아오기
         // 서비스 객체 생성
         val service = ShowRoomImpl.service_ct_tab
-        // API 요청
 
-        val call = service.requestList(BASE_URL, "application/json")
+        val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance()
+        val token = LoginTokenData.getString("accessToken", null)
+
+        val call = service.requestList(token.toString())
 
         call.enqueue(object : Callback<ShowRoomResponse> {
             override fun onResponse(
@@ -175,8 +175,11 @@ class ShowRoomActivity : AppCompatActivity() {
             }
         }
 
+        val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance()
+        val token = LoginTokenData.getString("accessToken", null)
+
         // Retrofit 서비스 인터페이스를 사용하여 API 요청 보내기
-        val call = FilteredRoomImpl.service_ct_tab.requestList(queryParams, regionParams, buildingTypeParams, roomSizeParams, optionParams)
+        val call = FilteredRoomImpl.service_ct_tab.requestList(token.toString(),queryParams, regionParams, buildingTypeParams, roomSizeParams, optionParams)
 
         call.enqueue(object : Callback<ShowRoomResponse> {
             override fun onResponse(call: Call<ShowRoomResponse>, response: Response<ShowRoomResponse>) {
@@ -209,36 +212,6 @@ class ShowRoomActivity : AppCompatActivity() {
             override fun onFailure(call: Call<ShowRoomResponse>, t: Throwable) {
                 // 네트워크 오류 또는 예외 처리
                 Log.d("API1", "fail")
-            }
-        })
-    }
-
-    fun pushToken(token: String) {
-        val service = AuthKaKaoLoginImpl.service_ct_tab
-        val requestData = PushAccessAuth(token, "kakao") // 요청할 데이터 설정
-        Log.d("requsetData", requestData.toString())
-        val callUrl = AUTH_URL + "login/"
-        val call = service.sendDataToServer(callUrl, requestData) //post 함
-
-        call.enqueue(object : Callback<AuthToken> {
-            override fun onResponse(call: Call<AuthToken>, response: Response<AuthToken>) {
-                val statusCode = response.code() // 응답의 상태 코드를 가져옴
-
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if(responseBody != null){
-                        val userInfo = responseBody.result
-                        Log.d("response", userInfo.toString())
-                    }
-                } else {
-                    // 서버가 오류 응답을 반환한 경우 처리하는 코드 추가
-                    Log.d("error", "서버가 오류 응답 반환, 상태 코드: $statusCode")
-                }
-            }
-
-            override fun onFailure(call: Call<AuthToken>, t: Throwable) {
-                // 네트워크 오류 발생 시 처리하는 코드 추가
-                Log.e("Response", "Network error: ${t.message}")
             }
         })
     }

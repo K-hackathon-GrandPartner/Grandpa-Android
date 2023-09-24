@@ -27,9 +27,12 @@ class DetailInfoPopActivity : AppCompatActivity() {
         // 서비스 객체 생성
         val service = DetailRoomImpl.service_ct_tab
 
+        val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance()
+        val token = LoginTokenData.getString("accessToken", null)
+
         // API 요청
         val callUrl = BASE_URL + roomId.toString() + "/"
-        val call = service.requestList(callUrl)
+        val call = service.requestList(callUrl, token.toString())
 
         call.enqueue(object: Callback<DetailRoomResponse> {
             override fun onResponse(

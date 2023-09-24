@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.naver.maps.map.NaverMapSdk
 
 class HeartActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +24,7 @@ class HeartActivity: AppCompatActivity() {
             finish()
         }
 
-        val chatImageView: ImageView = findViewById(R.id.heart_chat)
+        val chatImageView: ImageView = findViewById(R.id.heart_magazine)
         chatImageView.setOnClickListener {
             val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
