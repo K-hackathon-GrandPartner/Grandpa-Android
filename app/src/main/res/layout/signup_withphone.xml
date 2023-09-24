@@ -130,7 +130,7 @@
                 android:orientation="horizontal">
 
                 <ToggleButton
-                    android:id="@+id/singup_genderMan"
+                    android:id="@+id/signup_genderMan"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginRight="2dp"
@@ -142,7 +142,7 @@
                     android:textOn="남자" />
 
                 <ToggleButton
-                    android:id="@+id/singup_genderWomen"
+                    android:id="@+id/signup_genderWoman"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_weight="1"

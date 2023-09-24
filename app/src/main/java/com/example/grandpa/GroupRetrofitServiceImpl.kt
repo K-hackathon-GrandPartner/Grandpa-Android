@@ -42,5 +42,14 @@ object AuthKaKaoLoginImpl{
         .build()
 
     // 4. ApiService 인터페이스를 구현한 객체 생성
-    val service_ct_tab = retrofit.create(KaKaKoLoginInterface::class.java)
+    val service_ct_tab = retrofit.create(KakaoLoginInterface::class.java)
+}
+
+object AuthKakaoSignUpImpl{
+    val retrofit = Retrofit.Builder()
+        .baseUrl(AUTH_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val service_ct_tab = retrofit.create(KakaoSignUpInterface::class.java)
 }
