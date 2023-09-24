@@ -19,20 +19,20 @@
         android:id="@+id/heart_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/heart_chat"
+        app:layout_constraintBottom_toBottomOf="@+id/heart_magazine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/heart_chat"
+        app:layout_constraintTop_toTopOf="@+id/heart_magazine"
         app:srcCompat="@drawable/offprofile" />
 
     <ImageView
-        android:id="@+id/heart_chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/heart_magazine"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="@+id/heart_check"
         app:layout_constraintEnd_toStartOf="@+id/heart_profile"
         app:layout_constraintStart_toEndOf="@+id/heart_check"
         app:layout_constraintTop_toTopOf="@+id/heart_check"
-        app:srcCompat="@drawable/offchat" />
+        app:srcCompat="@drawable/offmagazine" />
 
     <ImageView
         android:id="@+id/heart_check"

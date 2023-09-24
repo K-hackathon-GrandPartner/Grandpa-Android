@@ -20,20 +20,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/check_chat"
+        app:layout_constraintBottom_toBottomOf="@+id/check_magazine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/check_chat"
+        app:layout_constraintTop_toTopOf="@+id/check_magazine"
         app:srcCompat="@drawable/offprofile" />
 
     <ImageView
-        android:id="@+id/check_chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/check_magazine"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="@+id/check_check"
         app:layout_constraintEnd_toStartOf="@+id/check_profile"
         app:layout_constraintStart_toEndOf="@+id/check_check"
         app:layout_constraintTop_toTopOf="@+id/check_check"
-        app:srcCompat="@drawable/offchat" />
+        app:srcCompat="@drawable/offmagazine" />
 
     <ImageView
         android:id="@+id/check_search"

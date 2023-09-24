@@ -57,7 +57,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
             finish()
         }
 
-        binding.detailChat.setOnClickListener {
+        binding.detailMagazine.setOnClickListener {
             val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
             finish()
@@ -78,8 +78,10 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
 
         // API 요청
         val callUrl = "$BASE_URL$roomId/"
-        Log.d("url", callUrl)
-        val call = service.requestList(callUrl)
+        val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance()
+        val token = LoginTokenData.getString("accessToken", null)
+
+        val call = service.requestList(callUrl,token.toString())
 
         call.enqueue(object: Callback<DetailRoomResponse>{
             override fun onResponse(
@@ -178,9 +180,9 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
 
         val circle = CircleOverlay()
         circle.center = LatLng(35.154685, 128.097684)
-        circle.radius = 50.0
+        circle.radius = 70.0
         circle.map = naverMap
-        circle.color = Color.GREEN
+        circle.color = Color.parseColor("#90B494")
     }
 
     fun setOptionLayout(option: Option): Int {

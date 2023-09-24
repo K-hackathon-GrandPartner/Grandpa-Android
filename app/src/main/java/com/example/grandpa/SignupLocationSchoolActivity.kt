@@ -2,6 +2,7 @@ package com.example.grandpa
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,6 +19,22 @@ import retrofit2.Response
 import kotlin.collections.MutableMap
 
 class SignupLocationSchoolActivity:AppCompatActivity() {
+    //회원가입 엑세스 토큰 db
+    object LoginTokenDB {
+        private lateinit var sharedPreferences: SharedPreferences
+
+        fun init(context: Context) {
+            sharedPreferences = context.getSharedPreferences("LoginToken", Context.MODE_PRIVATE)
+        }
+
+        fun getInstance(): SharedPreferences {
+            if (!this::sharedPreferences.isInitialized) {
+                throw IllegalStateException("SharedPreferencesSingleton is not initialized")
+            }
+            return sharedPreferences
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_loactionschool)
@@ -121,7 +138,9 @@ class SignupLocationSchoolActivity:AppCompatActivity() {
         Log.d("requsetData", requestData.toString())
         val call = service.postSignUpInfo(requestData) //post 함
 
-        var accessToken : SignUpToken? = null
+        var accessTokenInfo : SignUpToken? = null
+        LoginTokenDB.init(this)
+        val LoginTokenData = LoginTokenDB.getInstance().edit()
 
         call.enqueue(object : Callback<SignUpToken> {
             override fun onResponse(call: Call<SignUpToken>, response: Response<SignUpToken>) {
@@ -130,8 +149,12 @@ class SignupLocationSchoolActivity:AppCompatActivity() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if(responseBody != null){
-                        accessToken = responseBody
-                        Log.d("accessToken", accessToken.toString())
+                        accessTokenInfo = responseBody
+                        //Log.d("accessToken", accessToken.toString())
+                        val accessToken = (accessTokenInfo as SignUpToken).result.accessToken.toString()
+                        Log.d("accessToken", accessToken)
+                        LoginTokenData.putString("accessToken", "Bearer " + accessToken)
+                        LoginTokenData.apply()
                     }
                 } else {
                     // 서버가 오류 응답을 반환한 경우 처리하는 코드 추가
@@ -140,7 +163,7 @@ class SignupLocationSchoolActivity:AppCompatActivity() {
             }
             override fun onFailure(call: Call<SignUpToken>, t: Throwable) {
                 // 네트워크 오류 발생 시 처리하는 코드 추가
-                Log.e("Response", "Network error: ${t.message}")
+                Log.e("Response2", "Network error: ${t.message}")
             }
         })
     }
