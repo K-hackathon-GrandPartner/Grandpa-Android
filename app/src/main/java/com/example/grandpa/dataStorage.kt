@@ -112,5 +112,9 @@ data class UserBigInfo(
 data class SignUpToken(
     val statusCode: String,
     val message: String,
+    val result: Access
+)
+
+data class Access(
     val accessToken: String
 )
