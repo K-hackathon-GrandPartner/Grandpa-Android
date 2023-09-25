@@ -96,10 +96,10 @@ data class PushAccessAuth(
     val accessToken: String,
     val loginType: String
 )
-data class AuthToken(
+data class AnyAuthToken<T>(
     val statusCode: String,
     val message: String,
-    val result: UserBigInfo
+    val result: T
 )
 
 data class UserBigInfo(
