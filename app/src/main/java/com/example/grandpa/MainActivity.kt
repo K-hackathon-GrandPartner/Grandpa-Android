@@ -20,6 +20,7 @@ class MainActivity:AppCompatActivity() {
 
         //3초 후에 다음 액티비티로 전환
         Handler(Looper.getMainLooper()).postDelayed({
+            //유저 정보 삭제
             checkToken()
         },3000) //3초
 
@@ -66,6 +67,7 @@ class MainActivity:AppCompatActivity() {
             }
         })
     }
+
 }
 
 //    private fun getHashKey() {

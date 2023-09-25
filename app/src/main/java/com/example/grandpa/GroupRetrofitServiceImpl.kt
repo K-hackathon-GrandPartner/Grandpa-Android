@@ -53,3 +53,4 @@ object AuthKakaoSignUpImpl{
 
     val service_ct_tab = retrofit.create(KakaoSignUpInterface::class.java)
 }
+

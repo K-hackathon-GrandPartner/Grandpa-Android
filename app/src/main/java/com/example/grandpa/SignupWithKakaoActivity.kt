@@ -79,7 +79,7 @@ class SignupWithKakaoActivity:AppCompatActivity() {
             }
 
             //db에 저장
-            InfoData.putLong("externalId", kakaoInfo.externalId.toLong())
+            InfoData.putLong("externalId", kakaoInfo.externalId)
             InfoData.putString("loginType", "kakao")
             InfoData.putString("name", kakaoInfo.nickname)
 
