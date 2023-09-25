@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.internal.LinkedTreeMap
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
@@ -39,7 +41,7 @@ class LoginActivity:AppCompatActivity() {
             editor.apply()
 
             //연동 초기화
-            kakaoUnlink()
+            //kakaoUnlink()
 
             val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
                 if (error != null) {
@@ -52,21 +54,21 @@ class LoginActivity:AppCompatActivity() {
                             Log.e("PUSH_TOKEN", "토큰 전송 실패", error)
                         } else if (userInfo != null) {
 
-                            val userInfoResult = userInfo
+                            Log.d("return Token", userInfo.toString())
 
-                            if (userInfoResult is String) {
+                            if (userInfo is UserLoginInfo) {
                                 SignupLocationSchoolActivity.LoginTokenDB.init(this)
                                 val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance().edit()
-                                LoginTokenData.putString("accessToken", "Bearer " + userInfoResult)
+                                LoginTokenData.putString("accessToken", "Bearer " + userInfo)
                                 LoginTokenData.apply()
                                 val intent = Intent(this, ShowRoomActivity::class.java)
                                 startActivity(intent)
                                 finish()
 
 
-                            } else if (userInfoResult is UserBigInfo) {
+                            } else if (userInfo is UserBigInfo) {
                                 val intent = Intent(this, SignupWithKakaoActivity::class.java)
-                                intent.putExtra("kakaoInfo", userInfoResult)
+                                intent.putExtra("kakaoInfo", userInfo)
                                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                                 finish()
                             }
@@ -97,21 +99,20 @@ class LoginActivity:AppCompatActivity() {
                                 Log.e("PUSH_TOKEN", "토큰 전송 실패", error)
                             } else if (userInfo != null) {
 
-                                val userInfoResult = userInfo
+                                Log.d("return Token", userInfo.toString())
 
-                                if (userInfoResult is String) {
+                                if (userInfo is String) {
                                     SignupLocationSchoolActivity.LoginTokenDB.init(this)
                                     val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance().edit()
-                                    LoginTokenData.putString("accessToken", "Bearer " + userInfoResult)
+                                    LoginTokenData.putString("accessToken", "Bearer " + userInfo)
                                     LoginTokenData.apply()
                                     val intent = Intent(this, ShowRoomActivity::class.java)
                                     startActivity(intent)
                                     finish()
 
-
-                                } else if (userInfoResult is UserBigInfo) {
+                                } else if (userInfo is UserBigInfo) {
                                     val intent = Intent(this, SignupWithKakaoActivity::class.java)
-                                    intent.putExtra("kakaoInfo", userInfoResult)
+                                    intent.putExtra("kakaoInfo", userInfo)
                                     startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                                     finish()
                                 }
@@ -122,6 +123,7 @@ class LoginActivity:AppCompatActivity() {
             } else {
                 UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
             }
+
         }
     }
 
@@ -137,14 +139,12 @@ class LoginActivity:AppCompatActivity() {
         finish()
     }
 
-    private fun pushToken(token: String, callback: (Any?, Throwable?) -> Unit){
+    private fun pushToken(token: String, callback: (Any, Throwable?) -> Unit){
         val service = AuthKaKaoLoginImpl.service_ct_tab
         val requestData = PushAccessAuth(token, "kakao") // 요청할 데이터 설정
         val callUrl = AUTH_URL + "login/"
         val call = service.sendDataToServer(callUrl, requestData) //post 함
         Log.d("requsetData", requestData.toString())
-
-        var userInfo: AnyAuthToken<Any>? = null
 
 
         call.enqueue(object : Callback<AnyAuthToken<Any>> {
@@ -157,47 +157,44 @@ class LoginActivity:AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     val commonResponse = response.body()
-                    val result = commonResponse?.result
 
-                    when (statusCode) {
-                        201 -> {
-                            if (result is String) {
-                                // 200 처리 (result는 String 형태)
-                                callback(result as String?, null)
-                            } else {
-                                // 처리할 수 없는 데이터 형식
-                                Log.d("error", "올바르지 않은 데이터 형식")
-                                callback(null, Exception("올바르지 않은 데이터 형식"))
+                    if (commonResponse != null){
+                        val result = commonResponse.result
+                        Log.d("result", result.toString())
+
+                        when (statusCode) {
+                            200 -> {
+                                if (result is String) {
+                                    // 200 처리 (result는 String 형태)
+                                    val parsedData = Gson().fromJson(result,  UserLoginInfo::class.java)
+                                    Log.d("parsedData", parsedData.toString())
+                                    callback(parsedData , null)
+                                } else {
+                                    // 처리할 수 없는 데이터 형식
+                                    Log.d("error", "올바르지 않은 데이터 형식")
+                                }
                             }
-                        }
 
-                        200 -> {
-                            if (result is UserBigInfo) {
-                                // 201 처리 (result는 UserResponse 형태)
-                                callback(result as AnyAuthToken<Any>?, null)
-                            } else {
-                                // 처리할 수 없는 데이터 형식
-                                Log.d("error", "올바르지 않은 데이터 형식")
-                                callback(null, Exception("올바르지 않은 데이터 형식"))
+                            201 -> {
+                                if (result is LinkedTreeMap<*, *>) {
+                                    // 201 처리 (result는 UserResponse 형태)
+                                    val parsedData = Gson().fromJson(Gson().toJson(result), UserBigInfo::class.java)
+                                    callback(parsedData, null)
+                                } else {
+                                    // 처리할 수 없는 데이터 형식
+                                    Log.d("error", "올바르지 않은 데이터 형식")
+                                }
                             }
-                        }
-
-                        else -> {
-                            // 다른 상태 코드 처리
-                            Log.d("error", "서버가 오류 응답 반환, 상태 코드: $statusCode")
-                            callback(null, Exception("서버 응답 오류, 상태 코드: $statusCode"))
                         }
                     }
                 } else {
                     // 서버가 오류 응답을 반환한 경우 처리하는 코드 추가
                     Log.d("error", "서버가 오류 응답 반환, 상태 코드: $statusCode")
-                    callback(null, Exception("서버 응답 오류, 상태 코드: $statusCode"))
                 }
             }
             override fun onFailure(call: Call<AnyAuthToken<Any>>, t: Throwable) {
                 // 네트워크 오류 발생 시 처리하는 코드 추가
                 Log.e("Response", "Network error: ${t.message}")
-                callback(null, t)
             }
         })
     }

@@ -2,6 +2,7 @@ package com.example.grandpa
 
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -56,7 +57,5 @@ interface KakaoSignUpInterface {
     @POST(AUTH_URL + "register/")
     fun postSignUpInfo(@FieldMap requestData: HashMap<String, Any>): Call<SignUpToken>
 }
-
-
 
 

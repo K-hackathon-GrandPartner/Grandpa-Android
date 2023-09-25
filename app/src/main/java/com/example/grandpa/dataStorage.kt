@@ -103,7 +103,7 @@ data class AnyAuthToken<T>(
 )
 
 data class UserBigInfo(
-    val externalId : String,
+    val externalId : Long,
     val nickname: String,
     val profileImage: String,
     val gender: String
