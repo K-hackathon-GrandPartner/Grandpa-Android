@@ -47,7 +47,8 @@ interface FilteredRoomInterface {
 
 interface KakaoLoginInterface{
     @POST()
-    fun sendDataToServer(@Url url: String, @Body requestData: PushAccessAuth): Call<AuthToken>
+    @Headers("accept: application/json", "Content-Type: application/json")
+    fun sendDataToServer(@Url url: String, @Body requestData: PushAccessAuth): Call<AnyAuthToken<Any>>
 }
 
 interface KakaoSignUpInterface {

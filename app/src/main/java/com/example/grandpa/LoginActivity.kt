@@ -51,10 +51,25 @@ class LoginActivity:AppCompatActivity() {
                         if (error != null) {
                             Log.e("PUSH_TOKEN", "토큰 전송 실패", error)
                         } else if (userInfo != null) {
-                            val intent = Intent(this, SignupWithKakaoActivity::class.java)
-                            intent.putExtra("kakaoInfo", userInfo.result)
-                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                            finish()
+
+                            val userInfoResult = userInfo
+
+                            if (userInfoResult is String) {
+                                SignupLocationSchoolActivity.LoginTokenDB.init(this)
+                                val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance().edit()
+                                LoginTokenData.putString("accessToken", "Bearer " + userInfoResult)
+                                LoginTokenData.apply()
+                                val intent = Intent(this, ShowRoomActivity::class.java)
+                                startActivity(intent)
+                                finish()
+
+
+                            } else if (userInfoResult is UserBigInfo) {
+                                val intent = Intent(this, SignupWithKakaoActivity::class.java)
+                                intent.putExtra("kakaoInfo", userInfoResult)
+                                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                                finish()
+                            }
                         }
                     }
                 }
@@ -81,10 +96,25 @@ class LoginActivity:AppCompatActivity() {
                             if (error != null) {
                                 Log.e("PUSH_TOKEN", "토큰 전송 실패", error)
                             } else if (userInfo != null) {
-                                val intent = Intent(this, SignupWithKakaoActivity::class.java)
-                                intent.putExtra("kakaoInfo", userInfo.result)
-                                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                                finish()
+
+                                val userInfoResult = userInfo
+
+                                if (userInfoResult is String) {
+                                    SignupLocationSchoolActivity.LoginTokenDB.init(this)
+                                    val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance().edit()
+                                    LoginTokenData.putString("accessToken", "Bearer " + userInfoResult)
+                                    LoginTokenData.apply()
+                                    val intent = Intent(this, ShowRoomActivity::class.java)
+                                    startActivity(intent)
+                                    finish()
+
+
+                                } else if (userInfoResult is UserBigInfo) {
+                                    val intent = Intent(this, SignupWithKakaoActivity::class.java)
+                                    intent.putExtra("kakaoInfo", userInfoResult)
+                                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                                    finish()
+                                }
                             }
                         }
                     }
@@ -107,40 +137,68 @@ class LoginActivity:AppCompatActivity() {
         finish()
     }
 
-    private fun pushToken(token: String, callback: (AuthToken?, Throwable?) -> Unit) {
+    private fun pushToken(token: String, callback: (Any?, Throwable?) -> Unit){
         val service = AuthKaKaoLoginImpl.service_ct_tab
         val requestData = PushAccessAuth(token, "kakao") // 요청할 데이터 설정
-        Log.d("requsetData", requestData.toString())
         val callUrl = AUTH_URL + "login/"
         val call = service.sendDataToServer(callUrl, requestData) //post 함
+        Log.d("requsetData", requestData.toString())
 
-        var userInfo : AuthToken? = null
+        var userInfo: AnyAuthToken<Any>? = null
 
-        call.enqueue(object : Callback<AuthToken> {
-            override fun onResponse(call: Call<AuthToken>, response: Response<AuthToken>) {
+
+        call.enqueue(object : Callback<AnyAuthToken<Any>> {
+            override fun onResponse(
+                call: Call<AnyAuthToken<Any>>,
+                response: Response<AnyAuthToken<Any>>
+            ) {
                 val statusCode = response.code() // 응답의 상태 코드를 가져옴
+                Log.d("statusCode", statusCode.toString())
 
                 if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if(responseBody != null){
-                        userInfo = responseBody
-                        callback(userInfo, null)
+                    val commonResponse = response.body()
+                    val result = commonResponse?.result
+
+                    when (statusCode) {
+                        201 -> {
+                            if (result is String) {
+                                // 200 처리 (result는 String 형태)
+                                callback(result as String?, null)
+                            } else {
+                                // 처리할 수 없는 데이터 형식
+                                Log.d("error", "올바르지 않은 데이터 형식")
+                                callback(null, Exception("올바르지 않은 데이터 형식"))
+                            }
+                        }
+
+                        200 -> {
+                            if (result is UserBigInfo) {
+                                // 201 처리 (result는 UserResponse 형태)
+                                callback(result as AnyAuthToken<Any>?, null)
+                            } else {
+                                // 처리할 수 없는 데이터 형식
+                                Log.d("error", "올바르지 않은 데이터 형식")
+                                callback(null, Exception("올바르지 않은 데이터 형식"))
+                            }
+                        }
+
+                        else -> {
+                            // 다른 상태 코드 처리
+                            Log.d("error", "서버가 오류 응답 반환, 상태 코드: $statusCode")
+                            callback(null, Exception("서버 응답 오류, 상태 코드: $statusCode"))
+                        }
                     }
                 } else {
                     // 서버가 오류 응답을 반환한 경우 처리하는 코드 추가
                     Log.d("error", "서버가 오류 응답 반환, 상태 코드: $statusCode")
                     callback(null, Exception("서버 응답 오류, 상태 코드: $statusCode"))
                 }
-
             }
-
-            override fun onFailure(call: Call<AuthToken>, t: Throwable) {
+            override fun onFailure(call: Call<AnyAuthToken<Any>>, t: Throwable) {
                 // 네트워크 오류 발생 시 처리하는 코드 추가
                 Log.e("Response", "Network error: ${t.message}")
                 callback(null, t)
             }
         })
-
     }
-
 }
