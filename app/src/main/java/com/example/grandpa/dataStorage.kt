@@ -114,6 +114,7 @@ data class SignUpToken(
     val message: String,
     val result: UserLoginInfo
 )
+
 data class UserLoginInfo(
     val accessToken: String
 )

@@ -16,6 +16,11 @@ class MainActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        SignupLocationSchoolActivity.LoginTokenDB.init(this)
+//        val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance().edit()
+//        LoginTokenData.clear()
+//        LoginTokenData.apply()
+
         //getHashKey()
 
         //3초 후에 다음 액티비티로 전환
