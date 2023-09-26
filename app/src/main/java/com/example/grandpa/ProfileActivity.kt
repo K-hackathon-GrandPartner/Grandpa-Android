@@ -31,7 +31,7 @@ class ProfileActivity: AppCompatActivity() {
             finish()
         }
 
-        val chatImageView: ImageView = findViewById(R.id.profile_chat)
+        val chatImageView: ImageView = findViewById(R.id.profile_magazine)
         chatImageView.setOnClickListener {
             val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)

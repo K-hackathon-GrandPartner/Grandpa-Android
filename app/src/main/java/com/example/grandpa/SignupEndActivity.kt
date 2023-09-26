@@ -12,7 +12,7 @@ class SignupEndActivity: AppCompatActivity() {
 
         val nextbtn: AppCompatButton = findViewById(R.id.signup_endBtn)
         nextbtn.setOnClickListener{
-            val intent = Intent(this, ShowRoomActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }

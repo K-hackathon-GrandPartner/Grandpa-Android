@@ -1,15 +1,14 @@
 package com.example.grandpa
 
 import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
-import android.util.Base64
+import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity:AppCompatActivity() {
@@ -20,10 +19,9 @@ class MainActivity:AppCompatActivity() {
         //getHashKey()
 
         //3초 후에 다음 액티비티로 전환
-        Handler().postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish() //이전 액티비티 종료
+        Handler(Looper.getMainLooper()).postDelayed({
+            //유저 정보 삭제
+            checkToken()
         },3000) //3초
 
         FilterActivity.FilteringDB.init(this)
@@ -31,7 +29,46 @@ class MainActivity:AppCompatActivity() {
         filterDB.clear()
         filterDB.apply()
 
+        }
+    fun checkToken(){
+        SignupLocationSchoolActivity.LoginTokenDB.init(this)
+        val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance()
+        val token = LoginTokenData.getString("accessToken", null)
+        Log.d("checkToken", token.toString()) //토큰 값 print
+
+        val service = ShowRoomImpl.service_ct_tab
+        val call = service.requestList(token.toString()) //토큰 header에 넣음
+
+        call.enqueue(object : Callback<ShowRoomResponse> {
+            override fun onResponse(call: Call<ShowRoomResponse>, response: Response<ShowRoomResponse>) {
+                val statusCode = response.code() // 응답의 상태 코드를 가져옴
+
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if(responseBody != null){
+                        val intent = Intent(this@MainActivity, ShowRoomActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                } else {
+                    // 서버가 오류 응답을 반환한 경우 처리하는 코드 추가
+                    Log.d("error", "서버가 오류 응답 반환, 상태 코드: $statusCode")
+                    Log.d("response", response.toString())
+                    val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+
+                }
+            }
+
+            override fun onFailure(call: Call<ShowRoomResponse>, t: Throwable) {
+                // 네트워크 오류 발생 시 처리하는 코드 추가
+                Log.e("Response", "Network error: ${t.message}")
+            }
+        })
     }
+
+}
 
 //    private fun getHashKey() {
 //        var packageInfo: PackageInfo? = null
@@ -51,5 +88,5 @@ class MainActivity:AppCompatActivity() {
 //            }
 //        }
 //    }
-}
+
 

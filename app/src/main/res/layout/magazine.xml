@@ -9,58 +9,58 @@
         android:id="@+id/chat_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chat"
+        android:text="magazine"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/chat_profile"
+        android:id="@+id/magazine_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/chat_chat"
+        app:layout_constraintBottom_toBottomOf="@+id/magazine_magazine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/chat_chat"
+        app:layout_constraintTop_toTopOf="@+id/magazine_magazine"
         app:srcCompat="@drawable/offprofile" />
 
     <ImageView
-        android:id="@+id/chat_chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/chat_check"
-        app:layout_constraintEnd_toStartOf="@+id/chat_profile"
-        app:layout_constraintStart_toEndOf="@+id/chat_check"
-        app:layout_constraintTop_toTopOf="@+id/chat_check"
-        app:srcCompat="@drawable/onchat" />
+        android:id="@+id/magazine_magazine"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/magazine_check"
+        app:layout_constraintEnd_toStartOf="@+id/magazine_profile"
+        app:layout_constraintStart_toEndOf="@+id/magazine_check"
+        app:layout_constraintTop_toTopOf="@+id/magazine_check"
+        app:srcCompat="@drawable/offmagazine" />
 
     <ImageView
-        android:id="@+id/chat_check"
+        android:id="@+id/magazine_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/chat_profile"
+        app:layout_constraintEnd_toEndOf="@+id/magazine_profile"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/offcheck" />
 
     <ImageView
-        android:id="@+id/chat_search"
+        android:id="@+id/magazine_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/chat_heart"
+        app:layout_constraintBottom_toBottomOf="@+id/magazine_heart"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/chat_heart"
+        app:layout_constraintTop_toTopOf="@+id/magazine_heart"
         app:srcCompat="@drawable/offsearch" />
 
     <ImageView
-        android:id="@+id/chat_heart"
+        android:id="@+id/magazine_heart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/chat_check"
-        app:layout_constraintEnd_toStartOf="@+id/chat_check"
-        app:layout_constraintStart_toEndOf="@+id/chat_search"
-        app:layout_constraintTop_toTopOf="@+id/chat_check"
+        app:layout_constraintBottom_toBottomOf="@+id/magazine_check"
+        app:layout_constraintEnd_toStartOf="@+id/magazine_check"
+        app:layout_constraintStart_toEndOf="@+id/magazine_search"
+        app:layout_constraintTop_toTopOf="@+id/magazine_check"
         app:srcCompat="@drawable/offheart" />
 </androidx.constraintlayout.widget.ConstraintLayout>

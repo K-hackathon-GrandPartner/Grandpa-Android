@@ -19,20 +19,20 @@
         android:id="@+id/profile_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_chat"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_magazine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/profile_chat"
+        app:layout_constraintTop_toTopOf="@+id/profile_magazine"
         app:srcCompat="@drawable/onprofile" />
 
     <ImageView
-        android:id="@+id/profile_chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/profile_magazine"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="@+id/profile_check"
         app:layout_constraintEnd_toStartOf="@+id/profile_profile"
         app:layout_constraintStart_toEndOf="@+id/profile_check"
         app:layout_constraintTop_toTopOf="@+id/profile_check"
-        app:srcCompat="@drawable/offchat" />
+        app:srcCompat="@drawable/offmagazine" />
 
     <ImageView
         android:id="@+id/profile_check"

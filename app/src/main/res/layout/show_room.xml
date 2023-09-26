@@ -76,20 +76,20 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/filtering_chat"
+        app:layout_constraintBottom_toBottomOf="@+id/filtering_magazine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/filtering_chat"
+        app:layout_constraintTop_toTopOf="@+id/filtering_magazine"
         app:srcCompat="@drawable/offprofile" />
 
     <ImageView
-        android:id="@+id/filtering_chat"
+        android:id="@+id/filtering_magazine"
         android:layout_width="35dp"
         android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="@+id/show_check"
         app:layout_constraintEnd_toStartOf="@+id/filtering_profile"
         app:layout_constraintStart_toEndOf="@+id/show_check"
         app:layout_constraintTop_toTopOf="@+id/show_check"
-        app:srcCompat="@drawable/offchat" />
+        app:srcCompat="@drawable/offmagazine" />
 
     <ImageView
         android:id="@+id/show_check"

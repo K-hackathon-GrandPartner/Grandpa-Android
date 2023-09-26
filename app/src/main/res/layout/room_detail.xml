@@ -873,22 +873,22 @@
         app:srcCompat="@drawable/offcheck" />
 
     <ImageView
-        android:id="@+id/detail_chat"
+        android:id="@+id/detail_magazine"
         android:layout_width="35dp"
         android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="@+id/detail_check"
         app:layout_constraintEnd_toStartOf="@+id/detail_profile"
         app:layout_constraintStart_toEndOf="@+id/detail_check"
         app:layout_constraintTop_toTopOf="@+id/detail_check"
-        app:srcCompat="@drawable/offchat" />
+        app:srcCompat="@drawable/offmagazine" />
 
     <ImageView
         android:id="@+id/detail_profile"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/detail_chat"
+        app:layout_constraintBottom_toBottomOf="@+id/detail_magazine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/detail_chat"
+        app:layout_constraintTop_toTopOf="@+id/detail_magazine"
         app:srcCompat="@drawable/offprofile" />
 </androidx.constraintlayout.widget.ConstraintLayout>
