@@ -56,7 +56,7 @@ class MainActivity:AppCompatActivity() {
                         finish()
                     }
                 } else {
-                    // 서버가 오류 응답을 반환한 경우 처리하는 코드 추가
+                    // 서버가 오류 응답을 반환한 경우 처리 하는 코드 추가 -> 토큰 만료
                     Log.d("error", "서버가 오류 응답 반환, 상태 코드: $statusCode")
                     Log.d("response", response.toString())
                     val intent = Intent(this@MainActivity, LoginActivity::class.java)
@@ -75,23 +75,5 @@ class MainActivity:AppCompatActivity() {
 
 }
 
-//    private fun getHashKey() {
-//        var packageInfo: PackageInfo? = null
-//        try {
-//            packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
-//        } catch (e: PackageManager.NameNotFoundException) {
-//            e.printStackTrace()
-//        }
-//        if (packageInfo == null) Log.e("KeyHash", "KeyHash:null")
-//        for (signature in packageInfo!!.signatures) {
-//            try {
-//                val md = MessageDigest.getInstance("SHA")
-//                md.update(signature.toByteArray())
-//                Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT))
-//            } catch (e: NoSuchAlgorithmException) {
-//                Log.e("KeyHash", "Unable to get MessageDigest. signature=$signature", e)
-//            }
-//        }
-//    }
 
 
