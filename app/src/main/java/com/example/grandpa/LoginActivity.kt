@@ -56,16 +56,15 @@ class LoginActivity:AppCompatActivity() {
 
                             Log.d("return Token", userInfo.toString())
 
-                            if (userInfo is UserLoginInfo) {
+                            if (userInfo is String) {
                                 SignupLocationSchoolActivity.LoginTokenDB.init(this)
                                 val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance().edit()
                                 LoginTokenData.putString("accessToken", "Bearer " + userInfo)
                                 LoginTokenData.apply()
+
                                 val intent = Intent(this, ShowRoomActivity::class.java)
                                 startActivity(intent)
                                 finish()
-
-
                             } else if (userInfo is UserBigInfo) {
                                 val intent = Intent(this, SignupWithKakaoActivity::class.java)
                                 intent.putExtra("kakaoInfo", userInfo)
@@ -157,33 +156,25 @@ class LoginActivity:AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     val commonResponse = response.body()
-
                     if (commonResponse != null){
                         val result = commonResponse.result
-                        Log.d("result", result.toString())
 
-                        when (statusCode) {
-                            200 -> {
-                                if (result is String) {
-                                    // 200 처리 (result는 String 형태)
-                                    val parsedData = Gson().fromJson(result,  UserLoginInfo::class.java)
-                                    Log.d("parsedData", parsedData.toString())
-                                    callback(parsedData , null)
-                                } else {
-                                    // 처리할 수 없는 데이터 형식
-                                    Log.d("error", "올바르지 않은 데이터 형식")
-                                }
+                        if(commonResponse.statusCode.toInt() == 200){
+                            if (result is String) {
+                                // 200 처리 (result는 String 형태)
+                                callback(result , null)
+                            } else {
+                                // 처리할 수 없는 데이터 형식
+                                Log.d("error", "올바르지 않은 데이터 형식")
                             }
-
-                            201 -> {
-                                if (result is LinkedTreeMap<*, *>) {
-                                    // 201 처리 (result는 UserResponse 형태)
-                                    val parsedData = Gson().fromJson(Gson().toJson(result), UserBigInfo::class.java)
-                                    callback(parsedData, null)
-                                } else {
-                                    // 처리할 수 없는 데이터 형식
-                                    Log.d("error", "올바르지 않은 데이터 형식")
-                                }
+                        }else if(commonResponse.statusCode.toInt() == 201){
+                            if (result is LinkedTreeMap<*, *>) {
+                                // 201 처리 (result는 UserResponse 형태)
+                                val parsedData = Gson().fromJson(Gson().toJson(result), UserBigInfo::class.java)
+                                callback(parsedData, null)
+                            } else {
+                                // 처리할 수 없는 데이터 형식
+                                Log.d("error", "올바르지 않은 데이터 형식")
                             }
                         }
                     }
