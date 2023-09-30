@@ -26,7 +26,6 @@ import retrofit2.Response
 
 class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
     var setM2 : Boolean = false
-    private lateinit var heartAdapter : HeartAdapter
     private lateinit var roomInfo : room_detail_data
 
     private val binding by lazy{

@@ -27,6 +27,7 @@ import com.naver.maps.map.overlay.CircleOverlay
 
 class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
     var setM2 : Boolean = false
+    private lateinit var roomInfo : room_detail_data
 
 //    private lateinit var binding: RoomDetailBinding
 //    override fun onCreate(savedInstanceState: Bundle?) {
@@ -118,7 +119,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 if(response.isSuccessful){
                     val apiResponse = response.body()
                     if(apiResponse != null){
-                        val roomInfo = apiResponse.result
+                        roomInfo = apiResponse.result
                         Log.d("responseData", roomInfo.toString())
 
                         //이미지 가로 전환
@@ -223,12 +224,12 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
 
     @UiThread
     override fun onMapReady(naverMap: NaverMap) {
-        val cameraUpdate = CameraUpdate.scrollTo(LatLng(35.154685, 128.097684))
+        val cameraUpdate = CameraUpdate.scrollTo(LatLng(roomInfo.coordinate.lat, roomInfo.coordinate.lng))
         naverMap.moveCamera(cameraUpdate)
 
 
         val circle = CircleOverlay()
-        circle.center = LatLng(35.154685, 128.097684)
+        circle.center = LatLng(roomInfo.coordinate.lat, roomInfo.coordinate.lng)
         circle.radius = 70.0
         circle.map = naverMap
         circle.color = Color.parseColor("#90B494")
