@@ -40,6 +40,7 @@ data class room_detail_data(
     val roomSize: Float,
     val moveInDate: String,
     val address: String,
+    val coordinate: Location,
     val postDate: String,
     val updateDate: String,
     val images: List<String>,
@@ -49,6 +50,11 @@ data class room_detail_data(
     val safety: Safety,
     val pet: Pet,
     val careServices: List<String>
+)
+
+data class Location(
+    val lat: Double,
+    val lng: Double
 )
 
 data class Detail(

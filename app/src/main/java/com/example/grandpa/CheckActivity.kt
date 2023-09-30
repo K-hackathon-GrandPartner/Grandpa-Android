@@ -26,7 +26,7 @@ class CheckActivity: AppCompatActivity() {
 
         val chatImageView: ImageView = findViewById(R.id.check_magazine)
         chatImageView.setOnClickListener {
-            val intent = Intent(this, ChatActivity::class.java)
+            val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
             finish()
         }

@@ -41,7 +41,7 @@ class ShowRoomActivity : AppCompatActivity() {
         //chat 화면
         val chatImageView: ImageView = findViewById(R.id.filtering_magazine)
         chatImageView.setOnClickListener{
-            val intent = Intent(this, ChatActivity::class.java)
+            val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -115,7 +115,7 @@ class ShowRoomActivity : AppCompatActivity() {
                         }
 
                         //roomlist 개수
-                        val sumOfRoom = findViewById<TextView>(R.id.CountRoom)
+                        val sumOfRoom = findViewById<TextView>(R.id.show_CountRoom)
                         sumOfRoom.text = "총 ${roomList.size} 개"
 
                         //리사이클러뷰
