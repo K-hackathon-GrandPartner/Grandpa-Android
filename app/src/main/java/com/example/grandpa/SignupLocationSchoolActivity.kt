@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import retrofit2.Call
@@ -49,21 +50,26 @@ class SignupLocationSchoolActivity:AppCompatActivity() {
             finish()
         }
 
-        val nextbtn: AppCompatButton = findViewById(R.id.signup_nextBtn3)
-        nextbtn.setOnClickListener{
-            SignUpDataToServer()
-            val intent = Intent(this, SignupEndActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-
         val regionData = arrayOf("구", "광진구", "노원구", "성북구")
-        val Gwangjin_schoolData = arrayOf("건국대학교", "세종대학교", "장로회신대학교")
-        val Nowon_schoolData = arrayOf("광운대학교", "서울과학기술대학교", "서울여자대학교", "인덕대학교", "한국성서대학교", "삼육대학교")
-        val Seongbuk_schoolData = arrayOf("고려대학교", "한성대학교", "서경대학교", "한국예술종합학교", "동덕여자대학교", "성신여자대학교", "국민대학교")
+        val Gwangjin_schoolData = arrayOf("학교를 선택하세요","건국대학교", "세종대학교", "장로회신대학교")
+        val Nowon_schoolData = arrayOf("학교를 선택하세요","광운대학교", "서울과학기술대학교", "서울여자대학교", "인덕대학교", "한국성서대학교", "삼육대학교")
+        val Seongbuk_schoolData = arrayOf("학교를 선택하세요","고려대학교", "한성대학교", "서경대학교", "한국예술종합학교", "동덕여자대학교", "성신여자대학교", "국민대학교")
         val regionSpinner = findViewById<Spinner>(R.id.spinner_location)
         val schoolSpinner = findViewById<Spinner>(R.id.spinner_school)
+
+        val nextbtn: AppCompatButton = findViewById(R.id.signup_nextBtn3)
+        nextbtn.setOnClickListener{
+            if (regionSpinner.selectedItemPosition == 0 || schoolSpinner.selectedItemPosition == 0) {
+                // 스피너에서 항목을 선택하지 않았을 때 Toast 실행
+                Toast.makeText(applicationContext,"구, 학교를 선택하세요",LENGTH_SHORT).show()
+            } else {
+                // 스피너에서 항목을 선택했을 때 SignUpDataToServer 호출 및 화면 전환
+                SignUpDataToServer()
+                val intent = Intent(this, SignupEndActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
 
         val regionAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, regionData)
         regionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -84,11 +90,7 @@ class SignupLocationSchoolActivity:AppCompatActivity() {
                 InfoDB.apply()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                val context: Context = applicationContext
-                val text = "구, 학교를 선택하세요"
-                val duration = Toast.LENGTH_SHORT
-                Toast.makeText(context, text, duration).show()
-                //+선택안하면 다음 버튼 눌려도 못넘어가도록
+                Toast.makeText(applicationContext,"구, 학교를 선택하세요",LENGTH_SHORT).show()
             }
         }
 
