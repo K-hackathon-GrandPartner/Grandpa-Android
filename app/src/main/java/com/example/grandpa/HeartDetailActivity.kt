@@ -1,8 +1,6 @@
 package com.example.grandpa
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -14,9 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import androidx.viewpager2.widget.ViewPager2
 import com.example.grandpa.databinding.RoomDetailBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import com.google.gson.Gson
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
@@ -24,30 +19,15 @@ import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.CircleOverlay
+import okhttp3.internal.notify
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
+class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
     var setM2 : Boolean = false
-
-//    private lateinit var binding: RoomDetailBinding
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        binding = RoomDetailBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-
-    object HeartDB {
-        private lateinit var sharedPreferences: SharedPreferences
-
-        fun init(context: Context) {
-            sharedPreferences = context.getSharedPreferences("HeartInfo", Context.MODE_PRIVATE)
-        }
-
-        fun getInstance(): SharedPreferences {
-            if (!this::sharedPreferences.isInitialized) {
-                throw IllegalStateException("SharedPreferencesSingleton is not initialized")
-            }
-            return sharedPreferences
-        }
-    }
+    private lateinit var heartAdapter : HeartAdapter
+    private lateinit var roomInfo : room_detail_data
 
     private val binding by lazy{
         RoomDetailBinding.inflate(layoutInflater)
@@ -56,14 +36,14 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.detailSearch.setImageResource(R.drawable.onsearch)
+        binding.detailHeart.setImageResource(R.drawable.onheart)
 
         binding.detailBack.setOnClickListener{
             finish()
         }
 
-        binding.detailHeart.setOnClickListener {
-            val intent = Intent(this, HeartActivity::class.java)
+        binding.detailSearch.setOnClickListener {
+            val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -91,144 +71,111 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
 
 
         // 찜 상태에 따라 이미지 변환
-        HeartDB.init(this)
-        val InfoData = HeartDB.getInstance()
+        RoomDetailActivity.HeartDB.init(this)
+        val InfoData = RoomDetailActivity.HeartDB.getInstance()
         if (InfoData.contains(roomId.toString())){
-           binding.detailStorageheart.setImageResource(R.drawable.onblackheart)
+            binding.detailStorageheart.setImageResource(R.drawable.onblackheart)
         }else{
             binding.detailStorageheart.setImageResource(R.drawable.offblackheart)
         }
 
+        val value = InfoData.getString(roomId.toString(), null)
+        val gson = Gson()
+        roomInfo = gson.fromJson(value, room_detail_data::class.java)
 
-        // 서비스 객체 생성
-        val service = DetailRoomImpl.service_ct_tab
+        //이미지 가로 전환
+        val roomImagePager: ViewPager2 = findViewById(R.id.viewPager2)
+        roomImagePager.adapter = RoomImageAdapter(roomInfo.images, this)
+        roomImagePager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        // API 요청
-        val callUrl = "$BASE_URL$roomId/"
-        val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance()
-        val token = LoginTokenData.getString("accessToken", null)
+        binding.detailAddress.text = roomInfo.address
+        binding.detailDeposit.text = roomInfo.deposit.toString()
+        binding.detailMonthlyRent.text = roomInfo.monthlyRent.toString()
+        binding.detailRoomTitle.text = roomInfo.detail.title
+        binding.detailBuildingType.text = roomInfo.buildingType
 
-        val call = service.requestList(callUrl,token.toString())
+        val roomBuildFloor = "( " + roomInfo.roomFloor + "층 / " + roomInfo.buildingFloor + "층 )"
+        binding.detailRoomBuildingFloor.text = roomBuildFloor
 
-        call.enqueue(object: Callback<DetailRoomResponse>{
-            override fun onResponse(
-                call: Call<DetailRoomResponse>,
-                response: Response<DetailRoomResponse>
-            ){
-                if(response.isSuccessful){
-                    val apiResponse = response.body()
-                    if(apiResponse != null){
-                        val roomInfo = apiResponse.result
-                        Log.d("responseData", roomInfo.toString())
+        if(setM2){
+            //true면 m2으로
+            val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡)"
+            binding.detailSizeUnit.text = sizeUnit
 
-                        //이미지 가로 전환
-                        val roomImagePager: ViewPager2 = findViewById(R.id.viewPager2)
-                        roomImagePager.adapter = RoomImageAdapter(roomInfo.images, this@RoomDetailActivity)
-                        roomImagePager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        }else{
+            //false면 평으로
+            val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize / 3.3) + "평 )"
+            binding.detailSizeUnit.text = sizeUnit
+        }
 
-                        binding.detailAddress.text = roomInfo.address
-                        binding.detailDeposit.text = roomInfo.deposit.toString()
-                        binding.detailMonthlyRent.text = roomInfo.monthlyRent.toString()
-                        binding.detailRoomTitle.text = roomInfo.detail.title
-                        binding.detailBuildingType.text = roomInfo.buildingType
+        binding.detailMoveInDate.text = roomInfo.moveInDate
+        val count = setOptionLayout(roomInfo.option)
+        Log.d("count", count.toString())
+        if(count!=12) offOptionLayout(count)
 
-                        val roomBuildFloor = "( " + roomInfo.roomFloor + "층 / " + roomInfo.buildingFloor + "층 )"
-                        binding.detailRoomBuildingFloor.text = roomBuildFloor
+        binding.detailRule4.text = roomInfo.rule.religion
 
-                        if(setM2){
-                            //true면 m2으로
-                            val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡)"
-                            binding.detailSizeUnit.text = sizeUnit
-
-                        }else{
-                            //false면 평으로
-                            val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize / 3.3) + "평 )"
-                            binding.detailSizeUnit.text = sizeUnit
-                        }
-
-                        binding.detailMoveInDate.text = roomInfo.moveInDate
-
-                        val count = setOptionLayout(roomInfo.option)
-                        Log.d("count", count.toString())
-                        if(count!=12) offOptionLayout(count)
-
-                        binding.detailRule4.text = roomInfo.rule.religion
-
-                        binding.detailM2.setOnClickListener {
-                            if(setM2){
-                                //true면 m2으로
-                                setM2 = false
-                                val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize / 3.3) + "평 )"
-                                binding.detailM2.setImageResource(R.drawable.m2)
-                                binding.detailSizeUnit.text = sizeUnit
-
-                            }else{
-                                //false면 평으로
-                                setM2 = true
-                                val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡)"
-                                binding.detailM2.setImageResource(R.drawable.m2korea)
-                                binding.detailSizeUnit.text = sizeUnit
-                            }
-                        }
-
-                        // 하트 눌렀을 때
-                        binding.detailStorageheart.setOnClickListener {
-                            HeartDB.init(this@RoomDetailActivity)
-                            val InfoData = HeartDB.getInstance()
-
-                            if(InfoData.contains(roomInfo.id.toString())){
-                                val editor = InfoData.edit()
-                                editor.remove(roomInfo.id.toString())
-                                editor.apply()
-                                binding.detailStorageheart.setImageResource(R.drawable.offblackheart)
-                            }else{
-                                val editor = InfoData.edit()
-                                val key = roomInfo.id.toString()
-                                val gson = Gson()
-                                val roomInfoJson = gson.toJson(roomInfo)
-                                Log.d("roomInfoJso", roomInfoJson)
-                                editor.putString(key, roomInfoJson)
-                                editor.apply()
-                                binding.detailStorageheart.setImageResource(R.drawable.onblackheart)
-                            }
-                        }
-
-                        binding.detailInfoMore.setOnClickListener {
-                            val intent = Intent(this@RoomDetailActivity, DetailInfoPopActivity::class.java)
-                            intent.putExtra("room_id", roomId)
-                            startActivity(intent)
-                        }
-
-                        val fm = supportFragmentManager
-                        val mapFragment = fm.findFragmentById(R.id.map_fragment) as MapFragment?
-                            ?: MapFragment.newInstance().also {
-                                fm.beginTransaction().add(R.id.map_fragment, it).commit()
-                            }
-
-                        mapFragment.getMapAsync(this@RoomDetailActivity)
-
-                    }
-                }else {
-                    // 서버 응답 실패 처리
-                    Log.e("Response", "Response is not successful. Code: ${response.code()}")
-                }
+        binding.detailM2.setOnClickListener {
+            if(setM2){
+                //true면 m2으로
+                setM2 = false
+                val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize / 3.3) + "평 )"
+                binding.detailM2.setImageResource(R.drawable.m2)
+                binding.detailSizeUnit.text = sizeUnit
+            }else{
+                //false면 평으로
+                setM2 = true
+                val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡)"
+                binding.detailM2.setImageResource(R.drawable.m2korea)
+                binding.detailSizeUnit.text = sizeUnit
             }
-            override fun onFailure(call: Call<DetailRoomResponse>, t: Throwable) {
-                // 네트워크 오류 처리
-                Log.e("Response", "Network error: ${t.message}")
-            }
-        })
+        }
 
+        // 하트 눌렀을 때
+        binding.detailStorageheart.setOnClickListener {
+            RoomDetailActivity.HeartDB.init(this)
+            val InfoData = RoomDetailActivity.HeartDB.getInstance()
+
+            if(InfoData.contains(roomInfo.id.toString())){
+                val editor = InfoData.edit()
+                editor.remove(roomInfo.id.toString())
+                editor.apply()
+                binding.detailStorageheart.setImageResource(R.drawable.offblackheart)
+            }else{
+                val editor = InfoData.edit()
+                val key = roomInfo.id.toString()
+                val gson = Gson()
+                val roomInfoJson = gson.toJson(roomInfo)
+                Log.d("roomInfoJso", roomInfoJson)
+                editor.putString(key, roomInfoJson)
+                editor.apply()
+                binding.detailStorageheart.setImageResource(R.drawable.onblackheart)
+            }
+        }
+
+        binding.detailInfoMore.setOnClickListener {
+            val intent = Intent(this, DetailInfoPopActivity::class.java)
+            intent.putExtra("room_id", roomId)
+            startActivity(intent)
+        }
+
+        val fm = supportFragmentManager
+        val mapFragment = fm.findFragmentById(R.id.map_fragment) as MapFragment?
+            ?: MapFragment.newInstance().also {
+                fm.beginTransaction().add(R.id.map_fragment, it).commit()
+            }
+
+        mapFragment.getMapAsync(this)
     }
 
     @UiThread
     override fun onMapReady(naverMap: NaverMap) {
-        val cameraUpdate = CameraUpdate.scrollTo(LatLng(35.154685, 128.097684))
+        val cameraUpdate = CameraUpdate.scrollTo(LatLng(roomInfo.coordinate.lat, roomInfo.coordinate.lng))
         naverMap.moveCamera(cameraUpdate)
 
 
         val circle = CircleOverlay()
-        circle.center = LatLng(35.154685, 128.097684)
+        circle.center = LatLng(roomInfo.coordinate.lat, roomInfo.coordinate.lng)
         circle.radius = 70.0
         circle.map = naverMap
         circle.color = Color.parseColor("#90B494")
@@ -506,5 +453,4 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
             }
         }
     }
-
 }

@@ -850,7 +850,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/detail_heart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/detail_heart"
-        app:srcCompat="@drawable/onsearch" />
+        app:srcCompat="@drawable/offsearch" />
 
     <ImageView
         android:id="@+id/detail_heart"
