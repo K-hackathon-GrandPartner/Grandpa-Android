@@ -1,6 +1,7 @@
 package com.example.grandpa
 
 import java.io.Serializable
+import javax.crypto.AEADBadTagException
 
 //room 모두 보여주는 data class
 data class ShowRoomResponse(
@@ -133,4 +134,18 @@ data class ChecklistData(
     val week: List<String>? = null,
     val day: List<String>? = null,
     val etc: List<String>? = null
+)
+
+// 메거진 데이터 클래스
+data class MagazineResponse(
+    val statusCode: String,
+    val message: String,
+    val result: List<MagazineData>
+)
+
+data class MagazineData(
+    val id: String,
+    val imageUrl: String,
+    val tag: String,
+    val title: String
 )

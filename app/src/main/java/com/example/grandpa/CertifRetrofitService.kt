@@ -63,4 +63,9 @@ interface CheckListInterface {
     fun getChecklistData(@Header("Authorization") authorization: String): Call<GetCheckResponse>
 }
 
+interface MagazineInterface {
+    @GET(MAGAZINE_URL)
+    @Headers("accept: application/json")
+    fun getMagazineData(@Header("Authorization") authorization: String): Call<MagazineResponse>
+}
 

@@ -38,6 +38,8 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         binding.detailHeart.setImageResource(R.drawable.onheart)
 
         binding.detailBack.setOnClickListener{
+            val intent = Intent(this@HeartDetailActivity, HeartActivity::class.java)
+            startActivity(intent)
             finish()
         }
 
