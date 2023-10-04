@@ -107,6 +107,7 @@ class LoginActivity:AppCompatActivity() {
         finish()
     }
 
+    //서버로 카카오 액세스토큰 전송
     private fun pushToken(token: String, callback: (AuthToken?, Throwable?) -> Unit) {
         val service = AuthKaKaoLoginImpl.service_ct_tab
         val requestData = PushAccessAuth(token, "kakao") // 요청할 데이터 설정
@@ -114,7 +115,7 @@ class LoginActivity:AppCompatActivity() {
         val callUrl = AUTH_URL + "login/"
         val call = service.sendDataToServer(callUrl, requestData) //post 함
 
-        var userInfo : AuthToken? = null
+        var userInfo : AuthToken?
 
         call.enqueue(object : Callback<AuthToken> {
             override fun onResponse(call: Call<AuthToken>, response: Response<AuthToken>) {
