@@ -1,5 +1,6 @@
 package com.example.grandpa
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -10,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
 
 class HeartAdapter(var roomList: ArrayList<room_detail_data>, var m2setting : Boolean, private val context: Context) : RecyclerView.Adapter<HeartAdapter.RoomViewHolder>()  {
     inner class RoomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,6 +34,9 @@ class HeartAdapter(var roomList: ArrayList<room_detail_data>, var m2setting : Bo
                 val position = adapterPosition
                 if(position != RecyclerView.NO_POSITION){
                     val clickedItem = roomList[position]
+
+                    (parent.context as Activity).finish()
+
                     val intent = Intent(parent.context, HeartDetailActivity::class.java)
                     intent.putExtra("room_id", clickedItem.id)
                     parent.context.startActivity(intent)
@@ -71,6 +76,11 @@ class HeartAdapter(var roomList: ArrayList<room_detail_data>, var m2setting : Bo
 
     fun setM2Setting(m2setting: Boolean) {
         this.m2setting = m2setting
+        notifyDataSetChanged()
+    }
+
+    fun updateData(newRoomList: ArrayList<room_detail_data>) {
+        roomList = newRoomList
         notifyDataSetChanged()
     }
 }
