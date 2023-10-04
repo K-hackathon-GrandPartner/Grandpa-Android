@@ -63,3 +63,11 @@ object CheckListDataImpl{
     val service_ct_tab = retrofit.create(CheckListInterface::class.java)
 }
 
+object MagazineImpl{
+    val retrofit = Retrofit.Builder()
+        .baseUrl(CHECK_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val service_ct_tab = retrofit.create(MagazineInterface::class.java)
+}
