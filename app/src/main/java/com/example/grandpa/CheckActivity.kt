@@ -77,11 +77,11 @@ class CheckActivity: AppCompatActivity() {
 
                         val dayList = responseData.day
                         val weekList = responseData.week
-//                        val ruleList = responseData.etc
+                        val ruleList = responseData.etc
 
                         val dayAdapter = CheckAdapter(dayList)
                         val weekAdapter = CheckAdapter(weekList)
-//                        val etcAdapter = ruleList?.let { CheckAdapter(it) }
+                        val etcAdapter = ruleList?.let { RuleAdapter(it) }
 
                         dayRecyclerView.apply {
                             layoutManager = LinearLayoutManager(this@CheckActivity,LinearLayoutManager.VERTICAL,false)
@@ -93,10 +93,10 @@ class CheckActivity: AppCompatActivity() {
                             adapter = weekAdapter
                         }
 
-//                        etcRecyclerView.apply {
-//                            layoutManager = LinearLayoutManager(this@CheckActivity,LinearLayoutManager.VERTICAL,false)
-//                            adapter = etcAdapter
-//                        }
+                        etcRecyclerView.apply {
+                            layoutManager = LinearLayoutManager(this@CheckActivity,LinearLayoutManager.VERTICAL,false)
+                            adapter = etcAdapter
+                        }
 
                         val dayAllCheck = findViewById<TextView>(R.id.day_all_check)
                         val weekAllCheck = findViewById<TextView>(R.id.week_all_check)
