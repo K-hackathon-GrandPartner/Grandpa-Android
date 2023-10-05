@@ -130,10 +130,9 @@ data class GetCheckResponse(
     val result: ChecklistData
 )
 data class ChecklistData(
-    val month: List<String>? = null,
-    val week: List<String>? = null,
-    val day: List<String>? = null,
-    val etc: List<String>? = null
+    val week: List<String>,
+    val day: List<String>,
+    val etc: List<String>
 )
 
 // 메거진 데이터 클래스
