@@ -95,4 +95,29 @@ class HeartActivity : AppCompatActivity(){
         rv_room.adapter = heartAdapter
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        RoomDetailActivity.HeartDB.init(this)
+        val InfoData = RoomDetailActivity.HeartDB.getInstance()
+        val allEntries: Map<String, *> = InfoData.all
+        //dataList 생성
+        val roomList = arrayListOf<room_detail_data>()
+
+        if(allEntries.isEmpty()){
+            Log.d("하트 내부저장소", "없음")
+        }else{
+            //Log.d("하트 내부저장소", allEntries.toString())
+            for ((key, value) in allEntries){
+                if (value is String) {
+                    val gson = Gson()
+                    val roomInfo = gson.fromJson(value, room_detail_data::class.java)
+                    roomList.add(roomInfo)
+                }
+            }
+        }
+
+        heartAdapter.updateData(roomList)
+    }
+
 }
