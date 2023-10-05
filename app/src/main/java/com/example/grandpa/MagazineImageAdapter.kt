@@ -28,7 +28,7 @@ class MagazineImageAdapter(private val magazineInfoList: List<MagazineData>, pri
         Glide.with(context).load(item.imageUrl).into(holder.magazineView)
         holder.magazineTag.text = item.tag
         holder.magazineTitle.text = item.title
-        holder.magazineName.text = "아직 서버에 없음"
+        holder.magazineName.text = item.names
 
     }
     override fun getItemCount(): Int {

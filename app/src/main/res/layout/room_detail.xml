@@ -709,32 +709,35 @@
                                 android:id="@+id/detail_star1"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                app:srcCompat="@drawable/house" />
+                                app:srcCompat="@drawable/emptystar" />
 
                             <ImageView
                                 android:id="@+id/detail_star2"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_marginStart="5dp"
-                                app:srcCompat="@drawable/house" />
+                                app:srcCompat="@drawable/emptystar" />
+
                             <ImageView
                                 android:id="@+id/detail_star3"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_marginStart="5dp"
-                                app:srcCompat="@drawable/house" />
+                                app:srcCompat="@drawable/emptystar" />
+
                             <ImageView
                                 android:id="@+id/detail_star4"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_marginStart="5dp"
-                                app:srcCompat="@drawable/house" />
+                                app:srcCompat="@drawable/emptystar" />
+
                             <ImageView
                                 android:id="@+id/detail_star5"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_marginStart="5dp"
-                                app:srcCompat="@drawable/house" />
+                                app:srcCompat="@drawable/emptystar" />
 
                             <TextView
                                 android:id="@+id/detail_AverageCount"
