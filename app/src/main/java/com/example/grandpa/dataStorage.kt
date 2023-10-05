@@ -34,10 +34,10 @@ data class room_detail_data(
     val id: Int,
     val monthlyRent: Int,
     val deposit: Int,
-    val buildingType: String,
     val buildingFloor: Int,
     val roomFloor: Int,
     val roomSize: Float,
+    val buildingType: String,
     val moveInDate: String,
     val address: String,
     val coordinate: Location,
@@ -45,6 +45,7 @@ data class room_detail_data(
     val updateDate: String,
     val images: List<String>,
     val detail: Detail,
+    val landlordProfile: landlordProfile,
     val option: Option,
     val rule: Rule,
     val safety: Safety,
@@ -62,6 +63,13 @@ data class Detail(
     val content: String
 )
 
+data class landlordProfile(
+    val id: Int,
+    val profileImageUrl: String,
+    val name: String,
+    val rating: Float,
+    val reviewCount: Int
+)
 data class Option(
     val bathroom: Int,
     val bed: Int,
@@ -146,5 +154,6 @@ data class MagazineData(
     val id: String,
     val imageUrl: String,
     val tag: String,
-    val title: String
+    val title: String,
+    val names: String
 )
