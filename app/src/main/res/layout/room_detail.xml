@@ -820,16 +820,6 @@
                     android:background="@drawable/detail_info_rounded_background"
                     android:padding="3dp"/>
 
-                <TextView
-                    android:id="@+id/detail_chatInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:text="채팅 문의"
-                    android:background="@drawable/detail_info_rounded_background"
-                    android:padding="3dp"/>
             </LinearLayout>
 
 

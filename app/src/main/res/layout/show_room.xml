@@ -119,6 +119,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/showroom_heart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/showroom_heart"
-        app:srcCompat="@drawable/offsearch" />
+        app:srcCompat="@drawable/onsearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
