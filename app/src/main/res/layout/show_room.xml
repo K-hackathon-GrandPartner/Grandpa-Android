@@ -72,27 +72,27 @@
         app:layout_constraintTop_toBottomOf="@+id/room_list" />
 
     <ImageView
-        android:id="@+id/filtering_profile"
+        android:id="@+id/showroom_profile"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/filtering_magazine"
+        app:layout_constraintBottom_toBottomOf="@+id/showroom_magazine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/filtering_magazine"
+        app:layout_constraintTop_toTopOf="@+id/showroom_magazine"
         app:srcCompat="@drawable/offprofile" />
 
     <ImageView
-        android:id="@+id/filtering_magazine"
+        android:id="@+id/showroom_magazine"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="@+id/show_check"
-        app:layout_constraintEnd_toStartOf="@+id/filtering_profile"
-        app:layout_constraintStart_toEndOf="@+id/show_check"
-        app:layout_constraintTop_toTopOf="@+id/show_check"
+        app:layout_constraintBottom_toBottomOf="@+id/showroom_check"
+        app:layout_constraintEnd_toStartOf="@+id/showroom_profile"
+        app:layout_constraintStart_toEndOf="@+id/showroom_check"
+        app:layout_constraintTop_toTopOf="@+id/showroom_check"
         app:srcCompat="@drawable/offmagazine" />
 
     <ImageView
-        android:id="@+id/show_check"
+        android:id="@+id/showroom_check"
         android:layout_width="35dp"
         android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -102,23 +102,23 @@
         app:srcCompat="@drawable/offcheck" />
 
     <ImageView
-        android:id="@+id/filtering_heart"
+        android:id="@+id/showroom_heart"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="@+id/show_check"
-        app:layout_constraintEnd_toStartOf="@+id/show_check"
-        app:layout_constraintStart_toEndOf="@+id/filtering_search"
-        app:layout_constraintTop_toTopOf="@+id/show_check"
+        app:layout_constraintBottom_toBottomOf="@+id/showroom_check"
+        app:layout_constraintEnd_toStartOf="@+id/showroom_check"
+        app:layout_constraintStart_toEndOf="@+id/showroom_search"
+        app:layout_constraintTop_toTopOf="@+id/showroom_check"
         app:srcCompat="@drawable/offheart" />
 
     <ImageView
-        android:id="@+id/filtering_search"
+        android:id="@+id/showroom_search"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/filtering_heart"
+        app:layout_constraintBottom_toBottomOf="@+id/showroom_heart"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/filtering_heart"
-        app:srcCompat="@drawable/onsearch" />
+        app:layout_constraintTop_toTopOf="@+id/showroom_heart"
+        app:srcCompat="@drawable/offsearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

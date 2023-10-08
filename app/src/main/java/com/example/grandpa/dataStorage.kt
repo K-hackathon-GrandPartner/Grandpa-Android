@@ -152,8 +152,18 @@ data class MagazineResponse(
 
 data class MagazineData(
     val id: String,
+    val imageUrl: String
+)
+
+// 메거진 상세 조회
+data class MagazineDetailResponse(
+    val statusCode: String,
+    val message: String,
+    val result: MagazineDetailData
+)
+
+data class MagazineDetailData(
+    val id: String,
     val imageUrl: String,
-    val tag: String,
-    val title: String,
-    val names: String
+    val content: String
 )
