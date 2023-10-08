@@ -69,3 +69,8 @@ interface MagazineInterface {
     fun getMagazineData(@Header("Authorization") authorization: String): Call<MagazineResponse>
 }
 
+interface MagazineDetailInterface {
+    @GET()
+    @Headers("accept: application/json")
+    fun getMagazineDetailData(@Url url: String, @Header("Authorization") authorization: String): Call<MagazineDetailResponse>
+}

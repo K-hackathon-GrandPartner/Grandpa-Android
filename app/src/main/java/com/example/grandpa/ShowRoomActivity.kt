@@ -25,28 +25,28 @@ class ShowRoomActivity : AppCompatActivity() {
         setContentView(R.layout.show_room)
 
         //heart 화면
-        val heartImageView: ImageView = findViewById(R.id.filtering_heart)
+        val heartImageView: ImageView = findViewById(R.id.showroom_heart)
         heartImageView.setOnClickListener{
             val intent = Intent(this, HeartActivity::class.java)
             startActivity(intent)
             finish()
         }
         //check 화면
-        val checkImageView: ImageView = findViewById(R.id.show_check)
+        val checkImageView: ImageView = findViewById(R.id.showroom_check)
         checkImageView.setOnClickListener{
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
             finish()
         }
         //chat 화면
-        val chatImageView: ImageView = findViewById(R.id.filtering_magazine)
+        val chatImageView: ImageView = findViewById(R.id.showroom_magazine)
         chatImageView.setOnClickListener{
             val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
             finish()
         }
         //profile 화면
-        val profileImageView: ImageView = findViewById(R.id.filtering_profile)
+        val profileImageView: ImageView = findViewById(R.id.showroom_profile)
         profileImageView.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
