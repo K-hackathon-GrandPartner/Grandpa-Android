@@ -145,6 +145,7 @@ class ShowRoomActivity : AppCompatActivity() {
         FilterActivity.FilteringDB.init(this)
         val filterDB = FilterActivity.FilteringDB.getInstance()
         val keys = filterDB.all.keys // 모든 SharedPreferences 키를 가져옴
+
         // 쿼리 파라미터를 Map으로 만들기(보증금,월세)
         val queryParams = mutableMapOf<String,Float>()
         val regionParams = mutableListOf<String>()
