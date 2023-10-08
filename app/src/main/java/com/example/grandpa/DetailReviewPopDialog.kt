@@ -49,6 +49,8 @@ class DetailReviewPopDialog(
 
         Glide.with(getRoot().getContext())
             .load(data.review.profileImageUrl)
+            .circleCrop()
+            .into(reviewUnderImage)
         reviewUnderName.text = data.review.name
         reviewUnderavg.text = data.review.rating.toString()
         setStar(data.review.rating, "reviewUnderstar")
