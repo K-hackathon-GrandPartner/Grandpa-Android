@@ -182,7 +182,7 @@ data class landlordDetailProfile(
     val introduction : String,
     val rating: Float,
     val reviewCount: Int,
-    val reviews : List<ReviewData>
+    val review : ReviewData
 )
 
 data class ReviewData(

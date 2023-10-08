@@ -47,6 +47,14 @@ class DetailReviewPopDialog(
         reviewTopstarcnt.text = " (" + data.reviewCount + "개)"
         setStar(data.rating, "reviewTopstar")
 
+        Glide.with(getRoot().getContext())
+            .load(data.review.profileImageUrl)
+        reviewUnderName.text = data.review.name
+        reviewUnderavg.text = data.review.rating.toString()
+        setStar(data.review.rating, "reviewUnderstar")
+        reviewUndercontent.text = data.review.content
+
+
 
         reviewBack.setOnClickListener {
             dismiss()
