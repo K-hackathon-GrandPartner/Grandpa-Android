@@ -64,7 +64,7 @@ data class Detail(
 )
 
 data class landlordProfile(
-    val id: Int,
+    val userId: Int,
     val profileImageUrl: String,
     val name: String,
     val rating: Float,
@@ -166,4 +166,31 @@ data class MagazineDetailData(
     val id: String,
     val imageUrl: String,
     val content: String
+)
+
+// 방 상세 조회의 임대인 프로필 조회
+data class DetailProfileResponse(
+    val statusCode: String,
+    val message: String,
+    val result: landlordDetailProfile
+)
+
+data class landlordDetailProfile(
+    val id: Int,
+    val profileImageUrl: String,
+    val name: String,
+    val introduction : String,
+    val rating: Float,
+    val reviewCount: Int,
+    val reviews : List<ReviewData>
+)
+
+data class ReviewData(
+    val id: Int,
+    val profileImageUrl: String,
+    val name: String,
+    val rating: Float,
+    val content: String,
+    val postDate: String,
+    val updateDate: String
 )

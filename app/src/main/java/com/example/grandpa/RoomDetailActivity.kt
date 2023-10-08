@@ -213,6 +213,11 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                         binding.detailAverageCount.text = averageAndcount
                         setStar(roomInfo.landlordProfile.rating)
 
+                        // 임대인 상세 보기
+                        binding.detailProfileMore.setOnClickListener {
+                            showDetailReviewPopDialog(roomInfo.landlordProfile.userId)
+                        }
+
                         // 지도
                         val fm = supportFragmentManager
                         val mapFragment = fm.findFragmentById(R.id.map_fragment) as MapFragment?
@@ -234,6 +239,12 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
             }
         })
 
+    }
+    private fun showDetailReviewPopDialog(landlordId : Int) {
+        val dialog = DetailReviewPopDialog(this, landlordId) { text ->
+            Log.d("다이얼로그", "자세히 닫기")
+        }
+        dialog.show()
     }
 
     @UiThread

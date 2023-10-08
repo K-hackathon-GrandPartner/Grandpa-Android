@@ -74,3 +74,9 @@ interface MagazineDetailInterface {
     @Headers("accept: application/json")
     fun getMagazineDetailData(@Url url: String, @Header("Authorization") authorization: String): Call<MagazineDetailResponse>
 }
+
+interface DetailProfileInterface {
+    @GET()
+    @Headers("accept: application/json")
+    fun getDetailProfileData(@Url url: String, @Header("Authorization") authorization: String): Call<DetailProfileResponse>
+}

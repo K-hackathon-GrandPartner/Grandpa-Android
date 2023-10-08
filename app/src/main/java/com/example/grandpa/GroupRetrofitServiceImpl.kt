@@ -80,3 +80,12 @@ object MagazineDetailImpl{
 
     val service_ct_tab = retrofit.create(MagazineDetailInterface::class.java)
 }
+
+object DetailProfileImpl{
+    val retrofit = Retrofit.Builder()
+        .baseUrl(CHECK_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val service_ct_tab = retrofit.create(DetailProfileInterface::class.java)
+}
