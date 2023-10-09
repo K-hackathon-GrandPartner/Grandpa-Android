@@ -47,6 +47,7 @@ class SignupLocationSchoolActivity:AppCompatActivity() {
         backbtn.setOnClickListener{
             val intent = Intent(this, SignupProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
             finish()
         }
 
@@ -67,6 +68,7 @@ class SignupLocationSchoolActivity:AppCompatActivity() {
                 SignUpDataToServer()
                 val intent = Intent(this, SignupEndActivity::class.java)
                 startActivity(intent)
+                overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
                 finish()
             }
         }

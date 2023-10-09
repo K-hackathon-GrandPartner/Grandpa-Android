@@ -107,12 +107,14 @@ class LoginActivity:AppCompatActivity() {
                                     LoginTokenData.apply()
                                     val intent = Intent(this, ShowRoomActivity::class.java)
                                     startActivity(intent)
+                                    overridePendingTransition(0, 0);
                                     finish()
 
                                 } else if (userInfo is UserBigInfo) {
                                     val intent = Intent(this, SignupWithKakaoActivity::class.java)
                                     intent.putExtra("kakaoInfo", userInfo)
                                     startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                                    overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
                                     finish()
                                 }
                             }

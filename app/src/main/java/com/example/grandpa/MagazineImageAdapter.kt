@@ -23,7 +23,6 @@ class MagazineImageAdapter(private val magazineInfoList: List<MagazineData>, pri
                 val position = adapterPosition
                 if(position != RecyclerView.NO_POSITION){
                     val magazineId = magazineInfoList[position% magazineInfoList.size].id
-                    val activityContext = parent.context as? Activity
                     val intent = Intent(parent.context, MagazineDetailActivity::class.java)
                     intent.putExtra("magazineId", magazineId)
                     parent.context.startActivity(intent)

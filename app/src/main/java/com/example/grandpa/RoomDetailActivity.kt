@@ -67,24 +67,28 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         binding.detailHeart.setOnClickListener {
             val intent = Intent(this, HeartActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
         binding.detailCheck.setOnClickListener {
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
         binding.detailMagazine.setOnClickListener {
             val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
         binding.detailProfile.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
@@ -199,6 +203,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                             val intent = Intent(this@RoomDetailActivity, DetailInfoPopActivity::class.java)
                             intent.putExtra("room_id", roomId)
                             startActivity(intent)
+                            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
                         }
 
                         // 임대인 프로필

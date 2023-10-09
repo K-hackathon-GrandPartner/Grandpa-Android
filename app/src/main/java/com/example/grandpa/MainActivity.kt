@@ -32,7 +32,7 @@ class MainActivity:AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             //유저 정보 삭제
             checkToken()
-        },3000) //3초
+        },2000) //2초
 
         FilterActivity.FilteringDB.init(this)
         val filterDB = FilterActivity.FilteringDB.getInstance().edit()
@@ -58,6 +58,7 @@ class MainActivity:AppCompatActivity() {
                     if(responseBody != null){
                         val intent = Intent(this@MainActivity, ShowRoomActivity::class.java)
                         startActivity(intent)
+                        overridePendingTransition(0, 0);
                         finish()
                     }
                 } else {
@@ -66,6 +67,7 @@ class MainActivity:AppCompatActivity() {
                     Log.d("response", response.toString())
                     val intent = Intent(this@MainActivity, LoginActivity::class.java)
                     startActivity(intent)
+                    overridePendingTransition(0, 0);
                     finish()
 
                 }

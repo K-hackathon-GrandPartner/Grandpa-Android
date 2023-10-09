@@ -59,6 +59,7 @@ class SignupWithKakaoActivity:AppCompatActivity() {
         backbtn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
             finish()
         }
 
@@ -67,6 +68,7 @@ class SignupWithKakaoActivity:AppCompatActivity() {
             if(signupCheckBox.isChecked && signupCheckBox2.isChecked){
                 InfoData.apply() //db저장
                 val intent = Intent(this, SignupProfileActivity::class.java)
+                overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
                 intent.putExtra("kakaoInfo", kakaoInfo)
                 startActivity(intent)
                 finish()

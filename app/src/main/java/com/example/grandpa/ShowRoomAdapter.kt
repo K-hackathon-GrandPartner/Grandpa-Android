@@ -1,5 +1,6 @@
 package com.example.grandpa
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -32,9 +33,11 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
                 val position = adapterPosition
                 if(position != RecyclerView.NO_POSITION){
                     val clickedItem = roomList[position]
+                    val activityContext = parent.context as? Activity
                     val intent = Intent(parent.context, RoomDetailActivity::class.java)
                     intent.putExtra("room_id", clickedItem.id)
                     parent.context.startActivity(intent)
+                    activityContext?.overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
                 }
             }
         }

@@ -34,12 +34,13 @@ class HeartAdapter(var roomList: ArrayList<room_detail_data>, var m2setting : Bo
                 val position = adapterPosition
                 if(position != RecyclerView.NO_POSITION){
                     val clickedItem = roomList[position]
-
+                    val activityContext = parent.context as? Activity
                     (parent.context as Activity).finish()
 
                     val intent = Intent(parent.context, HeartDetailActivity::class.java)
                     intent.putExtra("room_id", clickedItem.id)
                     parent.context.startActivity(intent)
+                    activityContext?.overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
                 }
             }
         }
