@@ -29,6 +29,7 @@ class ShowRoomActivity : AppCompatActivity() {
         heartImageView.setOnClickListener{
             val intent = Intent(this, HeartActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
         //check 화면
@@ -36,6 +37,7 @@ class ShowRoomActivity : AppCompatActivity() {
         checkImageView.setOnClickListener{
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
         //chat 화면
@@ -43,6 +45,7 @@ class ShowRoomActivity : AppCompatActivity() {
         chatImageView.setOnClickListener{
             val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
         //profile 화면
@@ -50,6 +53,7 @@ class ShowRoomActivity : AppCompatActivity() {
         profileImageView.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -74,6 +78,7 @@ class ShowRoomActivity : AppCompatActivity() {
             val intent = Intent(this, FilterActivity::class.java)
             intent.putExtra("roomListSize", roomList.size) //put으로 roomList 사이즈 보냄
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
             finish()
         }
 

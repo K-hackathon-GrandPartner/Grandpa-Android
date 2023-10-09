@@ -24,6 +24,7 @@ class HeartActivity : AppCompatActivity(){
         searchImageView.setOnClickListener{
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
         //check 화면
@@ -31,6 +32,7 @@ class HeartActivity : AppCompatActivity(){
         checkImageView.setOnClickListener{
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
         //chat 화면
@@ -38,6 +40,7 @@ class HeartActivity : AppCompatActivity(){
         chatImageView.setOnClickListener{
             val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
         //profile 화면
@@ -45,6 +48,7 @@ class HeartActivity : AppCompatActivity(){
         profileImageView.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 

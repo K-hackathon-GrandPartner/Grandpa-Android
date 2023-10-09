@@ -33,6 +33,7 @@ class CheckActivity: AppCompatActivity() {
         searchImageView.setOnClickListener {
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -40,6 +41,7 @@ class CheckActivity: AppCompatActivity() {
         heartImageView.setOnClickListener {
             val intent = Intent(this, HeartActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -47,6 +49,7 @@ class CheckActivity: AppCompatActivity() {
         chatImageView.setOnClickListener {
             val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -54,6 +57,7 @@ class CheckActivity: AppCompatActivity() {
         profileImageView.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 

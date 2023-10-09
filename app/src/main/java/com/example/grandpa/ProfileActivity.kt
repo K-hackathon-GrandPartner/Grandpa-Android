@@ -19,6 +19,7 @@ class ProfileActivity: AppCompatActivity() {
         searchImageView.setOnClickListener {
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -26,6 +27,7 @@ class ProfileActivity: AppCompatActivity() {
         heartImageView.setOnClickListener {
             val intent = Intent(this, HeartActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -33,6 +35,7 @@ class ProfileActivity: AppCompatActivity() {
         checkImageView.setOnClickListener {
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -40,6 +43,7 @@ class ProfileActivity: AppCompatActivity() {
         chatImageView.setOnClickListener {
             val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -51,18 +55,21 @@ class ProfileActivity: AppCompatActivity() {
         modifyInfo.setOnClickListener{
             val intent = Intent(this, ProfileModifyInfo::class.java)
             startActivity((intent))
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
             finish()
         }
 
         modifyPhonePasswd.setOnClickListener{
             val intent = Intent(this, ProfileCheckPasswd::class.java)
             startActivity((intent))
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
             finish()
         }
 
         modifyUpload.setOnClickListener{
             val intent = Intent(this, ProfileUploadSchool::class.java)
             startActivity((intent))
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
             finish()
         }
 

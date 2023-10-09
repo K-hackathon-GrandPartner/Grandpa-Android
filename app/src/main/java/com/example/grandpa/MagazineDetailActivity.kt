@@ -1,5 +1,6 @@
 package com.example.grandpa
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -23,6 +24,34 @@ class MagazineDetailActivity:AppCompatActivity() {
         setContentView(binding.root)
 
         binding.magazinedetailBack.setOnClickListener {
+            finish()
+        }
+
+        binding.magazinedetailSearch.setOnClickListener {
+            val intent = Intent(this, ShowRoomActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(0, 0);
+            finish()
+        }
+
+        binding.magazinedetailHeart.setOnClickListener {
+            val intent = Intent(this, HeartActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(0, 0);
+            finish()
+        }
+
+        binding.magazinedetailCheck.setOnClickListener {
+            val intent = Intent(this, CheckActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(0, 0);
+            finish()
+        }
+
+        binding.magazinedetailProfile.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 

@@ -54,6 +54,7 @@ class FilterActivity : AppCompatActivity() {
         backImageView.setOnClickListener {
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
             finish()
         }
 
@@ -117,6 +118,7 @@ class FilterActivity : AppCompatActivity() {
             //방 조회로 화면 전환
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
             finish()
         }
     }
