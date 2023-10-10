@@ -1,5 +1,6 @@
 package com.example.grandpa
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -43,6 +44,7 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
         val urlString = roomList[position].imageUrl
         holder.apply{ //사진 로딩 라이브러리
@@ -51,7 +53,7 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
         }
         holder.building_type.text = roomList[position].buildingType
         holder.room_size.text = roomList[position].roomSizeType
-        holder.building_height.text = roomList[position].roomFloor.toString()
+        holder.building_height.text = ", " + roomList[position].roomFloor.toString() + "층)"
         holder.room_deposit.text = roomList[position].deposit.toString()
         holder.room_price.text = roomList[position].monthlyRent.toString()
         holder.building_place.text = roomList[position].address
@@ -60,11 +62,11 @@ class ShowRoomAdapter(val roomList: ArrayList<room_data>, var m2setting : Boolea
         if(m2setting){
             //true면 m2으로
             val roomSize = roomList[position].roomSize
-            holder.size_unitm2.text = String.format("%.1f", roomSize) + "㎡"
+            holder.size_unitm2.text = "("+String.format("%.1f", roomSize) + "㎡"
         }else{
             //false면 평으로
             val roomSize = roomList[position].roomSize
-            holder.size_unit.text = String.format("%.1f", roomSize / 3.3) + "평"
+            holder.size_unit.text = "("+String.format("%.1f", roomSize / 3.3) + "평"
         }
     }
 

@@ -35,8 +35,9 @@ interface DetailRoomInterface{
 // 필터링한 데이터 가져오는 인터페이스
 interface FilteredRoomInterface {
     @GET(BASE_URL)
+    @Headers("accept: application/json")
     fun requestList(
-        @Header("accept") accept: String,
+        @Header("Authorization") authorization: String,
         @QueryMap queryMap: Map<String, Float>,
         @Query("regions") regions: List<String>,
         @Query("buildingTypes") buildingTypes: List<String>,

@@ -37,8 +37,8 @@
     <View
         android:id="@+id/detail_outdivider1"
         android:layout_width="wrap_content"
-        android:layout_height="2dp"
-        android:background="#54A12F"
+        android:layout_height="1dp"
+        android:background="@color/green"
         app:layout_constraintBottom_toTopOf="@+id/detail_scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -69,8 +69,8 @@
             <View
                 android:id="@+id/detail_individer1"
                 android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:background="#54A12F" />
+                android:layout_height="1dp"
+                android:background="@color/green" />
 
             <!-- 주소, 보증금, 월세 화면-->
             <LinearLayout
@@ -122,11 +122,12 @@
                         android:textStyle="bold"/>
                 </LinearLayout>
             </LinearLayout>
+
             <View
                 android:id="@+id/detail_individer2"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#54A12F"/>
+                android:layout_height="1dp"
+                android:background="@color/green"/>
 
             <!-- 제목, 건물 유형, 방 크기, 입주 가능 기간 화면-->
             <LinearLayout
@@ -235,11 +236,12 @@
                         android:textSize="20dp" />
                 </LinearLayout>
             </LinearLayout>
+
             <View
                 android:id="@+id/detail_individer3"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#54A12F"/>
+                android:layout_height="1dp"
+                android:background="@color/green"/>
 
             <!-- 옵션 화면-->
             <LinearLayout
@@ -567,12 +569,13 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+
             <View
                 android:id="@+id/detail_individer4"
-                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#54A12F"/>
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/green" />
 
             <!-- 상세 정보 화면 -->
             <LinearLayout
@@ -651,10 +654,10 @@
 
             <View
                 android:id="@+id/detail_individer5"
-                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#54A12F"/>
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/green" />
 
             <!-- 임대인 프로필 화면-->
             <LinearLayout
@@ -760,12 +763,13 @@
                     android:textStyle="bold"
                     android:text="자세히 >" />
             </LinearLayout>
+
             <View
                 android:id="@+id/detail_individer6"
-                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#54A12F"/>
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/green" />
 
             <!-- 지도 화면-->
             <LinearLayout
@@ -796,10 +800,10 @@
 
             <View
                 android:id="@+id/detail_individer7"
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#54A12F"/>
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/green" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -829,8 +833,8 @@
     <View
         android:id="@+id/detail_outdivider2"
         android:layout_width="wrap_content"
-        android:layout_height="2dp"
-        android:background="#54A12F"
+        android:layout_height="1dp"
+        android:background="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detail_scrollView" />

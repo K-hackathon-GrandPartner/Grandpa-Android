@@ -121,7 +121,7 @@ class ShowRoomActivity : AppCompatActivity() {
 
                         //roomlist 개수
                         val sumOfRoom = findViewById<TextView>(R.id.show_CountRoom)
-                        sumOfRoom.text = "총 ${roomList.size} 개"
+                        sumOfRoom.text = "${roomList.size}"
 
                         //리사이클러뷰
                         val rv_room = findViewById<RecyclerView>(R.id.room_list)
@@ -181,18 +181,23 @@ class ShowRoomActivity : AppCompatActivity() {
             }
         }
 
+        Log.d("getFilteredRooms","필터링 함수 실행됨")
+
         val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance()
         val token = LoginTokenData.getString("accessToken", null)
 
         // Retrofit 서비스 인터페이스를 사용하여 API 요청 보내기
         val call = FilteredRoomImpl.service_ct_tab.requestList(token.toString(),queryParams, regionParams, buildingTypeParams, roomSizeParams, optionParams)
 
+        Log.d("call", call.toString())
         call.enqueue(object : Callback<ShowRoomResponse> {
             override fun onResponse(call: Call<ShowRoomResponse>, response: Response<ShowRoomResponse>) {
+                Log.d("response", response.toString())
                 if (response.isSuccessful) {
                     val filterResponse = response.body()
                     if (filterResponse != null) {
                         val responseData = filterResponse.result
+                        Log.d("responseData", responseData.toString())
                         for (data in responseData) {
                             //받아온 데이터 list에 넣음
                             val room = room_data(data.id, data.imageUrl, data.buildingType, data.roomSizeType, data.roomSize, data.roomFloor, data.deposit, data.monthlyRent, data.address, data.title, data.postDate)
@@ -200,8 +205,8 @@ class ShowRoomActivity : AppCompatActivity() {
                         }
 
                         //roomlist 개수
-                        val sumOfRoom = findViewById<TextView>(R.id.CountRoom)
-                        sumOfRoom.text = "총 ${roomList.size} 개"
+                        val sumOfRoom = findViewById<TextView>(R.id.show_CountRoom)
+                        sumOfRoom.text = "${roomList.size}"
 
                         //리사이클러뷰
                         val rv_room = findViewById<RecyclerView>(R.id.room_list)
