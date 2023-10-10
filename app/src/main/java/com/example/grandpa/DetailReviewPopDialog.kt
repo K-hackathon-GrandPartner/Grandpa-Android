@@ -14,7 +14,7 @@ import retrofit2.Response
 class DetailReviewPopDialog(
     context: Context,
     private val landlordId: Int,
-    private val okCallback: (String) -> Unit,
+    private val callback: (String) -> Unit
 ) : Dialog(context) { // 뷰를 띄워야하므로 Dialog 클래스는 context를 인자로 받는다.
 
     private lateinit var binding: ReviewPopBinding
@@ -108,7 +108,8 @@ class DetailReviewPopDialog(
         val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance()
         val token = LoginTokenData.getString("accessToken", null)
 
-        val url = USER_URL + landlordId +"/"
+        val url = "$USER_URL$landlordId/"
+        Log.d("id",url)
         val call = service.getDetailProfileData(url, token.toString())
 
         call.enqueue(object : Callback<DetailProfileResponse> {

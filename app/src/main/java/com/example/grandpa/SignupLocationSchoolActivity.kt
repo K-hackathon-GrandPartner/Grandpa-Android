@@ -142,7 +142,7 @@ class SignupLocationSchoolActivity:AppCompatActivity() {
         Log.d("requsetData", requestData.toString())
         val call = service.postSignUpInfo(requestData) //post 함
 
-        var accessTokenInfo : SignUpToken? = null
+        var accessTokenInfo : SignUpToken?
         LoginTokenDB.init(this)
         val LoginTokenData = LoginTokenDB.getInstance().edit()
 
@@ -157,7 +157,7 @@ class SignupLocationSchoolActivity:AppCompatActivity() {
                         //Log.d("accessToken", accessToken.toString())
                         val accessToken = (accessTokenInfo as SignUpToken).result.accessToken.toString()
                         Log.d("accessToken", accessToken)
-                        LoginTokenData.putString("accessToken", "Bearer " + accessToken)
+                        LoginTokenData.putString("accessToken", "Bearer $accessToken")
                         LoginTokenData.apply()
                     }
                 } else {

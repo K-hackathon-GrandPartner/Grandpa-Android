@@ -106,7 +106,7 @@
             <EditText
                 android:id="@+id/profile_inputintro"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="100dp"
                 android:background="@drawable/signup_text_design"
                 android:gravity="top|start"
                 android:hint="최대 100자까지 작성 가능합니다."
@@ -159,6 +159,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/toggle_btn_color"
                     android:text="ToggleButton"
+                    android:layout_marginRight="2dp"
                     android:textColor="@drawable/toggle_btn_textcolor"
                     android:textOff="불교"
                     android:textOn="불교" />
@@ -170,6 +171,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/toggle_btn_color"
                     android:text="ToggleButton"
+                    android:layout_marginRight="2dp"
                     android:textColor="@drawable/toggle_btn_textcolor"
                     android:textOff="천주교"
                     android:textOn="천주교" />
@@ -192,7 +194,7 @@
                 android:layout_height="54dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/login_btn"
                 android:text="확인"
                 android:textColor="@color/white"

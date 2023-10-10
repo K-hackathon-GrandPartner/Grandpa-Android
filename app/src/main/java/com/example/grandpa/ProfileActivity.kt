@@ -54,21 +54,28 @@ class ProfileActivity: AppCompatActivity() {
 
         modifyInfo.setOnClickListener{
             val intent = Intent(this, ProfileModifyInfo::class.java)
-            startActivity((intent))
+            startActivity(intent)
             overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
             finish()
         }
 
         modifyPhonePasswd.setOnClickListener{
             val intent = Intent(this, ProfileCheckPasswd::class.java)
-            startActivity((intent))
+            startActivity(intent)
             overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
             finish()
         }
 
         modifyUpload.setOnClickListener{
             val intent = Intent(this, ProfileUploadSchool::class.java)
-            startActivity((intent))
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
+            finish()
+        }
+
+        logout.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
             finish()
         }
