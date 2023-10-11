@@ -53,3 +53,13 @@ object AuthKakaoSignUpImpl{
 
     val service_ct_tab = retrofit.create(KakaoSignUpInterface::class.java)
 }
+
+object CheckListDataImpl{
+    val retrofit = Retrofit.Builder()
+        .baseUrl(CHECK_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val service_ct_tab = retrofit.create(CheckListInterface::class.java)
+}
+

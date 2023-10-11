@@ -3,12 +3,15 @@ package com.example.grandpa
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputFilter
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
@@ -44,11 +47,23 @@ class SignupProfileActivity : AppCompatActivity() {
             if (kakaoInfo != null) {
                 InfoData.putString("profileImage",kakaoInfo.profileImage)
             }
-            SaveIntroduction()
-            InfoData.apply()
-            val intent = Intent(this, SignupLocationSchoolActivity::class.java)
-            startActivity(intent)
-            finish()
+
+            var checkedCount = 0
+
+            if (protestant.isChecked) checkedCount++
+            if (buddhism.isChecked) checkedCount++
+            if (catholic.isChecked) checkedCount++
+            if (none.isChecked) checkedCount++
+
+            if(checkedCount > 1){
+                Toast.makeText(this,"종교를 하나만 선택하세요",LENGTH_SHORT).show()
+            } else{
+                SaveIntroduction()
+                InfoData.apply()
+                val intent = Intent(this, SignupLocationSchoolActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
 
         Glide.with(this)
@@ -95,6 +110,7 @@ class SignupProfileActivity : AppCompatActivity() {
                 InfoData.remove("religion")
             }
         }
+
     }
 
     //자기소개 내용 db에 저장하는 함수
@@ -103,6 +119,11 @@ class SignupProfileActivity : AppCompatActivity() {
         SignupWithKakaoActivity.SignUpInfoDB.init(this)
         val InfoData = SignupWithKakaoActivity.SignUpInfoDB.getInstance().edit()
         val introMySelf = findViewById<EditText>(R.id.signup_inputintro)
+
+        // 글자수 제한 설정
+        val introMaxLength = 11
+        val introInputFilter = InputFilter.LengthFilter(introMaxLength)
+        introMySelf.filters = arrayOf(introInputFilter)
 
         val introText = introMySelf.text.toString()
         if (introText.isNotBlank()) {

@@ -48,7 +48,7 @@ interface FilteredRoomInterface {
 interface KakaoLoginInterface{
     @POST()
     @Headers("accept: application/json", "Content-Type: application/json")
-    fun sendDataToServer(@Url url: String, @Body requestData: PushAccessAuth): Call<AuthToken>
+    fun sendDataToServer(@Url url: String, @Body requestData: PushAccessAuth): Call<AnyAuthToken<Any>>
 }
 
 interface KakaoSignUpInterface {
@@ -57,6 +57,10 @@ interface KakaoSignUpInterface {
     fun postSignUpInfo(@FieldMap requestData: HashMap<String, Any>): Call<SignUpToken>
 }
 
-
+interface CheckListInterface {
+    @GET(CHECK_URL)
+    @Headers("accept: application/json")
+    fun getChecklistData(@Header("Authorization") authorization: String): Call<GetCheckResponse>
+}
 
 

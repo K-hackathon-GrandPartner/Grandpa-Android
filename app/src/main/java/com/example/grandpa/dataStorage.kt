@@ -1,7 +1,6 @@
 package com.example.grandpa
 
 import java.io.Serializable
-import kotlin.collections.MutableMap
 
 //room 모두 보여주는 data class
 data class ShowRoomResponse(
@@ -40,6 +39,7 @@ data class room_detail_data(
     val roomSize: Float,
     val moveInDate: String,
     val address: String,
+    val coordinate: Location,
     val postDate: String,
     val updateDate: String,
     val images: List<String>,
@@ -49,6 +49,11 @@ data class room_detail_data(
     val safety: Safety,
     val pet: Pet,
     val careServices: List<String>
+)
+
+data class Location(
+    val lat: Double,
+    val lng: Double
 )
 
 data class Detail(
@@ -96,14 +101,14 @@ data class PushAccessAuth(
     val accessToken: String,
     val loginType: String
 )
-data class AuthToken(
+data class AnyAuthToken<T>(
     val statusCode: String,
     val message: String,
-    val result: UserBigInfo
+    val result: T
 )
 
 data class UserBigInfo(
-    val externalId : String,
+    val externalId : Long,
     val nickname: String,
     val profileImage: String,
     val gender: String
@@ -117,4 +122,15 @@ data class SignUpToken(
 
 data class UserLoginInfo(
     val accessToken: String
+)
+data class GetCheckResponse(
+    val statusCode: String,
+    val message: String,
+    val result: ChecklistData
+)
+data class ChecklistData(
+    val month: List<String>? = null,
+    val week: List<String>? = null,
+    val day: List<String>? = null,
+    val etc: List<String>? = null
 )
