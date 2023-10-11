@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/detail_back"
-        android:layout_width="35dp"
-        android:layout_height="25dp"
+        android:layout_width="37dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@+id/detail_scrollView"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,16 +39,16 @@
         android:id="@+id/detail_outdivider1"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="17dp"
         android:background="@color/green"
         app:layout_constraintBottom_toTopOf="@+id/detail_scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/detail_back" />
 
     <ScrollView
         android:id="@+id/detail_scrollView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/detail_outdivider2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="12dp"
                     android:text="주소"
                     android:textSize="16dp" />
 
@@ -246,7 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -819,7 +819,7 @@
                     android:background="@drawable/detail_info_rounded_background"
                     android:padding="3dp"
                     android:text="전화 문의"
-                    android:textSize="23dp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -832,7 +832,7 @@
         android:id="@+id/detail_outdivider2"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/green"
         app:layout_constraintBottom_toTopOf="@+id/detail_search"
         app:layout_constraintEnd_toEndOf="parent"

@@ -54,7 +54,7 @@ class HeartAdapter(var roomList: ArrayList<room_detail_data>, var m2setting : Bo
         holder.building_type.text = roomList[position].buildingType
         //holder.room_size.text = roomList[position].roomSizeType
         holder.room_size.text = "중형"
-        holder.building_height.text = ", " + roomList[position].roomFloor.toString() + "층)"
+        holder.building_height.text = " • " + roomList[position].roomFloor.toString() + "층)"
         holder.room_deposit.text = roomList[position].deposit.toString()
         holder.room_price.text = roomList[position].monthlyRent.toString()
         holder.building_place.text = roomList[position].address
