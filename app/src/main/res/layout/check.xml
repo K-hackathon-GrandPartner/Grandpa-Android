@@ -9,9 +9,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="46dp"
         android:text="체크리스트"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/divider7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,27 +70,29 @@
     <View
         android:id="@+id/divider7"
         android:layout_width="0dp"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginTop="16dp"
         android:background="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ScrollView
+        android:id="@+id/scrollView4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#FCFFFC"
         app:layout_constraintBottom_toTopOf="@+id/divider8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider7" >
+        app:layout_constraintTop_toBottomOf="@+id/divider7">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="27dp">
+            android:layout_marginLeft="27dp"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/day_chklist"
@@ -116,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="전체 체크"
+                    android:text="전체 선택"
                     android:textColor="@color/green"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/textView13"
@@ -161,7 +163,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="전체 체크"
+                    android:text="전체 선택"
                     android:textColor="@color/green"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/textView15"
@@ -197,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="생활수칙"
+                    android:text="※ 생활수칙"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -222,8 +224,8 @@
     <View
         android:id="@+id/divider8"
         android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginBottom="12dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/green"
         app:layout_constraintBottom_toTopOf="@+id/check_profile"
         app:layout_constraintEnd_toEndOf="parent"

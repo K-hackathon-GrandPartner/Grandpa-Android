@@ -74,7 +74,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/passwdImg"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="50dp"
@@ -112,7 +112,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/phoneImg"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="50dp"

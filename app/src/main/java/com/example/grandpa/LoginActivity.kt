@@ -59,7 +59,7 @@ class LoginActivity:AppCompatActivity() {
                             if (userInfo is String) {
                                 SignupLocationSchoolActivity.LoginTokenDB.init(this)
                                 val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance().edit()
-                                LoginTokenData.putString("accessToken", "Bearer " + userInfo)
+                                LoginTokenData.putString("accessToken", "Bearer $userInfo")
                                 LoginTokenData.apply()
 
                                 val intent = Intent(this, ShowRoomActivity::class.java)

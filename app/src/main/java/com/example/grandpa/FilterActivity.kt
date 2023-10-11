@@ -35,6 +35,7 @@ class FilterActivity : AppCompatActivity() {
         }
     }
 
+
     @RequiresApi(Build.VERSION_CODES.Q)
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +48,7 @@ class FilterActivity : AppCompatActivity() {
         //roomlist 개수 가져옴
         val roomListSize = intent.getIntExtra("roomListSize", 0) //0은 기본 값
         val sumOfRoom = findViewById<TextView>(R.id.CountRoom)
-        sumOfRoom.text = "총 ${roomListSize} 개"
+        sumOfRoom.text =  "$roomListSize"
 
         //Back 버튼
         val backImageView: ImageView = findViewById(R.id.filtering_backbtn)
@@ -119,6 +120,46 @@ class FilterActivity : AppCompatActivity() {
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
+            finish()
+        }
+
+        val searchImageView: ImageView = findViewById(R.id.filtering_search)
+        searchImageView.setOnClickListener {
+            val intent = Intent(this, ShowRoomActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(0, 0);
+            finish()
+        }
+
+        val heartImageView: ImageView = findViewById(R.id.filtering_heart)
+        heartImageView.setOnClickListener {
+            val intent = Intent(this, HeartActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(0, 0);
+            finish()
+        }
+
+        val chatImageView: ImageView = findViewById(R.id.filtering_magazine)
+        chatImageView.setOnClickListener{
+            val intent = Intent(this, MagazineActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(0, 0);
+            finish()
+        }
+
+        val checkImageView: ImageView = findViewById(R.id.filtering_check)
+        checkImageView.setOnClickListener {
+            val intent = Intent(this, CheckActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(0, 0);
+            finish()
+        }
+
+        val profileImageView: ImageView = findViewById(R.id.filtering_profile)
+        profileImageView.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
     }
