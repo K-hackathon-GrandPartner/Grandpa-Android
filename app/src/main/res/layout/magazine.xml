@@ -6,19 +6,66 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/chat_text"
+        android:id="@+id/magazine_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="magazine"
-        android:textSize="50dp"
+        android:layout_marginTop="28dp"
+        android:text="매거진"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/magazine_devider1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/magazine_category" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/magazine_devider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/magazine_devider1">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></androidx.viewpager2.widget.ViewPager2>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/magazine_devider2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/magazine_check"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
     <ImageView
         android:id="@+id/magazine_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/magazine_magazine"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,21 +80,22 @@
         app:layout_constraintEnd_toStartOf="@+id/magazine_profile"
         app:layout_constraintStart_toEndOf="@+id/magazine_check"
         app:layout_constraintTop_toTopOf="@+id/magazine_check"
-        app:srcCompat="@drawable/offmagazine" />
+        app:srcCompat="@drawable/onmagazine" />
 
     <ImageView
         android:id="@+id/magazine_check"
-        android:layout_width="wrap_content"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/magazine_profile"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
         app:srcCompat="@drawable/offcheck" />
 
     <ImageView
         android:id="@+id/magazine_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/magazine_heart"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,8 +104,8 @@
 
     <ImageView
         android:id="@+id/magazine_heart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="@+id/magazine_check"
         app:layout_constraintEnd_toStartOf="@+id/magazine_check"
         app:layout_constraintStart_toEndOf="@+id/magazine_search"

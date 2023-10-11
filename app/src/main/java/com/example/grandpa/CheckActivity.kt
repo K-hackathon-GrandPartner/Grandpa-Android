@@ -1,5 +1,6 @@
 package com.example.grandpa
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,14 +13,19 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Callback
 
-
 class CheckActivity: AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: CheckAdapter
+    private lateinit var dayRecyclerView: RecyclerView
+    private lateinit var weekRecyclerView: RecyclerView
+    private lateinit var etcRecyclerView: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.check)
+
+        dayRecyclerView = findViewById(R.id.day_recyclerView)
+        weekRecyclerView = findViewById(R.id.week_recyclerView)
+        etcRecyclerView = findViewById(R.id.rule_recyclerView)
 
         getCheckListData()
 
@@ -27,6 +33,7 @@ class CheckActivity: AppCompatActivity() {
         searchImageView.setOnClickListener {
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -34,6 +41,7 @@ class CheckActivity: AppCompatActivity() {
         heartImageView.setOnClickListener {
             val intent = Intent(this, HeartActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -41,6 +49,7 @@ class CheckActivity: AppCompatActivity() {
         chatImageView.setOnClickListener {
             val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -48,6 +57,7 @@ class CheckActivity: AppCompatActivity() {
         profileImageView.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -61,6 +71,7 @@ class CheckActivity: AppCompatActivity() {
         val call = CheckListDataImpl.service_ct_tab.getChecklistData(token.toString())
 
         call.enqueue(object : Callback<GetCheckResponse> {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<GetCheckResponse>, response: Response<GetCheckResponse>) {
                 if (response.isSuccessful) {
                     val apiResponse = response.body()
@@ -68,17 +79,13 @@ class CheckActivity: AppCompatActivity() {
                         val responseData = apiResponse.result
                         Log.d("responseData","$responseData")
 
-                        val dayRecyclerView: RecyclerView = findViewById(R.id.day_recyclerView)
-                        val weekRecyclerView: RecyclerView = findViewById(R.id.week_recyclerView)
-                        val etcRecyclerView: RecyclerView = findViewById(R.id.rule_recyclerView)
-
                         val dayList = responseData.day
                         val weekList = responseData.week
                         val ruleList = responseData.etc
 
-                        val dayAdapter = dayList?.let { CheckAdapter(it) }
-                        val weekAdapter = weekList?.let { CheckAdapter(it) }
-                        val etcAdapter = ruleList?.let { CheckAdapter(it) }
+                        val dayAdapter = CheckAdapter(dayList)
+                        val weekAdapter = CheckAdapter(weekList)
+                        val etcAdapter = ruleList?.let { RuleAdapter(it) }
 
                         dayRecyclerView.apply {
                             layoutManager = LinearLayoutManager(this@CheckActivity,LinearLayoutManager.VERTICAL,false)
@@ -95,6 +102,18 @@ class CheckActivity: AppCompatActivity() {
                             adapter = etcAdapter
                         }
 
+                        val dayAllCheck = findViewById<TextView>(R.id.day_all_check)
+                        val weekAllCheck = findViewById<TextView>(R.id.week_all_check)
+
+                        dayAllCheck.setOnClickListener {
+                            handleAllCheckClick(dayAllCheck, dayAdapter)
+                        }
+
+                        weekAllCheck.setOnClickListener {
+                            handleAllCheckClick(weekAllCheck, weekAdapter)
+                        }
+
+
                     }
                 } else {
                     Log.e("Response", "서버 응답 실패: ${response.body()}")
@@ -105,6 +124,23 @@ class CheckActivity: AppCompatActivity() {
                 Log.e("Response", "네트워크 오류: ${t.message}")
             }
         })
-
     }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun handleAllCheckClick(allCheckTextView: TextView, adapter: CheckAdapter) {
+        if (!adapter.isAnyChecked()) {
+            // 어떤 체크박스도 선택되어 있지 않으면 모두 선택
+            adapter.checkAllCheckboxes()
+            allCheckTextView.text = "전체 해제"
+        } else {
+            // 적어도 하나의 체크박스가 선택되어 있다면 모두 해제
+            adapter.uncheckAllCheckboxes()
+            allCheckTextView.text = "전체 선택"
+        }
+
+        // RecyclerView 갱신
+        adapter.notifyDataSetChanged()
+    }
+
 }

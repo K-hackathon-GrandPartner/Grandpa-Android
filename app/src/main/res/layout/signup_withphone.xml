@@ -193,8 +193,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/signup_text_design"
-                android:padding="7dp"
                 android:hint="-없이 숫자만 입력해주세요"
+                android:padding="7dp"
                 android:singleLine="true"
                 android:textSize="14sp" />
 

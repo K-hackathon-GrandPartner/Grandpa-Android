@@ -1,5 +1,6 @@
 package com.example.grandpa
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -10,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
 
 class HeartAdapter(var roomList: ArrayList<room_detail_data>, var m2setting : Boolean, private val context: Context) : RecyclerView.Adapter<HeartAdapter.RoomViewHolder>()  {
     inner class RoomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,9 +34,13 @@ class HeartAdapter(var roomList: ArrayList<room_detail_data>, var m2setting : Bo
                 val position = adapterPosition
                 if(position != RecyclerView.NO_POSITION){
                     val clickedItem = roomList[position]
+                    val activityContext = parent.context as? Activity
+                    (parent.context as Activity).finish()
+
                     val intent = Intent(parent.context, HeartDetailActivity::class.java)
                     intent.putExtra("room_id", clickedItem.id)
                     parent.context.startActivity(intent)
+                    activityContext?.overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
                 }
             }
         }
@@ -48,7 +54,7 @@ class HeartAdapter(var roomList: ArrayList<room_detail_data>, var m2setting : Bo
         holder.building_type.text = roomList[position].buildingType
         //holder.room_size.text = roomList[position].roomSizeType
         holder.room_size.text = "중형"
-        holder.building_height.text = roomList[position].roomFloor.toString()
+        holder.building_height.text = ", " + roomList[position].roomFloor.toString() + "층)"
         holder.room_deposit.text = roomList[position].deposit.toString()
         holder.room_price.text = roomList[position].monthlyRent.toString()
         holder.building_place.text = roomList[position].address
@@ -57,11 +63,11 @@ class HeartAdapter(var roomList: ArrayList<room_detail_data>, var m2setting : Bo
         if(m2setting){
             //true면 m2으로
             val roomSize = roomList[position].roomSize
-            holder.size_unitm2.text = String.format("%.1f", roomSize) + "㎡"
+            holder.size_unitm2.text = "("+String.format("%.1f", roomSize) + "㎡"
         }else{
             //false면 평으로
             val roomSize = roomList[position].roomSize
-            holder.size_unit.text = String.format("%.1f", roomSize / 3.3) + "평"
+            holder.size_unit.text = "("+String.format("%.1f", roomSize / 3.3) + "평"
         }
     }
 
@@ -71,6 +77,11 @@ class HeartAdapter(var roomList: ArrayList<room_detail_data>, var m2setting : Bo
 
     fun setM2Setting(m2setting: Boolean) {
         this.m2setting = m2setting
+        notifyDataSetChanged()
+    }
+
+    fun updateData(newRoomList: ArrayList<room_detail_data>) {
+        roomList = newRoomList
         notifyDataSetChanged()
     }
 }

@@ -38,30 +38,37 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         binding.detailHeart.setImageResource(R.drawable.onheart)
 
         binding.detailBack.setOnClickListener{
+            val intent = Intent(this@HeartDetailActivity, HeartActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
             finish()
         }
 
         binding.detailSearch.setOnClickListener {
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
         binding.detailCheck.setOnClickListener {
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
         binding.detailMagazine.setOnClickListener {
             val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
         binding.detailProfile.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
@@ -155,6 +162,7 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         binding.detailInfoMore.setOnClickListener {
             val intent = Intent(this, DetailInfoPopActivity::class.java)
             intent.putExtra("room_id", roomId)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
             startActivity(intent)
         }
 

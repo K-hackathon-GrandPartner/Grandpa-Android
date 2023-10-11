@@ -1,6 +1,7 @@
 package com.example.grandpa
 
 import java.io.Serializable
+import javax.crypto.AEADBadTagException
 
 //room 모두 보여주는 data class
 data class ShowRoomResponse(
@@ -33,10 +34,10 @@ data class room_detail_data(
     val id: Int,
     val monthlyRent: Int,
     val deposit: Int,
-    val buildingType: String,
     val buildingFloor: Int,
     val roomFloor: Int,
     val roomSize: Float,
+    val buildingType: String,
     val moveInDate: String,
     val address: String,
     val coordinate: Location,
@@ -44,6 +45,7 @@ data class room_detail_data(
     val updateDate: String,
     val images: List<String>,
     val detail: Detail,
+    val landlordProfile: landlordProfile,
     val option: Option,
     val rule: Rule,
     val safety: Safety,
@@ -61,6 +63,13 @@ data class Detail(
     val content: String
 )
 
+data class landlordProfile(
+    val userId: Int,
+    val profileImageUrl: String,
+    val name: String,
+    val rating: Float,
+    val reviewCount: Int
+)
 data class Option(
     val bathroom: Int,
     val bed: Int,
@@ -129,8 +138,59 @@ data class GetCheckResponse(
     val result: ChecklistData
 )
 data class ChecklistData(
-    val month: List<String>? = null,
-    val week: List<String>? = null,
-    val day: List<String>? = null,
-    val etc: List<String>? = null
+    val week: List<String>,
+    val day: List<String>,
+    val etc: List<String>
+)
+
+// 메거진 데이터 클래스
+data class MagazineResponse(
+    val statusCode: String,
+    val message: String,
+    val result: List<MagazineData>
+)
+
+data class MagazineData(
+    val id: String,
+    val imageUrl: String
+)
+
+// 메거진 상세 조회
+data class MagazineDetailResponse(
+    val statusCode: String,
+    val message: String,
+    val result: MagazineDetailData
+)
+
+data class MagazineDetailData(
+    val id: String,
+    val imageUrl: String,
+    val content: String
+)
+
+// 방 상세 조회의 임대인 프로필 조회
+data class DetailProfileResponse(
+    val statusCode: String,
+    val message: String,
+    val result: landlordDetailProfile
+)
+
+data class landlordDetailProfile(
+    val id: Int,
+    val profileImageUrl: String,
+    val name: String,
+    val introduction : String,
+    val rating: Float,
+    val reviewCount: Int,
+    val review : ReviewData
+)
+
+data class ReviewData(
+    val id: Int,
+    val profileImageUrl: String,
+    val name: String,
+    val rating: Float,
+    val content: String,
+    val postDate: String,
+    val updateDate: String
 )

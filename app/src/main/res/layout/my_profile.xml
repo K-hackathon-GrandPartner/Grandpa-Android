@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:text="마이페이지"
+        android:textColor="#595959"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/profile_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_magazine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/profile_magazine"
+        app:srcCompat="@drawable/onprofile" />
+
+    <ImageView
+        android:id="@+id/profile_magazine"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_check"
+        app:layout_constraintEnd_toStartOf="@+id/profile_profile"
+        app:layout_constraintStart_toEndOf="@+id/profile_check"
+        app:layout_constraintTop_toTopOf="@+id/profile_check"
+        app:srcCompat="@drawable/offmagazine" />
+
+    <ImageView
+        android:id="@+id/profile_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_heart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/profile_heart"
+        app:srcCompat="@drawable/offsearch" />
+
+    <ImageView
+        android:id="@+id/profile_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_check"
+        app:layout_constraintEnd_toStartOf="@+id/profile_check"
+        app:layout_constraintStart_toEndOf="@+id/profile_search"
+        app:layout_constraintTop_toTopOf="@+id/profile_check"
+        app:srcCompat="@drawable/offheart" />
+
+    <ImageView
+        android:id="@+id/profile_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider8"
+        app:srcCompat="@drawable/offcheck" />
+
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FCFFFC"
+        app:layout_constraintBottom_toTopOf="@+id/divider8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider7">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_option"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/login_design"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="348dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/profile_modifyInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="개인정보 수정"
+                    android:textColor="#595959"
+                    android:textSize="18sp" />
+
+                <View
+                    android:id="@+id/divider9"
+                    android:layout_width="330dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="8dp"
+                    android:background="#595959" />
+
+                <TextView
+                    android:id="@+id/profile_modifyPhonePasswd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="전화번호 및 비밀번호 변경"
+                    android:textColor="#595959"
+                    android:textSize="18sp" />
+
+                <View
+                    android:id="@+id/divider10"
+                    android:layout_width="330dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="8dp"
+                    android:background="#595959" />
+
+                <TextView
+                    android:id="@+id/pprofile_upload"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="재학증명서 업로드"
+                    android:textColor="#595959"
+                    android:textSize="18sp" />
+
+                <View
+                    android:id="@+id/divider11"
+                    android:layout_width="330dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="8dp"
+                    android:background="#595959" />
+
+                <TextView
+                    android:id="@+id/profile_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="16dp"
+                    android:text="로그아웃"
+                    android:textColor="#F50000"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/divider8"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/profile_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

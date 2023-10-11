@@ -5,31 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#54B327"
-    android:backgroundTint="#E3E4E2">
+    android:backgroundTint="@color/yellowgreen">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
-        android:background="#FDFCFC"
+        android:background="@drawable/room_item_design"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/item_roomImage"
-            android:layout_width="150dp"
-            android:layout_height="110dp"
-            android:scaleType="fitXY"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:scaleType="fitXY"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
             android:layout_marginStart="16dp"
             android:text="건물유형"
             android:textColor="#605D5D"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/item_roomImage"
             app:layout_constraintTop_toTopOf="@+id/item_roomImage" />
 
@@ -54,7 +54,7 @@
             android:layout_marginStart="8dp"
             android:text="방크기"
             android:textColor="#605D5D"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/item_buildingType"
             app:layout_constraintTop_toTopOf="@+id/item_buildingType" />
 
@@ -62,11 +62,9 @@
             android:id="@+id/item_roomDeposit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="보증금"
-            android:textColor="#070707"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:textColor="#605D5D"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/item_buildingType"
             app:layout_constraintTop_toBottomOf="@+id/item_buildingType" />
 
@@ -74,7 +72,7 @@
             android:id="@+id/item_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="3dp"
             android:text="건물위치"
             android:textColor="#201F1F"
             android:textSize="14sp"
@@ -83,12 +81,13 @@
 
         <TextView
             android:id="@+id/item_title"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:text="제목"
             android:textColor="#323131"
-            app:layout_constraintBottom_toBottomOf="@+id/item_roomImage"
-            app:layout_constraintStart_toStartOf="@+id/item_address" />
+            app:layout_constraintStart_toStartOf="@+id/item_address"
+            app:layout_constraintTop_toBottomOf="@+id/item_address" />
 
         <TextView
             android:id="@+id/item_buildingHeight"
@@ -97,7 +96,7 @@
             android:layout_marginStart="8dp"
             android:text="층수"
             android:textColor="#605D5D"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/item_sizeUnit"
             app:layout_constraintTop_toTopOf="@+id/item_sizeUnit" />
 
@@ -108,7 +107,7 @@
             android:layout_marginStart="8dp"
             android:text="단위"
             android:textColor="#605D5D"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/item_roomSize"
             app:layout_constraintTop_toTopOf="@+id/item_roomSize" />
 
@@ -118,9 +117,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="월세 "
-            android:textColor="#070707"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:textColor="#605D5D"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/item_roomDeposit"
             app:layout_constraintTop_toTopOf="@+id/item_roomDeposit" />
 

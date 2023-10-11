@@ -13,6 +13,7 @@ import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.example.grandpa.databinding.RoomDetailBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -66,24 +67,28 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         binding.detailHeart.setOnClickListener {
             val intent = Intent(this, HeartActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
         binding.detailCheck.setOnClickListener {
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
         binding.detailMagazine.setOnClickListener {
             val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
         binding.detailProfile.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
             finish()
         }
 
@@ -122,39 +127,17 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                         roomInfo = apiResponse.result
                         Log.d("responseData", roomInfo.toString())
 
-                        //이미지 가로 전환
-                        val roomImagePager: ViewPager2 = findViewById(R.id.viewPager2)
-                        roomImagePager.adapter = RoomImageAdapter(roomInfo.images, this@RoomDetailActivity)
-                        roomImagePager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
-                        binding.detailAddress.text = roomInfo.address
-                        binding.detailDeposit.text = roomInfo.deposit.toString()
-                        binding.detailMonthlyRent.text = roomInfo.monthlyRent.toString()
-                        binding.detailRoomTitle.text = roomInfo.detail.title
-                        binding.detailBuildingType.text = roomInfo.buildingType
-
-                        val roomBuildFloor = "( " + roomInfo.roomFloor + "층 / " + roomInfo.buildingFloor + "층 )"
-                        binding.detailRoomBuildingFloor.text = roomBuildFloor
-
+                        // 하트 초기화
                         if(setM2){
-                            //true면 m2으로
                             val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡)"
                             binding.detailSizeUnit.text = sizeUnit
 
                         }else{
-                            //false면 평으로
                             val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize / 3.3) + "평 )"
                             binding.detailSizeUnit.text = sizeUnit
                         }
 
-                        binding.detailMoveInDate.text = roomInfo.moveInDate
-
-                        val count = setOptionLayout(roomInfo.option)
-                        Log.d("count", count.toString())
-                        if(count!=12) offOptionLayout(count)
-
-                        binding.detailRule4.text = roomInfo.rule.religion
-
+                        // 하트 변경
                         binding.detailM2.setOnClickListener {
                             if(setM2){
                                 //true면 m2으로
@@ -194,12 +177,53 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                             }
                         }
 
+                        //이미지 가로 전환
+                        val roomImagePager: ViewPager2 = findViewById(R.id.viewPager2)
+                        roomImagePager.adapter = RoomImageAdapter(roomInfo.images, this@RoomDetailActivity)
+                        roomImagePager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+                        binding.detailAddress.text = roomInfo.address
+                        binding.detailDeposit.text = roomInfo.deposit.toString()
+                        binding.detailMonthlyRent.text = roomInfo.monthlyRent.toString()
+                        binding.detailRoomTitle.text = roomInfo.detail.title
+                        binding.detailBuildingType.text = roomInfo.buildingType
+
+                        val roomBuildFloor = "( " + roomInfo.roomFloor + "층 / " + roomInfo.buildingFloor + "층 )"
+                        binding.detailRoomBuildingFloor.text = roomBuildFloor
+                        binding.detailMoveInDate.text = roomInfo.moveInDate
+
+                        // 옵션
+                        val count = setOptionLayout(roomInfo.option)
+                        Log.d("count", count.toString())
+                        if(count!=12) offOptionLayout(count)
+
+                        // 상세 정보
+                        binding.detailRule4.text = roomInfo.rule.religion
                         binding.detailInfoMore.setOnClickListener {
                             val intent = Intent(this@RoomDetailActivity, DetailInfoPopActivity::class.java)
                             intent.putExtra("room_id", roomId)
                             startActivity(intent)
+                            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
                         }
 
+                        // 임대인 프로필
+                        Glide.with(binding.getRoot().getContext())
+                            .load(roomInfo.landlordProfile.profileImageUrl)
+                            .circleCrop()
+                            .into(binding.detailProfileImage)
+
+                        binding.detailProfileName.text = roomInfo.landlordProfile.name
+
+                        val averageAndcount =  roomInfo.landlordProfile.rating.toString() + " (" + roomInfo.landlordProfile.reviewCount + "개)"
+                        binding.detailAverageCount.text = averageAndcount
+                        setStar(roomInfo.landlordProfile.rating)
+
+                        // 임대인 상세 보기
+                        binding.detailProfileMore.setOnClickListener {
+                            showDetailReviewPopDialog(roomInfo.landlordProfile.userId)
+                        }
+
+                        // 지도
                         val fm = supportFragmentManager
                         val mapFragment = fm.findFragmentById(R.id.map_fragment) as MapFragment?
                             ?: MapFragment.newInstance().also {
@@ -221,6 +245,12 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         })
 
     }
+    private fun showDetailReviewPopDialog(landlordId : Int) {
+        val dialog = DetailReviewPopDialog(this, landlordId) { text ->
+            Log.d("다이얼로그", "자세히 닫기")
+        }
+        dialog.show()
+    }
 
     @UiThread
     override fun onMapReady(naverMap: NaverMap) {
@@ -237,8 +267,8 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
 
     fun setOptionLayout(option: Option): Int {
         var count = 0
-        val setDefaultName :String = "detailOptionword"
-        val setDefaultImage : String = "detailOption"
+        val setDefaultName = "detailOptionword"
+        val setDefaultImage = "detailOption"
         var setName : String
         var setImage : String
         val bindingClass = binding::class.java
@@ -508,4 +538,41 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         }
     }
 
+    fun setStar(rating: Float){
+        val offDefaultName = "detailStar"
+        val bindingClass = binding::class.java
+
+        val ratingIntPart = rating.toInt() // 정수 부분
+        val ratingDecimalPart = rating - ratingIntPart // 소수 부분
+
+        // fullstar 이미지 설정
+        for (i in 1..ratingIntPart) {
+            val offName = offDefaultName + i.toString()
+            try {
+                val field = bindingClass.getDeclaredField(offName)
+                field.isAccessible = true
+                val offView = field.get(binding) as ImageView
+                offView.setImageResource(R.drawable.fullstar)
+            } catch (e: NoSuchFieldException) {
+                // Handle the case where the field doesn't exist
+            } catch (e: IllegalAccessException) {
+                // Handle any access-related exceptions
+            }
+        }
+
+        // halffullstar 이미지 설정 (소수 부분이 0 이상일 때)
+        if (ratingDecimalPart > 0) {
+            val offName = offDefaultName + (ratingIntPart + 1).toString()
+            try {
+                val field = bindingClass.getDeclaredField(offName)
+                field.isAccessible = true
+                val offView = field.get(binding) as ImageView
+                offView.setImageResource(R.drawable.halffullstar)
+            } catch (e: NoSuchFieldException) {
+                // Handle the case where the field doesn't exist
+            } catch (e: IllegalAccessException) {
+                // Handle any access-related exceptions
+            }
+        }
+    }
 }

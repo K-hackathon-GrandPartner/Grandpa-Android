@@ -25,31 +25,35 @@ class ShowRoomActivity : AppCompatActivity() {
         setContentView(R.layout.show_room)
 
         //heart 화면
-        val heartImageView: ImageView = findViewById(R.id.filtering_heart)
+        val heartImageView: ImageView = findViewById(R.id.showroom_heart)
         heartImageView.setOnClickListener{
             val intent = Intent(this, HeartActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
         //check 화면
-        val checkImageView: ImageView = findViewById(R.id.show_check)
+        val checkImageView: ImageView = findViewById(R.id.showroom_check)
         checkImageView.setOnClickListener{
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
         //chat 화면
-        val chatImageView: ImageView = findViewById(R.id.filtering_magazine)
+        val chatImageView: ImageView = findViewById(R.id.showroom_magazine)
         chatImageView.setOnClickListener{
             val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
         //profile 화면
-        val profileImageView: ImageView = findViewById(R.id.filtering_profile)
+        val profileImageView: ImageView = findViewById(R.id.showroom_profile)
         profileImageView.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -74,6 +78,7 @@ class ShowRoomActivity : AppCompatActivity() {
             val intent = Intent(this, FilterActivity::class.java)
             intent.putExtra("roomListSize", roomList.size) //put으로 roomList 사이즈 보냄
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
             finish()
         }
 
@@ -116,7 +121,7 @@ class ShowRoomActivity : AppCompatActivity() {
 
                         //roomlist 개수
                         val sumOfRoom = findViewById<TextView>(R.id.show_CountRoom)
-                        sumOfRoom.text = "총 ${roomList.size} 개"
+                        sumOfRoom.text = "${roomList.size}"
 
                         //리사이클러뷰
                         val rv_room = findViewById<RecyclerView>(R.id.room_list)
@@ -145,6 +150,7 @@ class ShowRoomActivity : AppCompatActivity() {
         FilterActivity.FilteringDB.init(this)
         val filterDB = FilterActivity.FilteringDB.getInstance()
         val keys = filterDB.all.keys // 모든 SharedPreferences 키를 가져옴
+
         // 쿼리 파라미터를 Map으로 만들기(보증금,월세)
         val queryParams = mutableMapOf<String,Float>()
         val regionParams = mutableListOf<String>()
@@ -175,18 +181,23 @@ class ShowRoomActivity : AppCompatActivity() {
             }
         }
 
+        Log.d("getFilteredRooms","필터링 함수 실행됨")
+
         val LoginTokenData = SignupLocationSchoolActivity.LoginTokenDB.getInstance()
         val token = LoginTokenData.getString("accessToken", null)
 
         // Retrofit 서비스 인터페이스를 사용하여 API 요청 보내기
         val call = FilteredRoomImpl.service_ct_tab.requestList(token.toString(),queryParams, regionParams, buildingTypeParams, roomSizeParams, optionParams)
 
+        Log.d("call", call.toString())
         call.enqueue(object : Callback<ShowRoomResponse> {
             override fun onResponse(call: Call<ShowRoomResponse>, response: Response<ShowRoomResponse>) {
+                Log.d("response", response.toString())
                 if (response.isSuccessful) {
                     val filterResponse = response.body()
                     if (filterResponse != null) {
                         val responseData = filterResponse.result
+                        Log.d("responseData", responseData.toString())
                         for (data in responseData) {
                             //받아온 데이터 list에 넣음
                             val room = room_data(data.id, data.imageUrl, data.buildingType, data.roomSizeType, data.roomSize, data.roomFloor, data.deposit, data.monthlyRent, data.address, data.title, data.postDate)
@@ -194,8 +205,8 @@ class ShowRoomActivity : AppCompatActivity() {
                         }
 
                         //roomlist 개수
-                        val sumOfRoom = findViewById<TextView>(R.id.CountRoom)
-                        sumOfRoom.text = "총 ${roomList.size} 개"
+                        val sumOfRoom = findViewById<TextView>(R.id.show_CountRoom)
+                        sumOfRoom.text = "${roomList.size}"
 
                         //리사이클러뷰
                         val rv_room = findViewById<RecyclerView>(R.id.room_list)

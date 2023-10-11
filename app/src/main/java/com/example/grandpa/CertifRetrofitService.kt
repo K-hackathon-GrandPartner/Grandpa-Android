@@ -35,8 +35,9 @@ interface DetailRoomInterface{
 // 필터링한 데이터 가져오는 인터페이스
 interface FilteredRoomInterface {
     @GET(BASE_URL)
+    @Headers("accept: application/json")
     fun requestList(
-        @Header("accept") accept: String,
+        @Header("Authorization") authorization: String,
         @QueryMap queryMap: Map<String, Float>,
         @Query("regions") regions: List<String>,
         @Query("buildingTypes") buildingTypes: List<String>,
@@ -63,4 +64,20 @@ interface CheckListInterface {
     fun getChecklistData(@Header("Authorization") authorization: String): Call<GetCheckResponse>
 }
 
+interface MagazineInterface {
+    @GET(MAGAZINE_URL)
+    @Headers("accept: application/json")
+    fun getMagazineData(@Header("Authorization") authorization: String): Call<MagazineResponse>
+}
 
+interface MagazineDetailInterface {
+    @GET()
+    @Headers("accept: application/json")
+    fun getMagazineDetailData(@Url url: String, @Header("Authorization") authorization: String): Call<MagazineDetailResponse>
+}
+
+interface DetailProfileInterface {
+    @GET()
+    @Headers("accept: application/json")
+    fun getDetailProfileData(@Url url: String, @Header("Authorization") authorization: String): Call<DetailProfileResponse>
+}

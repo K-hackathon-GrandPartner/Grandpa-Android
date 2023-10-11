@@ -30,6 +30,7 @@ class SignupProfileActivity : AppCompatActivity() {
         backbtn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
             finish()
         }
 
@@ -62,6 +63,7 @@ class SignupProfileActivity : AppCompatActivity() {
                 InfoData.apply()
                 val intent = Intent(this, SignupLocationSchoolActivity::class.java)
                 startActivity(intent)
+                overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
                 finish()
             }
         }

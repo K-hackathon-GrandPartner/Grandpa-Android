@@ -24,6 +24,7 @@ class HeartActivity : AppCompatActivity(){
         searchImageView.setOnClickListener{
             val intent = Intent(this, ShowRoomActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
         //check 화면
@@ -31,6 +32,7 @@ class HeartActivity : AppCompatActivity(){
         checkImageView.setOnClickListener{
             val intent = Intent(this, CheckActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
         //chat 화면
@@ -38,6 +40,7 @@ class HeartActivity : AppCompatActivity(){
         chatImageView.setOnClickListener{
             val intent = Intent(this, MagazineActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
         //profile 화면
@@ -45,6 +48,7 @@ class HeartActivity : AppCompatActivity(){
         profileImageView.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -84,7 +88,7 @@ class HeartActivity : AppCompatActivity(){
 
         //roomlist 개수
         val sumOfRoom = findViewById<TextView>(R.id.heart_CountRoom)
-        sumOfRoom.text = "총 ${roomList.size} 개"
+        sumOfRoom.text = "${roomList.size}"
 
         //리사이클러뷰
         val rv_room = findViewById<RecyclerView>(R.id.heartroom_list)
@@ -93,6 +97,31 @@ class HeartActivity : AppCompatActivity(){
         rv_room.setHasFixedSize(true)
         heartAdapter = HeartAdapter(roomList, setM2, this) // 어댑터 생성 및 초기화
         rv_room.adapter = heartAdapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        RoomDetailActivity.HeartDB.init(this)
+        val InfoData = RoomDetailActivity.HeartDB.getInstance()
+        val allEntries: Map<String, *> = InfoData.all
+        //dataList 생성
+        val roomList = arrayListOf<room_detail_data>()
+
+        if(allEntries.isEmpty()){
+            Log.d("하트 내부저장소", "없음")
+        }else{
+            //Log.d("하트 내부저장소", allEntries.toString())
+            for ((key, value) in allEntries){
+                if (value is String) {
+                    val gson = Gson()
+                    val roomInfo = gson.fromJson(value, room_detail_data::class.java)
+                    roomList.add(roomInfo)
+                }
+            }
+        }
+
+        heartAdapter.updateData(roomList)
     }
 
 }

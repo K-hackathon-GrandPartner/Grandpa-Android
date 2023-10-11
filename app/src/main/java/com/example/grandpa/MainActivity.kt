@@ -1,14 +1,19 @@
 package com.example.grandpa
 
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Base64
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 
 class MainActivity:AppCompatActivity() {
@@ -27,7 +32,7 @@ class MainActivity:AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             //유저 정보 삭제
             checkToken()
-        },3000) //3초
+        },2000) //2초
 
         FilterActivity.FilteringDB.init(this)
         val filterDB = FilterActivity.FilteringDB.getInstance().edit()
@@ -53,6 +58,7 @@ class MainActivity:AppCompatActivity() {
                     if(responseBody != null){
                         val intent = Intent(this@MainActivity, ShowRoomActivity::class.java)
                         startActivity(intent)
+                        overridePendingTransition(0, 0);
                         finish()
                     }
                 } else {
@@ -61,6 +67,7 @@ class MainActivity:AppCompatActivity() {
                     Log.d("response", response.toString())
                     val intent = Intent(this@MainActivity, LoginActivity::class.java)
                     startActivity(intent)
+                    overridePendingTransition(0, 0);
                     finish()
 
                 }
@@ -72,6 +79,26 @@ class MainActivity:AppCompatActivity() {
             }
         })
     }
+
+    private fun getHashKey() {
+        var packageInfo: PackageInfo? = null
+        try {
+            packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        if (packageInfo == null) Log.e("KeyHash", "KeyHash:null")
+        for (signature in packageInfo!!.signatures) {
+            try {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+            } catch (e: NoSuchAlgorithmException) {
+                Log.e("KeyHash", "Unable to get MessageDigest. signature=$signature", e)
+            }
+        }
+    }
+
 
 }
 
