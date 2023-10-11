@@ -21,7 +21,7 @@
         android:id="@+id/room_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/white"
+        android:background="@color/yellowgreen"
         app:layout_constraintBottom_toTopOf="@+id/show_divider2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

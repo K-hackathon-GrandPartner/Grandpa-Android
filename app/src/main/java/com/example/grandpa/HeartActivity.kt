@@ -88,7 +88,7 @@ class HeartActivity : AppCompatActivity(){
 
         //roomlist 개수
         val sumOfRoom = findViewById<TextView>(R.id.heart_CountRoom)
-        sumOfRoom.text = "총 ${roomList.size} 개"
+        sumOfRoom.text = "${roomList.size}"
 
         //리사이클러뷰
         val rv_room = findViewById<RecyclerView>(R.id.heartroom_list)

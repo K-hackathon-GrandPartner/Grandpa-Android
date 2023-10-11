@@ -23,9 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="sumofRoom"
+        android:text="0"
         android:textColor="@color/green"
-        android:textSize="23dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/divider4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -584,7 +584,7 @@
         android:id="@+id/divider5"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="5dp"
         android:background="@color/green"
         app:layout_constraintBottom_toTopOf="@+id/filtering_search"
         app:layout_constraintEnd_toEndOf="parent"
@@ -609,7 +609,7 @@
         app:layout_constraintEnd_toStartOf="@+id/filtering_profile"
         app:layout_constraintStart_toEndOf="@+id/filtering_check"
         app:layout_constraintTop_toTopOf="@+id/filtering_check"
-        app:srcCompat="@drawable/offchat" />
+        app:srcCompat="@drawable/offmagazine" />
 
     <ImageView
         android:id="@+id/filtering_check"
@@ -640,5 +640,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/filtering_heart"
         app:srcCompat="@drawable/onsearch" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="총"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/CountRoom"
+        app:layout_constraintEnd_toStartOf="@+id/CountRoom"
+        app:layout_constraintTop_toTopOf="@+id/CountRoom" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:text="개"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/CountRoom"
+        app:layout_constraintStart_toEndOf="@+id/CountRoom"
+        app:layout_constraintTop_toTopOf="@+id/CountRoom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
