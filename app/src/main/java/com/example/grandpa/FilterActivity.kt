@@ -48,7 +48,7 @@ class FilterActivity : AppCompatActivity() {
         //roomlist 개수 가져옴
         val roomListSize = intent.getIntExtra("roomListSize", 0) //0은 기본 값
         val sumOfRoom = findViewById<TextView>(R.id.CountRoom)
-        sumOfRoom.text = "총 ${roomListSize} 개"
+        sumOfRoom.text =  "$roomListSize"
 
         //Back 버튼
         val backImageView: ImageView = findViewById(R.id.filtering_backbtn)
