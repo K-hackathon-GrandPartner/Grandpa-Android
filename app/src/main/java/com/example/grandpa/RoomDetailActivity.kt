@@ -198,7 +198,25 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                         if(count!=12) offOptionLayout(count)
 
                         // 상세 정보
-                        binding.detailRule4.text = roomInfo.rule.religion
+                        if (roomInfo.rule.curfew != 0){
+                            binding.detailRule1.text = "- " +roomInfo.rule.curfew.toString() + "시 이내 귀가"
+                        }else{
+                            binding.detailRule1.text = "- 귀가 시간 상관 없음"
+                        }
+
+                        if(roomInfo.rule.curfew != 0){
+                            binding.detailRule2.text = "- 흡연 가능"
+                        }else{
+                            binding.detailRule2.text = "- 흡연 불가능"
+                        }
+
+                        if(roomInfo.rule.drinking != 0){
+                            binding.detailRule3.text = "- 음주 가능"
+                        }else{
+                            binding.detailRule3.text = "- 음주 불가능"
+                        }
+
+                        binding.detailRule4.text = "- " + roomInfo.rule.religion
                         binding.detailInfoMore.setOnClickListener {
                             val intent = Intent(this@RoomDetailActivity, DetailInfoPopActivity::class.java)
                             intent.putExtra("room_id", roomId)
@@ -262,7 +280,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         circle.center = LatLng(roomInfo.coordinate.lat, roomInfo.coordinate.lng)
         circle.radius = 70.0
         circle.map = naverMap
-        circle.color = Color.parseColor("#90B494")
+        circle.color = Color.parseColor("#5900A400")
     }
 
     fun setOptionLayout(option: Option): Int {
@@ -284,7 +302,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "   욕실"
+                onName.text = "욕실"
                 onImage.setImageResource(R.drawable.bath)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
@@ -304,7 +322,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "   침실"
+                onName.text = "침실"
                 onImage.setImageResource(R.drawable.bed)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
@@ -324,7 +342,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "  에어컨"
+                onName.text = "에어컨"
                 onImage.setImageResource(R.drawable.airconditioner)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
@@ -344,7 +362,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "   책상"
+                onName.text = "책상"
                 onImage.setImageResource(R.drawable.desk)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
@@ -464,7 +482,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "유로 주차"
+                onName.text = "유료 주차"
                 onImage.setImageResource(R.drawable.parking)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
@@ -484,7 +502,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "   옷장"
+                onName.text = "옷장"
                 onImage.setImageResource(R.drawable.closet)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
@@ -504,7 +522,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "   TV"
+                onName.text = "TV"
                 onImage.setImageResource(R.drawable.tv)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist

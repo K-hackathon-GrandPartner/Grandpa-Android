@@ -6,7 +6,7 @@
 
     <ImageView
         android:id="@+id/detailItemPager"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"

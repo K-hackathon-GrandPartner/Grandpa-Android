@@ -64,7 +64,7 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager2"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"></androidx.viewpager2.widget.ViewPager2>
+                android:layout_height="wrap_content"></androidx.viewpager2.widget.ViewPager2>
 
             <View
                 android:id="@+id/detail_individer1"
@@ -97,10 +97,9 @@
                         android:id="@+id/detail_deposit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
+                        android:layout_marginStart="12dp"
                         android:text="보증금"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                        android:textSize="30dp"/>
 
                     <TextView
                         android:id="@+id/detail_slash"
@@ -109,8 +108,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginBottom="20dp"
                         android:text="/"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                        android:textSize="30dp" />
 
                     <TextView
                         android:id="@+id/detail_monthlyRent"
@@ -118,8 +116,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:text="월세"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                        android:textSize="30dp"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -140,8 +137,8 @@
                     android:id="@+id/detail_roomTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
                     android:text="제목"
                     android:textSize="18dp" />
@@ -153,8 +150,8 @@
 
                     <ImageView
                         android:id="@+id/detail_house"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginBottom="15dp"
                         app:srcCompat="@drawable/house" />
@@ -187,8 +184,8 @@
 
                     <ImageView
                         android:id="@+id/detail_room"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginBottom="15dp"
                         app:srcCompat="@drawable/room" />
@@ -220,8 +217,8 @@
 
                     <ImageView
                         android:id="@+id/detail_calendar"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginBottom="15dp"
                         app:srcCompat="@drawable/calendar" />
@@ -248,6 +245,8 @@
                 android:id="@+id/detail_options"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -255,11 +254,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:text="옵션"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="25dp" />
 
                 <LinearLayout
                     android:id="@+id/optionList1"
@@ -279,8 +276,8 @@
 
                         <ImageView
                             android:id="@+id/detail_option1"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
@@ -302,8 +299,8 @@
 
                         <ImageView
                             android:id="@+id/detail_option2"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
@@ -325,8 +322,8 @@
 
                         <ImageView
                             android:id="@+id/detail_option3"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
@@ -348,8 +345,8 @@
 
                         <ImageView
                             android:id="@+id/detail_option4"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
@@ -380,8 +377,8 @@
 
                         <ImageView
                             android:id="@+id/detail_option5"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
@@ -403,8 +400,8 @@
 
                         <ImageView
                             android:id="@+id/detail_option6"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
@@ -426,8 +423,8 @@
 
                         <ImageView
                             android:id="@+id/detail_option7"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
@@ -449,8 +446,8 @@
 
                         <ImageView
                             android:id="@+id/detail_option8"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
@@ -483,8 +480,8 @@
 
                         <ImageView
                             android:id="@+id/detail_option9"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
@@ -507,8 +504,8 @@
 
                         <ImageView
                             android:id="@+id/detail_option10"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
@@ -531,8 +528,8 @@
 
                         <ImageView
                             android:id="@+id/detail_option11"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
@@ -555,8 +552,8 @@
 
                         <ImageView
                             android:id="@+id/detail_option12"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             app:srcCompat="@drawable/house" />
 
@@ -591,7 +588,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:text="상세 정보"
-                    android:textSize="20dp"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -601,7 +598,7 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginBottom="10dp"
                     android:text="규칙"
-                    android:textSize="18dp" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/detail_rule1"
@@ -646,9 +643,9 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:text="자세히 >"
-                    android:textSize="15dp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -673,7 +670,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:text="임대인 프로필"
-                    android:textSize="20dp"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -759,9 +756,9 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:text="자세히 >"
-                    android:textSize="15dp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -786,7 +783,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:text="지도"
-                    android:textSize="20dp"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
 
 
@@ -795,7 +792,7 @@
                     android:name="com.naver.maps.map.MapFragment"
                     android:layout_width="350dp"
                     android:layout_height="250dp"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
 
@@ -822,7 +819,7 @@
                     android:background="@drawable/detail_info_rounded_background"
                     android:padding="3dp"
                     android:text="전화 문의"
-                    android:textSize="15dp"
+                    android:textSize="23dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
