@@ -11,6 +11,7 @@ import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.example.grandpa.databinding.RoomDetailBinding
 import com.google.gson.Gson
 import com.naver.maps.geometry.LatLng
@@ -105,7 +106,7 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
 
         if(setM2){
             //true면 m2으로
-            val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡)"
+            val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡ )"
             binding.detailSizeUnit.text = sizeUnit
 
         }else{
@@ -119,7 +120,30 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         Log.d("count", count.toString())
         if(count!=12) offOptionLayout(count)
 
-        binding.detailRule4.text = roomInfo.rule.religion
+        // 상세 정보
+        if(roomInfo.rule.curfew == 0){
+            binding.detailRule1.text = "- 상관 없음"
+        }else{
+            binding.detailRule1.text = "- " + roomInfo.rule.curfew.toString() + "시 이내 귀가"
+        }
+
+        if(roomInfo.rule.smoking == 0){
+            binding.detailRule2.text = "- 비흡연"
+        }else if(roomInfo.rule.smoking==1){
+            binding.detailRule2.text = "- 흡연 가능"
+        }else{
+            binding.detailRule2.text = "- 흡연 상관없음"
+        }
+
+        if(roomInfo.rule.drinking == 0){
+            binding.detailRule3.text = "- 금주"
+        }else if(roomInfo.rule.drinking ==1){
+            binding.detailRule3.text = "- 음주 가능"
+        }else{
+            binding.detailRule3.text = "- 음주 상관없음"
+        }
+        binding.detailRule4.text = "- " + roomInfo.rule.religion
+
 
         binding.detailM2.setOnClickListener {
             if(setM2){
@@ -131,7 +155,7 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
             }else{
                 //false면 평으로
                 setM2 = true
-                val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡)"
+                val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡ )"
                 binding.detailM2.setImageResource(R.drawable.m2korea)
                 binding.detailSizeUnit.text = sizeUnit
             }
@@ -166,6 +190,29 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
             startActivity(intent)
         }
 
+        // 임대인 프로필
+        Glide.with(binding.getRoot().getContext())
+            .load(roomInfo.landlordProfile.profileImageUrl)
+            .circleCrop()
+            .into(binding.detailProfileImage)
+
+        binding.detailProfileName.text = roomInfo.landlordProfile.name
+
+        val averageAndcount =  roomInfo.landlordProfile.rating.toString() + " (" + roomInfo.landlordProfile.reviewCount + "개)"
+        binding.detailAverageCount.text = averageAndcount
+        setStar(roomInfo.landlordProfile.rating)
+
+        // 임대인 상세 보기
+        binding.detailProfileMore.setOnClickListener {
+            val dialog = DetailReviewPopDialog(this, roomInfo.landlordProfile.userId)
+            dialog.show()
+        }
+
+        binding.detailCallInfo.setOnClickListener {
+            val dialog = DetailPhonePopDialog(this)
+            dialog.show()
+        }
+
         val fm = supportFragmentManager
         val mapFragment = fm.findFragmentById(R.id.map_fragment) as MapFragment?
             ?: MapFragment.newInstance().also {
@@ -185,7 +232,7 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         circle.center = LatLng(roomInfo.coordinate.lat, roomInfo.coordinate.lng)
         circle.radius = 70.0
         circle.map = naverMap
-        circle.color = Color.parseColor("#90B494")
+        circle.color = Color.parseColor("#5900A400")
     }
 
     fun setOptionLayout(option: Option): Int {
@@ -227,7 +274,7 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "   침실"
+                onName.text = "침실"
                 onImage.setImageResource(R.drawable.bed)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
@@ -247,7 +294,7 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "  에어컨"
+                onName.text = "에어컨"
                 onImage.setImageResource(R.drawable.airconditioner)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
@@ -267,7 +314,7 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "   책상"
+                onName.text = "책상"
                 onImage.setImageResource(R.drawable.desk)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
@@ -387,7 +434,7 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "유로 주차"
+                onName.text = "유료 주차"
                 onImage.setImageResource(R.drawable.parking)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
@@ -407,7 +454,7 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "   옷장"
+                onName.text = "옷장"
                 onImage.setImageResource(R.drawable.closet)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
@@ -427,7 +474,7 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 field2.isAccessible = true
                 val onName = field.get(binding) as TextView
                 val onImage = field2.get(binding) as ImageView
-                onName.text = "   TV"
+                onName.text = "TV"
                 onImage.setImageResource(R.drawable.tv)
             }catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
@@ -453,6 +500,44 @@ class HeartDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                 val offView =
                     field.get(binding) as View
                 offView.isGone = true
+            } catch (e: NoSuchFieldException) {
+                // Handle the case where the field doesn't exist
+            } catch (e: IllegalAccessException) {
+                // Handle any access-related exceptions
+            }
+        }
+    }
+
+    fun setStar(rating: Float){
+        val offDefaultName = "detailStar"
+        val bindingClass = binding::class.java
+
+        val ratingIntPart = rating.toInt() // 정수 부분
+        val ratingDecimalPart = rating - ratingIntPart // 소수 부분
+
+        // fullstar 이미지 설정
+        for (i in 1..ratingIntPart) {
+            val offName = offDefaultName + i.toString()
+            try {
+                val field = bindingClass.getDeclaredField(offName)
+                field.isAccessible = true
+                val offView = field.get(binding) as ImageView
+                offView.setImageResource(R.drawable.fullstar)
+            } catch (e: NoSuchFieldException) {
+                // Handle the case where the field doesn't exist
+            } catch (e: IllegalAccessException) {
+                // Handle any access-related exceptions
+            }
+        }
+
+        // halffullstar 이미지 설정 (소수 부분이 0 이상일 때)
+        if (ratingDecimalPart > 0) {
+            val offName = offDefaultName + (ratingIntPart + 1).toString()
+            try {
+                val field = bindingClass.getDeclaredField(offName)
+                field.isAccessible = true
+                val offView = field.get(binding) as ImageView
+                offView.setImageResource(R.drawable.halffullstar)
             } catch (e: NoSuchFieldException) {
                 // Handle the case where the field doesn't exist
             } catch (e: IllegalAccessException) {

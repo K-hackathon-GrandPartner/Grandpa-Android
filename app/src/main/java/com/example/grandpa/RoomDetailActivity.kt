@@ -129,7 +129,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
 
                         // 하트 초기화
                         if(setM2){
-                            val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡)"
+                            val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡ )"
                             binding.detailSizeUnit.text = sizeUnit
 
                         }else{
@@ -149,7 +149,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                             }else{
                                 //false면 평으로
                                 setM2 = true
-                                val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡)"
+                                val sizeUnit = "( " + String.format("%.1f", roomInfo.roomSize) + "㎡ )"
                                 binding.detailM2.setImageResource(R.drawable.m2korea)
                                 binding.detailSizeUnit.text = sizeUnit
                             }
@@ -198,25 +198,29 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
                         if(count!=12) offOptionLayout(count)
 
                         // 상세 정보
-                        if (roomInfo.rule.curfew != 0){
-                            binding.detailRule1.text = "- " +roomInfo.rule.curfew.toString() + "시 이내 귀가"
+                        if(roomInfo.rule.curfew == 0){
+                            binding.detailRule1.text = "- 상관 없음"
                         }else{
-                            binding.detailRule1.text = "- 귀가 시간 상관 없음"
+                            binding.detailRule1.text = "- " + roomInfo.rule.curfew.toString() + "시 이내 귀가"
                         }
 
-                        if(roomInfo.rule.curfew != 0){
+                        if(roomInfo.rule.smoking == 0){
+                            binding.detailRule2.text = "- 비흡연"
+                        }else if(roomInfo.rule.smoking==1){
                             binding.detailRule2.text = "- 흡연 가능"
                         }else{
-                            binding.detailRule2.text = "- 흡연 불가능"
+                            binding.detailRule2.text = "- 흡연 상관없음"
                         }
 
-                        if(roomInfo.rule.drinking != 0){
+                        if(roomInfo.rule.drinking == 0){
+                            binding.detailRule3.text = "- 금주"
+                        }else if(roomInfo.rule.drinking ==1){
                             binding.detailRule3.text = "- 음주 가능"
                         }else{
-                            binding.detailRule3.text = "- 음주 불가능"
+                            binding.detailRule3.text = "- 음주 상관없음"
                         }
-
                         binding.detailRule4.text = "- " + roomInfo.rule.religion
+
                         binding.detailInfoMore.setOnClickListener {
                             val intent = Intent(this@RoomDetailActivity, DetailInfoPopActivity::class.java)
                             intent.putExtra("room_id", roomId)
@@ -238,7 +242,13 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
 
                         // 임대인 상세 보기
                         binding.detailProfileMore.setOnClickListener {
-                            showDetailReviewPopDialog(roomInfo.landlordProfile.userId)
+                            val dialog = DetailReviewPopDialog(this@RoomDetailActivity, roomInfo.landlordProfile.userId)
+                            dialog.show()
+                        }
+
+                        binding.detailCallInfo.setOnClickListener {
+                            val dialog = DetailPhonePopDialog(this@RoomDetailActivity)
+                            dialog.show()
                         }
 
                         // 지도
@@ -263,12 +273,7 @@ class RoomDetailActivity: AppCompatActivity() , OnMapReadyCallback {
         })
 
     }
-    private fun showDetailReviewPopDialog(landlordId : Int) {
-        val dialog = DetailReviewPopDialog(this, landlordId) { text ->
-            Log.d("다이얼로그", "자세히 닫기")
-        }
-        dialog.show()
-    }
+
 
     @UiThread
     override fun onMapReady(naverMap: NaverMap) {

@@ -45,7 +45,7 @@ class DetailInfoPopActivity : AppCompatActivity() {
                         val roomInfo = apiResponse.result
 
                         setRuleLayout(roomInfo.rule)
-                        binding.detailInfoRule4.text = roomInfo.rule.religion
+                        binding.detailInfoRule4.text = "- "+roomInfo.rule.religion
                         setCareServiceLayout(roomInfo.careServices)
                         setSafetyLayout(roomInfo.safety)
                         setPetLayout(roomInfo.pet)
@@ -64,22 +64,26 @@ class DetailInfoPopActivity : AppCompatActivity() {
     }
 
     fun setRuleLayout(rule : Rule){
-        if(rule.curfew == 1){
-            binding.detailInfoRule1.text = "몇시 이내 귀가"
+        if(rule.curfew == 0){
+            binding.detailInfoRule1.text = "- 상관 없음"
         }else{
-            binding.detailInfoRule1.text = "상관 없음"
+            binding.detailInfoRule1.text = "- " + rule.curfew.toString() + "시 이내 귀가"
         }
 
-        if(rule.smoking == 1){
-            binding.detailInfoRule2.text = "비흡연"
+        if(rule.smoking == 0){
+            binding.detailInfoRule2.text = "- 비흡연"
+        }else if(rule.smoking==1){
+            binding.detailInfoRule2.text = "- 흡연 가능"
         }else{
-            binding.detailInfoRule2.text = "상관 없음"
+            binding.detailInfoRule2.text = "- 흡연 상관없음"
         }
 
-        if(rule.drinking == 1){
-            binding.detailInfoRule3.text = "음주"
+        if(rule.drinking == 0){
+            binding.detailInfoRule3.text = "- 금주"
+        }else if(rule.drinking ==1){
+            binding.detailInfoRule3.text = "- 음주 가능"
         }else{
-            binding.detailInfoRule3.text = "상관 없음"
+            binding.detailInfoRule3.text = "- 음주 상관없음"
         }
     }
 
@@ -96,7 +100,7 @@ class DetailInfoPopActivity : AppCompatActivity() {
                     val field = bindingClass.getDeclaredField(setName)
                     field.isAccessible = true
                     val setView = field.get(binding) as TextView
-                    setView.text = care[i-1]
+                    setView.text = "- " + care[i-1]
                 } catch (e: NoSuchFieldException) {
                     Log.d("NoSuchFieldException", "NoSuchFieldException")
                 } catch (e: IllegalAccessException) {
@@ -120,51 +124,51 @@ class DetailInfoPopActivity : AppCompatActivity() {
 
     fun setSafetyLayout(safety: Safety){
         if(safety.cctv== 1){
-            binding.detailInfoSafety1.text = "CCTV 있음"
+            binding.detailInfoSafety1.text = "- CCTV 있음"
         }else{
-            binding.detailInfoSafety1.text = "CCTV 없음"
+            binding.detailInfoSafety1.text = "- CCTV 없음"
         }
 
         if(safety.fireExtinguisher== 1){
-            binding.detailInfoSafety2.text = "소화기 있음"
+            binding.detailInfoSafety2.text = "- 소화기 있음"
         }else{
             binding.detailInfoSafety2.text = "소화기 없음"
         }
 
         if(safety.firstAidKit== 1){
-            binding.detailInfoSafety3.text = "구급 상자 있음"
+            binding.detailInfoSafety3.text = "- 구급 상자 있음"
         }else{
-            binding.detailInfoSafety3.text = "구급 상자 없음"
+            binding.detailInfoSafety3.text = "- 구급 상자 없음"
         }
 
         if(safety.fireAlarm== 1){
-            binding.detailInfoSafety4.text = "화재 경보기 있음"
+            binding.detailInfoSafety4.text = "- 화재 경보기 있음"
         }else{
-            binding.detailInfoSafety4.text = "화재 경보기 없음"
+            binding.detailInfoSafety4.text = "- 화재 경보기 없음"
         }
 
         if(safety.carbonMonoxideAlarm== 1){
-            binding.detailInfoSafety5.text = "일산화탄소 경보기 있음"
+            binding.detailInfoSafety5.text = "- 일산화탄소 경보기 있음"
         }else{
-            binding.detailInfoSafety5.text = "일산화탄소 경보기 없음"
+            binding.detailInfoSafety5.text = "- 일산화탄소 경보기 없음"
         }
     }
 
     fun setPetLayout(pet : Pet){
         if(pet.dog == 1){
-            binding.detailInfoDog.text = "개 있음"
+            binding.detailInfoDog.text = "- 개 있음"
         }else{
             binding.detailInfoDog.isGone= true
         }
 
         if(pet.cat == 1){
-            binding.detailInfoCat.text = "고양이 있음"
+            binding.detailInfoCat.text = "- 고양이 있음"
         }else{
             binding.detailInfoCat.isGone = true
         }
 
         if(pet.etc == 1){
-            binding.detailInfoEtc.text = "기타"
+            binding.detailInfoEtc.text = "- 기타"
         }else{
             binding.detailInfoEtc.isGone = true
         }

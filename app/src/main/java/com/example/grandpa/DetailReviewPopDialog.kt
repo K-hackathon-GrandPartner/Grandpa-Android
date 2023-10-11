@@ -13,8 +13,7 @@ import retrofit2.Response
 
 class DetailReviewPopDialog(
     context: Context,
-    private val landlordId: Int,
-    private val callback: (String) -> Unit
+    private val landlordId: Int
 ) : Dialog(context) { // 뷰를 띄워야하므로 Dialog 클래스는 context를 인자로 받는다.
 
     private lateinit var binding: ReviewPopBinding
@@ -55,8 +54,6 @@ class DetailReviewPopDialog(
         reviewUnderavg.text = data.review.rating.toString()
         setStar(data.review.rating, "reviewUnderstar")
         reviewUndercontent.text = data.review.content
-
-
 
         reviewBack.setOnClickListener {
             dismiss()
