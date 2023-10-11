@@ -120,7 +120,7 @@ class SignupLocationSchoolActivity:AppCompatActivity() {
         spinner.adapter = adapter
     }
 
-    //db에 저장되어 있는 데이터들 꺼내오기
+    //서버로 보낼 파라미터 생성
     private fun dataToSend(): HashMap<String, Any> {
         SignupWithKakaoActivity.SignUpInfoDB.init(this)
         val InfoDB = SignupWithKakaoActivity.SignUpInfoDB.getInstance()
@@ -154,8 +154,7 @@ class SignupLocationSchoolActivity:AppCompatActivity() {
                     val responseBody = response.body()
                     if(responseBody != null){
                         accessTokenInfo = responseBody
-                        //Log.d("accessToken", accessToken.toString())
-                        val accessToken = (accessTokenInfo as SignUpToken).result.accessToken.toString()
+                        val accessToken = (accessTokenInfo as SignUpToken).result.accessToken
                         Log.d("accessToken", accessToken)
                         LoginTokenData.putString("accessToken", "Bearer $accessToken")
                         LoginTokenData.apply()
