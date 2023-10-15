@@ -79,7 +79,7 @@
 
         <TextView
             android:id="@+id/item_slide"
-            android:layout_width="6dp"
+            android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginStart="2dp"
             android:text="/"

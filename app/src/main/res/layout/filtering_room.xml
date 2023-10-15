@@ -88,9 +88,10 @@
 
                 <com.google.android.material.slider.RangeSlider
                     android:id="@+id/depositrange"
-                    android:layout_width="380dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginTop="10dp"
                     android:backgroundTint="#919191"
                     android:contentDescription="보증금 범위 설정"
@@ -139,11 +140,11 @@
 
                 <com.google.android.material.slider.RangeSlider
                     android:id="@+id/pricerange"
-                    android:layout_width="380dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="50dp"
                     android:contentDescription="월세 범위 설정"
                     android:stepSize="10.0"
                     android:valueFrom="0.0"
@@ -217,7 +218,7 @@
 
                 <LinearLayout
                     android:id="@+id/linear_region"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="3">
@@ -252,6 +253,47 @@
                         android:layout_weight="1"
                         android:onClick="regionOnClicked"
                         android:text="성북구"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_region2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <CheckBox
+                        android:id="@+id/filter_Dongdaemun"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_weight="1"
+                        android:onClick="regionOnClicked"
+                        android:text="동대문구"
+                        android:textSize="20sp" />
+
+
+                    <CheckBox
+                        android:id="@+id/filter_Seodaemun"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:onClick="regionOnClicked"
+                        android:text="서대문구"
+                        android:textSize="20sp" />
+
+
+                    <CheckBox
+                        android:id="@+id/filter_Jongno"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:onClick="regionOnClicked"
+                        android:text="종로구"
                         android:textSize="20sp" />
 
                 </LinearLayout>
