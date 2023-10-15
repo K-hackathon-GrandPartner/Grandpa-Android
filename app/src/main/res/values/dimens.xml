@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="pageMargin">10dp</dimen>
-    <dimen name="offset">20dp</dimen>
-    <dimen name="pageMarginAndOffset">30dp</dimen>
+    <dimen name="pageMargin">5dp</dimen>
+    <dimen name="offset">10dp</dimen>
+    <dimen name="pageMarginAndOffset">15dp</dimen>
 </resources>
